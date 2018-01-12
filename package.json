@@ -1,0 +1,19 @@
+{
+  "name": "fry-calculator",
+  "version": "1.0.0",
+  "description": "Cost analysis tool used to determine pricing structure for orthodontics.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bignamehere/fry-calculator.git"
+  },
+  "author": "Casey Hill",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bignamehere/fry-calculator/issues"
+  },
+  "homepage": "https://github.com/bignamehere/fry-calculator#readme"
+}
