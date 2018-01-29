@@ -1,0 +1,7 @@
+.knob {
+    width: 300px;
+}
+
+.knob .value {
+    text-align: center;
+}

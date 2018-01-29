@@ -1,5 +1,5 @@
 {
-  "name": "Fry Ortho Calculator",
+  "name": "fry-calculator",
   "description": "Calculator for cost of braces",
   "version": "1.0.0",
   "author": "Casey Hill <bignamehere@gmail.com>",
@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "gh-pages": "^1.1.0",
-    "prettier": "^1.10.2"
+    "prettier": "^1.10.2",
+    "svg-knob": "^1.4.2"
   }
 }
