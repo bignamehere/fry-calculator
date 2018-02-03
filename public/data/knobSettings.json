@@ -1,0 +1,31 @@
+{
+	"DownPaymentKnobSettings": {
+    "palette": "light2",
+    "value_min": 0,
+    "value_max": 5000,
+    "initial_value": 1500,
+    "track_bg_radius": 40,
+    "track_bg_width": 12,
+    "track_radius": 40,
+    "track_width": 16,
+    "cursor_radius": 18,
+    "cursor_length": 10,
+    "cursor_width": 20,
+    "font_family": "sans-serif",
+    "font_size": 20
+	},
+	"MonthlyKnobSettings" : {
+    "value_min": 0,
+    "value_max": 500,
+    "initial_value:": 250,
+    "track_bg_radius": 40,
+    "track_bg_width": 12,
+    "track_radius": 40,
+    "track_width": 16,
+    "cursor_radius": 18,
+    "cursor_length": 10,
+    "cursor_width": 20,
+    "font_family": "sans-serif",
+    "font_size": 20
+	}
+}
