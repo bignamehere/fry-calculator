@@ -1,8 +1,20 @@
 import React from 'react';
 import Link from 'gatsby-link';
 import SvgKnob from '../components/SvgKnob/';
+import Axios from 'axios';
 
+let DownPaymentKnobSettings = {};
+let MonthlyKnobSettings = {};
 
+Axios.get("/data/knobSettings.json")
+  .then(function(result) {    
+    // we got it!
+    DownPaymentKnobSettings = result.data.DownPaymentKnobSettings;
+    MonthlyKnobSettings = result.data.MonthlyKnobSettings;
+    console.log(DownPaymentKnobSettings);
+});
+
+/*
 const DownPaymentKnobSettings = {
     palette: 'light2',
     value_min: 0,
@@ -48,6 +60,8 @@ const MonthlyKnobSettings = {
     font_family: 'sans-serif',
     font_size: 20
 };
+*/
+
 
 const SecondPage = () => (
   <div>
