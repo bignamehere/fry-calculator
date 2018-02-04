@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-//import Knob from 'svg-knob';
-import Knob from './knobsrc.js';
+import Knob from 'svg-knob';
+//import Knob from './knobsrc.js';
 import './style.css';
 
 class FryKnob extends Component {
