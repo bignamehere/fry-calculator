@@ -93,6 +93,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "gh-pages": "^1.1.0",
     "svg-knob": "^1.4.2"
   }
 }
