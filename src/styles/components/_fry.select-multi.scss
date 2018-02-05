@@ -1,0 +1,61 @@
+.fry-select-multi {
+
+  &__list {
+
+    @include reset-ul();
+    overflow: auto;
+    max-height: 190px;
+    padding: $size-base 0;
+    border: 1px solid $form-outline-color;
+    border-radius: $form-border-radius;
+    background-color: $color-fry-white;
+
+    // scss-lint:disable SelectorFormat
+    .fry-select-multi--disabled & {
+      background-color: $form-disabled-bg-color;
+      color: $form-text-color-disabled;
+    }
+
+  }
+
+  &__list-sub {
+    @include reset-ul();
+    overflow: auto;
+    max-height: 190px;
+    padding: $size-base 0 0 ($size-base * 2);
+    background-color: $color-fry-white;
+
+  }
+
+  &__item {
+
+    @include reset-li();
+    position: relative;
+    padding: 0 $size-small;
+
+    &:hover {
+
+      background-color: tint($color-fry-tertiary, 94%);
+
+      // scss-lint:disable SelectorFormat
+      .fry-select-multi--disabled & {
+        background-color: $form-disabled-bg-color;
+      }
+
+    }
+
+  }
+
+  &__check {}
+
+  &__label {
+
+    padding: $size-base 0;
+
+    .fry-select-multi__check + & {
+      display: block;
+    }
+
+  }
+
+}

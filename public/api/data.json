@@ -1,8 +1,8 @@
 {
   "DownPaymentKnobSettings": {
     "value_min": 0,
-    "value_max": 5000,
-    "initial_value": 750,
+    "value_max": 5750,
+    "initial_value": 1500,
     "track_bg_radius": 40,
     "track_bg_width": 12,
     "track_radius": 40,
@@ -11,14 +11,13 @@
     "cursor_length": 10,
     "cursor_width": 20,
     "font_family": "sans-serif",
-    "font_size": 20,
-    "palette": "light",
-    "label": "true"
+    "font_size": 18,
+    "palette": "light"
   },
-  "MonthlyKnobSettings" : {
+  "MonthlyPaymentsKnobSettings" : {
     "value_min": 0,
-    "value_max": 500,
-    "initial_value": 250,
+    "value_max": 575,
+    "initial_value": 177,
     "track_bg_radius": 40,
     "track_bg_width": 12,
     "track_radius": 40,
@@ -27,8 +26,22 @@
     "cursor_length": 10,
     "cursor_width": 20,
     "font_family": "sans-serif",
-    "font_size": 20,
-    "palette": "light2",
-    "label": "true"
+    "font_size": 18,
+    "palette": "light2"
+  },
+  "MonthsKnobSettings" : {
+    "value_min": 6,
+    "value_max": 30,
+    "initial_value": 24,
+    "track_bg_radius": 40,
+    "track_bg_width": 12,
+    "track_radius": 40,
+    "track_width": 16,
+    "cursor_radius": 18,
+    "cursor_length": 10,
+    "cursor_width": 20,
+    "font_family": "sans-serif",
+    "font_size": 18,
+    "palette": "light2"
   }
 }
