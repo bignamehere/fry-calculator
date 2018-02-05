@@ -14,9 +14,14 @@ class FryKnob extends Component {
 
   handleChange(e) {
     this.setState({ value: e.detail });
+    if (this.props.onChange) this.props.onChange(this.state.value);
   }
 
-  onDataLoad(){
+  setKnobValue(v){
+    this.k.value = v;
+  }
+
+  dataLoaded(){
     this.k = new Knob(
       this.dom,
       this.props.settings
