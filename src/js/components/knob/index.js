@@ -13,10 +13,15 @@ class FryKnob extends Component {
   }
 
   handleChange(e) {
-    this.setState({ value: e.detail });
+    let v = this.props.roundNumber > 0 ? this.roundUp(this.props.roundNumber, e.detail) : e.detail;
+    this.setState({ value: v });
     if (this.props.onChange) this.props.onChange(this.state.value);
   }
 
+  roundUp(r,v){
+  	return Math.ceil(v / r) * r;
+  }
+  
   setKnobValue(v){
     this.k.value = v;
   }
