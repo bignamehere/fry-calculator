@@ -1,4 +1,4 @@
 
 var ghpages = require('gh-pages');
 
-ghpages.publish('publich', function(err) {});
+ghpages.publish('publish', function(err) {});

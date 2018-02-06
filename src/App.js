@@ -21,6 +21,7 @@ class App extends Component {
   }
   
   initAppData(data){
+
     this.setState({ appData: data });
     
     let dp = this.state.appData.DownPaymentKnobSettings.initial_value;
@@ -28,7 +29,12 @@ class App extends Component {
     let m = this.state.appData.MonthsKnobSettings.initial_value;
     let maxPayments = this.state.appData.MonthlyPaymentsKnobSettings.value_max;
     let maxMonths = this.state.appData.MonthsKnobSettings.value_max;
-    let maxTotal = this.state.appData.DownPaymentKnobSettings.value_max;
+		let maxTotal = this.state.appData.DownPaymentKnobSettings.value_max;
+
+		let dpKnobRoundNumber = this.state.appData.DownPaymentKnobSettings.roundNumber;
+		let mpKnobRoundNumber = this.state.appData.MonthlyPaymentsKnobSettings.roundNumber;
+		let mKnobRoundNumber = this.state.appData.MonthsKnobSettings.roundNumber;
+
     this.setState({
       downpayment:dp,
       payments: mp,
@@ -36,7 +42,10 @@ class App extends Component {
       costTotal: maxTotal,
       maxPayments: maxPayments,
       maxMonths: maxMonths,
-      maxCost: maxTotal
+			maxCost: maxTotal,
+			dpkRoundNumber: dpKnobRoundNumber,
+			mpkRoundNumber: mpKnobRoundNumber,
+			mkRoundNumber: mKnobRoundNumber
     });
     this.refs.dpKnob.dataLoaded();
     this.refs.mpKnob.dataLoaded();
@@ -118,6 +127,7 @@ class App extends Component {
         break;
     }
     
+
     let totalsObject = {
       downpayment: dp,
       payments: adjMP,
@@ -133,7 +143,6 @@ class App extends Component {
     // Set values of Totals Display
     this.refs.display.setValues( totalsObject );
   } 
-
 
   componentWillMount(){
     fetch(API_URL)
@@ -159,19 +168,19 @@ class App extends Component {
 
           <div className="fry-grid__1/1 fry-grid__4/12@m">
             <div className="fry-box">
-              <FryKnob ref="dpKnob" settings={ appData.DownPaymentKnobSettings } onChange={this.onDownPaymentChange} />
+              <FryKnob ref="dpKnob" roundNumber={ this.state.dpkRoundNumber } settings={ appData.DownPaymentKnobSettings } onChange={this.onDownPaymentChange} />
               <p>Down Payment Amount</p>
             </div>
           </div>
           <div className="fry-grid__1/1 fry-grid__4/12@m">
             <div className="fry-box">
-              <FryKnob ref="mpKnob" settings={ appData.MonthlyPaymentsKnobSettings } onChange={this.onMonthlyPaymentsChange} />
+              <FryKnob ref="mpKnob" roundNumber={ this.state.mpkRoundNumber } settings={ appData.MonthlyPaymentsKnobSettings } onChange={this.onMonthlyPaymentsChange} />
               <p>Monthly Payment</p>
             </div>
           </div>
           <div className="fry-grid__1/1 fry-grid__4/12@m">
             <div className="fry-box">
-              <FryKnob ref="mKnob" settings={ appData.MonthsKnobSettings } onChange={this.onMonthsChange} />
+              <FryKnob ref="mKnob" roundNumber={ this.state.mkRoundNumber } settings={ appData.MonthsKnobSettings } onChange={this.onMonthsChange} />
               <p>Number of Months</p>
             </div>
           </div>
