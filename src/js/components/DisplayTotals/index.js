@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
-import DownPaymentTotal from '../DownPaymentTotal';
-import PaymentsTotal from '../PaymentsTotal';
-import MonthsTotal from '../MonthsTotal';
-import CostTotal from '../CostTotal';
-import '../../../styles/fry-style.scss';
+import DownPaymentTotal from './DownPaymentTotal';
+import PaymentsTotal from './PaymentsTotal';
+import MonthsTotal from './MonthsTotal';
+import CostTotal from './CostTotal';
 
 class DisplayTotals extends Component {
   constructor(props){
