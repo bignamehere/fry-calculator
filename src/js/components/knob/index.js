@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Knob from 'svg-knob';
+import Knob from './core.js';  // 'svg-knob';
 //import Knob from './knobsrc.js';
 import './style.css';
 
