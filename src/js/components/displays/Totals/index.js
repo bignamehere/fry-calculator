@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import DownPaymentTotal from './DownPaymentTotal';
-import PaymentsTotal from './PaymentsTotal';
-import MonthsTotal from './MonthsTotal';
-import CostTotal from './CostTotal';
+import DownPaymentTotal from '../DownPaymentTotal';
+import PaymentsTotal from '../PaymentsTotal';
+import MonthsTotal from '../MonthsTotal';
+import CostTotal from '../CostTotal';
 
-class DisplayTotals extends Component {
+class Totals extends Component {
   constructor(props){
     super(props);
     this.state = {};
@@ -41,4 +41,4 @@ class DisplayTotals extends Component {
   }
 }
 
-export default DisplayTotals;
+export default Totals;

@@ -1,5 +1,3 @@
-"use strict";
-
 import palettes from './palettes.js';
 
 /**

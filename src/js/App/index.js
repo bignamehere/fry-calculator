@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import logo from '../../img/fry_website_logo2016.png';
-import './style.css';
-import DisplayTotals from '../components/DisplayTotals';
+import './style.css'; // App Styles
+import Header from '../Header';
+import Tabs from '../components/Tabs';
+import Totals from '../components/displays/Totals';
 import FryKnob from '../components/Knob';
 
 const API_URL = 'api/data.json';
@@ -140,7 +141,7 @@ class App extends Component {
     this.refs.mpKnob.setKnobValue( adjMP );
     this.refs.mKnob.setKnobValue( m );
     // Set values of Totals Display
-    this.refs.display.setValues( totalsObject );
+    this.refs.displayTotals.setValues( totalsObject );
   } 
 
   componentWillMount(){
@@ -157,12 +158,13 @@ class App extends Component {
 
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-        </header>
+        
+        <Header />
+        <Tabs />
+
         <div className="fry-grid">
           <div className="fry-grid__10/12">
-            <DisplayTotals ref="display" />
+            <Totals ref="displayTotals" />
           </div>
 
           <div className="fry-grid__1/1 fry-grid__4/12@m">

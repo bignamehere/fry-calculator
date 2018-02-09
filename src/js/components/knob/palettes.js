@@ -1,4 +1,3 @@
-"use strict";
 
 //TODO: make _init attributes optional
 
