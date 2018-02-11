@@ -1,8 +1,10 @@
+// author: bignamehere
+//
 import React, { Component } from 'react';
-import DownPaymentTotal from '../DownPaymentTotal';
-import PaymentsTotal from '../PaymentsTotal';
-import MonthsTotal from '../MonthsTotal';
-import CostTotal from '../CostTotal';
+import DownPaymentTotal from '../DownPaymentTotal/downPaymentTotal';
+import PaymentsTotal from '../PaymentsTotal/paymentsTotal';
+import MonthsTotal from '../MonthsTotal/monthsTotal';
+import CostTotal from '../CostTotal/costTotal';
 
 class Totals extends Component {
   constructor(props){

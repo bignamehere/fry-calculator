@@ -1,7 +1,9 @@
+// author: bignamehere
+//
 import React, { Component } from 'react';
 import Knob from './core.js';  // 'svg-knob';
 //import Knob from './knobsrc.js';
-import './style.css';
+import './knob.css';
 
 class FryKnob extends Component {
   constructor(props) {

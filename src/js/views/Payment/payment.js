@@ -1,25 +1,25 @@
+// author: bignamehere
+//
 import React, { Component } from 'react';
-import './style.css'; // App Styles
-import Header from '../Header';
-import Tabs from '../components/Tabs';
-import Totals from '../components/displays/Totals';
-import FryKnob from '../components/Knob';
+import FryKnob from '../../components/Knob/knob';
+import Totals from '../../components/displays/Totals/totals';
 
 const API_URL = 'api/data.json';
 
-class App extends Component {
+class Payment extends Component {
   constructor(props){
     super(props);
     this.state = {
       appData: {}
     };
+
     this.onDownPaymentChange = this.onDownPaymentChange.bind(this);
     this.onMonthlyPaymentsChange = this.onMonthlyPaymentsChange.bind(this);
     this.onMonthsChange = this.onMonthsChange.bind(this);
     this.onCostTotalChange = this.onCostTotalChange.bind(this);
     this.recalculateTotals = this.recalculateTotals.bind(this);
   }
-  
+
   initAppData(data){
 
     this.setState({ appData: data });
@@ -141,7 +141,7 @@ class App extends Component {
     this.refs.mpKnob.setKnobValue( adjMP );
     this.refs.mKnob.setKnobValue( m );
     // Set values of Totals Display
-    this.refs.displayTotals.setValues( totalsObject );
+    this.refs.display.setValues( totalsObject );
   } 
 
   componentWillMount(){
@@ -153,42 +153,56 @@ class App extends Component {
       });  
   }
 
-  render() {
+
+	render() {
     const { appData } = this.state;
-
     return (
-      <div className="App">
-        
-        <Header />
-        <Tabs />
+      <div className="fry-grid app-knob-container">
 
-        <div className="fry-grid">
-          <div className="fry-grid__10/12">
-            <Totals ref="displayTotals" />
-          </div>
+        <div className="fry-grid__1/1 fry-grid__3/12@m">
+          <div className="fry-boxx">
 
-          <div className="fry-grid__1/1 fry-grid__4/12@m">
-            <div className="fry-boxx">
-              <FryKnob ref="dpKnob" roundNumber={ this.state.dpkRoundNumber } settings={ appData.DownPaymentKnobSettings } onChange={this.onDownPaymentChange} />
-              <p>Down Payment Amount</p>
-            </div>
-          </div>
-          <div className="fry-grid__1/1 fry-grid__4/12@m">
-            <div className="fry-boxx">
-              <FryKnob ref="mpKnob" roundNumber={ this.state.mpkRoundNumber } settings={ appData.MonthlyPaymentsKnobSettings } onChange={this.onMonthlyPaymentsChange} />
-              <p>Monthly Payment</p>
-            </div>
-          </div>
-          <div className="fry-grid__1/1 fry-grid__4/12@m">
-            <div className="fry-boxx">
-              <FryKnob ref="mKnob" roundNumber={ this.state.mkRoundNumber } settings={ appData.MonthsKnobSettings } onChange={this.onMonthsChange} />
-              <p>Number of Months</p>
-            </div>
+            <FryKnob ref="dpKnob"
+              roundNumber={ this.state.dpkRoundNumber }
+              settings={ appData.DownPaymentKnobSettings }
+              onChange={this.onDownPaymentChange}
+            />
+            <p>Down Payment Amount</p>
+
           </div>
         </div>
+        <div className="fry-grid__1/1 fry-grid__4/12@m">
+          <div className="fry-boxx">
+
+            <FryKnob ref="mpKnob"
+              roundNumber={ this.state.mpkRoundNumber }
+              settings={ appData.MonthlyPaymentsKnobSettings }
+              onChange={this.onMonthlyPaymentsChange}
+            />
+            <p>Monthly Payment</p>
+
+          </div>
+        </div>
+        <div className="fry-grid__1/1 fry-grid__3/12@m">
+          <div className="fry-boxx">
+          
+            <FryKnob ref="mKnob" roundNumber={ this.state.mkRoundNumber } settings={ appData.MonthsKnobSettings } onChange={this.onMonthsChange} />
+            <p>Number of Months</p>
+
+          </div>
+        </div>
+
+        <div className="fry-grid">
+
+          <div className="fry-grid__10/12">
+            <Totals ref="display"/>
+          </div>
+
+        </div>
+
       </div>
-    );
-  }
+		);
+	}
 }
 
-export default App;
+export default Payment;
