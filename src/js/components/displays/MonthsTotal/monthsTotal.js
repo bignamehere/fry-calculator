@@ -1,3 +1,5 @@
+// author: bignamehere
+//
 import React, { Component } from 'react';
 
 class MonthsTotal extends Component {
