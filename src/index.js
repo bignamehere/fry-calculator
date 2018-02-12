@@ -1,12 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-// pull in style from Design System
-import './styles/fry-style.scss';
-import './index.scss';
 import App from './js/App/app';
 import registerServiceWorker from './registerServiceWorker';
+// Styles
+import './styles/fry-style.scss';
+import './index.scss';
+
 
 ReactDOM.render(
-    <App/>,
-    document.getElementById('root'));
+    <App />,
+  document.getElementById('root'));
 registerServiceWorker();
