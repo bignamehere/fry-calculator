@@ -1,4 +1,4 @@
-// author: bignamehere
+//
 //
 import React, { Component } from 'react';
 import Totals from '../components/displays/Totals/totals';

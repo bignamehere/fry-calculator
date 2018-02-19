@@ -1,4 +1,4 @@
-// author: bignamehere
+//
 //
 import palettes from './palettes.js';
 

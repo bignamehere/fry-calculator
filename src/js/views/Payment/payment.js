@@ -1,8 +1,9 @@
-// author: bignamehere
+//
 //
 import React, { Component } from 'react';
 import FryKnob from '../../components/Knob/knob';
 import Totals from '../../components/displays/Totals/totals';
+import Consultation from '../Consultation/consultation';
 
 const API_URL = 'api/data.json';
 
@@ -10,139 +11,162 @@ class Payment extends Component {
   constructor(props){
     super(props);
     this.state = {
-      appData: {}
+      prevInvestment: 3 //set to random number that would never be set by system
     };
 
     this.onDownPaymentChange = this.onDownPaymentChange.bind(this);
     this.onMonthlyPaymentsChange = this.onMonthlyPaymentsChange.bind(this);
     this.onMonthsChange = this.onMonthsChange.bind(this);
-    this.onCostTotalChange = this.onCostTotalChange.bind(this);
+    this.onInvestmentChange = this.onInvestmentChange.bind(this);
     this.recalculateTotals = this.recalculateTotals.bind(this);
   }
 
   initAppData(data){
-
-    this.setState({ appData: data });
-    
-    let dp = this.state.appData.DownPaymentKnobSettings.initial_value;
-    let mp = this.state.appData.MonthlyPaymentsKnobSettings.initial_value;
-    let m = this.state.appData.MonthsKnobSettings.initial_value;
-    let maxPayments = this.state.appData.MonthlyPaymentsKnobSettings.value_max;
-    let maxMonths = this.state.appData.MonthsKnobSettings.value_max;
-		let maxTotal = this.state.appData.DownPaymentKnobSettings.value_max;
-
-		let dpKnobRoundNumber = this.state.appData.DownPaymentKnobSettings.roundNumber;
-		let mpKnobRoundNumber = this.state.appData.MonthlyPaymentsKnobSettings.roundNumber;
-		let mKnobRoundNumber = this.state.appData.MonthsKnobSettings.roundNumber;
-
+    console.log("initAppData");
+    console.log("IAD : props.investment " + this.props.investment );
+    // manipulate the value if using value from Consultation Screen
+    let tempInvestment = this.props.investment > 0 ? this.props.investment : data.DownPaymentKnobSettings.value_max;
     this.setState({
-      downpayment:dp,
-      payments: mp,
-      months: m,
-      costTotal: maxTotal,
-      maxPayments: maxPayments,
-      maxMonths: maxMonths,
-			maxCost: maxTotal,
-			dpkRoundNumber: dpKnobRoundNumber,
-			mpkRoundNumber: mpKnobRoundNumber,
-			mkRoundNumber: mKnobRoundNumber
+      prevInvestment: tempInvestment,
+      investment: tempInvestment
     });
+    console.log( "IAD : state.investment " + this.state.investment );
+    
+    this.setState({
+      DownPaymentKnobSettings: data.DownPaymentKnobSettings,
+      MonthlyPaymentsKnobSettings: data.MonthlyPaymentsKnobSettings,
+      MonthsKnobSettings: data.MonthsKnobSettings,
+      downpayment: data.DownPaymentKnobSettings.initial_value
+    });
+
     this.refs.dpKnob.dataLoaded();
     this.refs.mpKnob.dataLoaded();
     this.refs.mKnob.dataLoaded();
-    this.recalculateTotals("dp");
+    
+    this.setPaymentsData(data);
+    //this.recalculateTotals("dp");
+
+    let totalsObject = {
+      downpayment: data.DownPaymentKnobSettings.initial_value,
+      payments: data.MonthlyPaymentsKnobSettings.initial_value,
+      months: data.MonthsKnobSettings.initial_value,
+      amountOwed: tempInvestment
+    };
+    this.setValues( totalsObject );
+    
+  }
+
+  setPaymentsData( data ){
+    console.log( "setPaymentsData" );
+    console.log( "SPD : state.investment " + this.props.investment );
+    console.log( "SPD : state.investment "+ this.state.investment );
+
+    this.setState({
+      investment: this.state.investment,
+      downpayment: data.DownPaymentKnobSettings.initial_value,
+      payments: data.MonthlyPaymentsKnobSettings.initial_value,
+      months: data.MonthsKnobSettings.initial_value,
+      maxPayments: data.MonthlyPaymentsKnobSettings.value_max,
+      maxMonths: data.MonthsKnobSettings.value_max,
+		  dpKnobRoundNumber: data.DownPaymentKnobSettings.roundNumber,
+		  mpKnobRoundNumber: data.MonthlyPaymentsKnobSettings.roundNumber,
+		  mKnobRoundNumber: data.MonthsKnobSettings.roundNumber
+    });
+
   }
 
   onDownPaymentChange(amount){
-    this.setState({ downpayment: amount });
-    this.recalculateTotals("dp");
+    this.recalculateTotals("dp", amount);
   }
 
   onMonthlyPaymentsChange(amount){
-    this.setState({ payments: amount });
-    this.recalculateTotals("mp");
+    this.recalculateTotals("mp", amount);
   }
 
   onMonthsChange(amount){
-    this.setState({ months: amount });
-    this.recalculateTotals("m");
+    this.recalculateTotals("m", amount);
   }
 
-  onCostTotalChange(amount){
-    this.setState({ costTotal: amount });
-    this.recalculateTotals("total");
+  onInvestmentChange(amount){
+    this.recalculateTotals("total", amount);
   }
 
-  recalculateTotals(who){
+  recalculateTotals(who, amount){
     // do things here to manipulate view
 
     let dp = this.state.downpayment;
     let mp = this.state.payments;
     let m = this.state.months;
     let maxMonths = this.state.maxMonths;
-    let total = this.state.costTotal;
-    let maxCost = this.state.maxCost;
+    let investment = this.props.investment;
     let maxPayments = this.state.maxPayments;
-    let adjTotal = 0;
+    let amountOwed = 0;
     let adjMP = 0;
 
     switch( who ){
       case "dp":
-        adjTotal = maxCost - dp;
-        adjMP = Math.round(adjTotal / m);
+        this.setState({ downpayment: amount });
+        amountOwed = investment - amount;
+        adjMP = Math.round(amountOwed / m);
         if( mp >= maxPayments){
           //m = Math.round( maxCost - (dp / maxPayments) );
-          m = Math.round( (adjTotal / mp) - m );
+          m = Math.round( (amountOwed / mp) - m );
         }
         break;
 
       case "mp":
-        adjTotal = total;
-        adjMP = mp;
+        this.setState({ payments: amount });
+        amountOwed = investment;
+        adjMP = amount;
         
         if( m <= maxMonths ){
-          m = Math.round(total / mp);
+          m = Math.round(investment / amount);
         } else {
-          dp = maxCost - (maxMonths * mp)
+          dp = investment - (maxMonths * amount)
         }
         break;
 
       case "m":
-        
+        this.setState({ months: amount });
         if( mp > maxPayments ){
-          dp = maxCost - (m * maxPayments);
+          dp = investment - (amount * maxPayments);
         }
-          adjTotal = maxCost - dp;
-          adjMP = Math.round(adjTotal / m);
+          amountOwed = investment - dp;
+          adjMP = Math.round(amountOwed / amount);
         break;
 
+      /*
       case "total":
-        adjTotal = maxCost - dp;
+        this.setState({ investment: amount });
+        adjTotal = amount - dp;
         adjMP = Math.round(adjTotal / m);
         break;
+      */
 
       default:
-        adjTotal = maxCost - dp;
-        adjMP = Math.round(adjTotal / m);
+        amountOwed = 0;
+        adjMP = 0;
         break;
     }
     
-
     let totalsObject = {
       downpayment: dp,
       payments: adjMP,
       months: m,
-      costTotal: adjTotal
+      amountOwed: amountOwed
     };
-    // SET STATE OF APP
-    this.setState(totalsObject);
-    // Set values of individual Knobs
-    this.refs.dpKnob.setKnobValue( dp );
-    this.refs.mpKnob.setKnobValue( adjMP );
-    this.refs.mKnob.setKnobValue( m );
-    // Set values of Totals Display
-    this.refs.display.setValues( totalsObject );
+    this.setState( totalsObject );
+    this.setValues( totalsObject );
   } 
+
+  setValues( data ){    
+    // Set values of individual Knobs
+    this.refs.dpKnob.setKnobValue( data.downpayment );
+    this.refs.mpKnob.setKnobValue( data.payments );
+    this.refs.mKnob.setKnobValue( data.months );
+    // Set values of Totals Display
+    this.refs.display.setValues( data );
+  }
 
   componentWillMount(){
     fetch(API_URL)
@@ -155,7 +179,7 @@ class Payment extends Component {
 
 
 	render() {
-    const { appData } = this.state;
+    //const { appData } = this.state;
     return (
       <div className="fry-grid app-knob-container">
 
@@ -164,8 +188,8 @@ class Payment extends Component {
 
             <FryKnob ref="dpKnob"
               roundNumber={ this.state.dpkRoundNumber }
-              settings={ appData.DownPaymentKnobSettings }
-              onChange={this.onDownPaymentChange}
+              settings={ this.state.DownPaymentKnobSettings }
+              onChange={ this.onDownPaymentChange }
             />
             <p>Down Payment Amount</p>
 
@@ -176,8 +200,8 @@ class Payment extends Component {
 
             <FryKnob ref="mpKnob"
               roundNumber={ this.state.mpkRoundNumber }
-              settings={ appData.MonthlyPaymentsKnobSettings }
-              onChange={this.onMonthlyPaymentsChange}
+              settings={ this.state.MonthlyPaymentsKnobSettings }
+              onChange={ this.onMonthlyPaymentsChange }
             />
             <p>Monthly Payment</p>
 
@@ -186,7 +210,11 @@ class Payment extends Component {
         <div className="fry-grid__1/1 fry-grid__3/12@m">
           <div className="fry-boxx">
           
-            <FryKnob ref="mKnob" roundNumber={ this.state.mkRoundNumber } settings={ appData.MonthsKnobSettings } onChange={this.onMonthsChange} />
+            <FryKnob ref="mKnob"
+              roundNumber={ this.state.mkRoundNumber }
+              settings={ this.state.MonthsKnobSettings }
+              onChange={ this.onMonthsChange }
+            />
             <p>Number of Months</p>
 
           </div>

@@ -13,7 +13,8 @@
     "font_family": "sans-serif",
     "font_size": 18,
     "palette": "light",
-    "roundNumber": 25
+    "roundNumber": 100,
+    "prefix": "$"
   },
   "MonthlyPaymentsKnobSettings" : {
     "value_min": 0,
@@ -28,12 +29,13 @@
     "cursor_width": 20,
     "font_family": "sans-serif",
     "font_size": 18,
-    "palette": "light2",
-    "roundNumber": 5
+    "palette": "light",
+    "roundNumber": 5,
+    "prefix": "$"
   },
   "MonthsKnobSettings" : {
     "value_min": 6,
-    "value_max": 30,
+    "value_max": 32,
     "initial_value": 24,
     "track_bg_radius": 40,
     "track_bg_width": 12,
@@ -44,7 +46,7 @@
     "cursor_width": 20,
     "font_family": "sans-serif",
     "font_size": 18,
-    "palette": "light2",
+    "palette": "light",
     "roundNumber": 0
   }
 }
