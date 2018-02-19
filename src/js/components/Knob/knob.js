@@ -1,4 +1,4 @@
-// author: bignamehere
+//
 //
 import React, { Component } from 'react';
 import Knob from './core.js';  // 'svg-knob';

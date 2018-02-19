@@ -1,4 +1,4 @@
-// author: bignamehere
+//
 //
 import React, { Component } from 'react';
 import DownPaymentTotal from '../DownPaymentTotal/downPaymentTotal';
@@ -17,7 +17,7 @@ class Totals extends Component {
       downpayment: data.downpayment,
       payments: data.payments, 
       months: data.months,
-      costTotal: data.costTotal,
+      amountOwed: data.amountOwed,
     });
   }
 
@@ -35,7 +35,7 @@ class Totals extends Component {
           <MonthsTotal value={this.state.months} />
         </div>
         <div className="fry-grid__1/2 fry-grid__1/4@m">
-          <CostTotal value={this.state.costTotal} />
+          <CostTotal value={this.state.amountOwed} />
         </div>
 
       </div>
