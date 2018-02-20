@@ -18,10 +18,16 @@ class AppTabs extends Component {
       investment: 0
     };
     this.handleInvestmentChange = this.handleInvestmentChange.bind(this);
+    this.handleContinue = this.handleContinue.bind(this);
   }
 
-  handleTabChange(e){
-    
+  handleContinue(e){
+    console.log("continue clicked? " + e.activeKey);
+    this.setState({
+      tabKey: e.activeKey
+    });
+    this.refs.tabs.onTabClick( { activeKey: e.activeKey } );
+    //setActiveKey( e.activeKey );
   }
 
   handleInvestmentChange(e){
@@ -36,19 +42,18 @@ class AppTabs extends Component {
   }
 
 	render() {
-    let style = {
-      height: 650
-    };
+
     //const { investment } = this.state;
     return (
       <Tabs
+        ref="tabs"
         defaultActiveKey="1"
         renderTabBar={() => <InkTabBar onTabClick={this.onTabClick}/>}
-        renderTabContent={() => <TabContent style={style}/>}
-        onChange={this.handleTabChange}
+        renderTabContent={() => <TabContent/>}
+        //onChange={this.handleTabChange}
       >
         <TabPane tab='Consultation' key="1">
-          <Consultation onChange={this.handleInvestmentChange}/>
+          <Consultation onContinue={this.handleContinue} onChange={this.handleInvestmentChange}/>
         </TabPane>
         <TabPane tab='Payment' key="2">
           <Payment ref="paymentTab" investment={ this.state.investment } />

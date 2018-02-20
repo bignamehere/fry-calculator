@@ -7,7 +7,8 @@ class Consultation extends Component {
     super(props);
     this.state = {
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.handleUpdateClick = this.handleUpdateClick.bind(this);
+    this.handleContinueClick = this.handleContinueClick.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
   }
   // NOT IN USE
@@ -19,12 +20,20 @@ class Consultation extends Component {
     });
   }
 
-  handleClick(e){
+  handleUpdateClick(e){
     let total = this.getInvestment();
     this.setState({
       investment: total
     });
     if (this.props.onChange) this.props.onChange( {investment: total } );
+  }
+
+  handleContinueClick(e){
+    let total = this.getInvestment();
+    this.setState({
+      investment: total
+    });
+    if (this.props.onContinue) this.props.onContinue( {activeKey: 2 } );
   }
 
   getInvestment(){
@@ -43,9 +52,11 @@ class Consultation extends Component {
     return (
       <div className={"fry-section"}>
         <div className={"fry-section__bd"}>
-          <h1>Initial Consultation Settings</h1>
+          <h1 className={"rc-tab-panel__header"}>Initial Consultation Settings</h1>
+
           <div className={"fry-grid"}>
-            <div className={"fry-grid__1 fry-grid__1/2@m"}>
+            
+            <div className={"fry-grid__1/1 fry-grid__1/2@m"}>
               
                 <div className={"fry-field"}>
                   <label className={"fry-field__label"} htmlFor="initialCost">Initial Cost <span className="fry-field__label-desc">Required</span></label>
@@ -61,19 +72,24 @@ class Consultation extends Component {
                   <label className={"fry-field__label"} htmlFor="discounts">Discounts </label>
                   <input className={"fry-input fry-field__item"} id="discounts" name="discounts" type="item" placeholder="$" value={this.state.discounts}/>
                 </div>
-              
+                <div className={"fry-grid"}>
+                  <div className={"fry-grid__1/1"}>
+                    <button onClick={this.handleUpdateClick} className="fry-btn fry-btn--secondary fry-btn--large" type="button">Update Settings</button>
+                  </div>
+                </div>
             </div>
-            <div className={"fry-grid__1 fry-grid__1/2@m"}>
-              <div className={"fry-box"}>
-                <h1>Investment Amount</h1>
-                <h1>${this.state.investment}</h1>
-              </div>
-              <div>
-                <p>
-                  <button onClick={this.handleClick} className="fry-btn fry-btn--secondary fry-btn--large" type="button">Update Settings</button>
-                </p>
+
+            <div>
+              <div className={"fry-grid__1/1 rc-tab-display-lg"}>
+                <div className={"fry-box"}>
+                  <h1>Investment Amount</h1>
+                  <p>Your initial investment for Orthodontic Braces is valued at:</p>
+                  <h1>${this.state.investment}</h1>
+                </div>
               </div>
             </div>
+
+
           </div>
         </div>
       </div>
