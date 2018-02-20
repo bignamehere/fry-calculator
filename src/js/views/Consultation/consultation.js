@@ -29,10 +29,11 @@ class Consultation extends Component {
 
   getInvestment(){
 
-    let initialCost = isNaN(document.getElementById('initialCost').value) ? "" : parseInt(document.getElementById('initialCost').value); 
-    let insurance = isNaN(document.getElementById('insurance').value) ? "" : parseInt(document.getElementById('insurance').value);
-    let discounts = isNaN(document.getElementById('discounts').value) ? "" : parseInt(document.getElementById('discounts').value);
+    let initialCost = document.getElementById('initialCost').value <= 0 ? 0 : parseInt(document.getElementById('initialCost').value); 
+    let insurance = document.getElementById('insurance').value  <= 0 ? 0 : parseInt(document.getElementById('insurance').value);
+    let discounts = document.getElementById('discounts').value <= 0 ? 0 : parseInt(document.getElementById('discounts').value);
 
+    console.log( initialCost + " " + insurance + " " + discounts );
     let total = isNaN(initialCost - (insurance + discounts)) ? "" : initialCost - (insurance + discounts);
     return total;
   }
