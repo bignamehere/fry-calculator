@@ -187,50 +187,57 @@ class Payment extends Component {
 	render() {
     //const { appData } = this.state;
     return (
-      <div className="">
+      
         <div className="fry-grid app-knob-container">
+
+          <div className="fry-grid__1/1 fry-grid__1/12@m"></div>
+
           <div className="fry-grid__1/1 fry-grid__3/12@m">
-            <div className="fry-boxx knob-container">
+            <div className="knob-container">
 
               <FryKnob ref="dpKnob"
                 roundNumber={ this.state.dpkRoundNumber }
                 settings={ this.state.DownPaymentKnobSettings }
                 onChange={ this.onDownPaymentChange }
               />
+              
+              
               <p>Down Payment Amount</p>
-
             </div>
           </div>
           <div className="fry-grid__1/1 fry-grid__4/12@m">
-            <div className="fry-boxx knob-container">
+            <div className="knob-container">
 
               <FryKnob ref="mpKnob"
                 roundNumber={ this.state.mpkRoundNumber }
                 settings={ this.state.MonthlyPaymentsKnobSettings }
                 onChange={ this.onMonthlyPaymentsChange }
               />
+              
+              
               <p>Monthly Payment</p>
-
             </div>
           </div>
           <div className="fry-grid__1/1 fry-grid__3/12@m">
-            <div className="fry-boxx knob-container">
-              
+            <div className="knob-container">
+            
               <FryKnob ref="mKnob"
                 roundNumber={ this.state.mkRoundNumber }
                 settings={ this.state.MonthsKnobSettings }
                 onChange={ this.onMonthsChange }
               />
+              
+              
               <p>Number of Months</p>
-
             </div>
           </div>
+
+          <div className="fry-grid__1/1 fry-grid__1/12@m"></div>
         
           <div className="fry-grid__1/1">
             <Totals ref="display"/>
           </div>
         </div>
-      </div>
 		);
 	}
 }

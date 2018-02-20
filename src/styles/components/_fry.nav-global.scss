@@ -14,7 +14,9 @@
   background-color: $nav-bgcolor;
 
   @include breakpoint(L) {
+    /*
     border-bottom: 1px solid $nav-border-color;
+    */
   }
 
   &__bd {
@@ -22,6 +24,10 @@
     margin-left: auto;
     margin-right: auto;
     padding: 0;
+
+    @include breakpoint(M) {
+      padding: 1.25rem;
+    }
   }
 
   &__list {

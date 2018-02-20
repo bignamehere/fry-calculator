@@ -1,6 +1,60 @@
+
 .rc-tabs {
   box-sizing: border-box;
   position: relative;
+}
+
+.rc-tab-panel__header {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+
+@media (min-width: 360px){
+  .rc-tab-panel__header {
+    font-size: 20px;
+  }
+}
+
+@media (min-width: 600px){
+  .rc-tab-panel__header {
+    font-size: 32px;
+    margin-bottom: 22px;
+  }
+}
+
+@media (min-width: 360px){
+  .rc-tab-continue {
+    display: inline-block;
+    visibility: visible;
+  }
+}
+
+@media (min-width: 600px){
+  .rc-tab-continue {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+
+.rc-tab-display-lg {
+  display: none;
+  visibility: hidden;
+}
+
+@media (min-width: 360px){
+  .rc-tab-display-lg {
+    display: none;
+    visibility: hidden;
+  }
+}
+
+@media (min-width: 600px){
+  .rc-tab-display-lg {
+    display: block;
+    visibility: visible;
+  }
 }
 .rc-tabs-bar,
 .rc-tabs-nav-container {
@@ -8,7 +62,8 @@
   font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica", "Roboto", "Arial", sans-serif;
   line-height: 1.5;
   box-sizing: border-box;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: hidden;
   position: relative;
   white-space: nowrap;
   outline: none;
@@ -23,6 +78,7 @@
   background-color: #4e4084;
   transform-origin: 0 0;
 }
+
 .rc-tabs-ink-bar-animated {
   transition: transform 0.3s cubic-bezier(0.35, 0, 0.25, 1);
 }
@@ -70,11 +126,17 @@
   padding-left: 0;
   position: relative;
   margin: 0;
-  float: left;
+  float: none;
   list-style: none;
   display: inline-block;
   transform-origin: 0 0;
 }
+@media (min-width: 600px){
+  .rc-tabs-nav {
+    float: left;
+  }
+}
+
 .rc-tabs-nav-animated {
   transition: transform 0.5s cubic-bezier(0.35, 0, 0.25, 1);
 }
@@ -400,17 +462,27 @@
   left: 0;
 }
 .rc-tabs-bottom .rc-tabs-tab {
-  float: left;
+  float: none;
   height: 100%;
   margin-right: 30px;
 }
+
+@media (min-width: 600px){
+  .rc-tabs-bottom .rc-tabs-tab {    
+      float: left;
+  }
+}
+
 .rc-tabs-bottom .rc-tabs-tabpane-inactive {
   height: 0;
   overflow: visible;
 }
 .rc-tabs-top {
+  /*
   border-bottom: 2px solid #f3f3f3;
+  */
   overflow-x: hidden;
+  overflow-y: hidden;
 }
 .rc-tabs-top .rc-tabs-content {
   width: 100%;
@@ -484,15 +556,29 @@
   height: 100%;
 }
 .rc-tabs-top .rc-tabs-ink-bar {
-  height: 5px;
+  height: 0;
   bottom: 0;
   left: 0;
 }
+
+@media (min-width: 600px){
+  .rc-tabs-top .rc-tabs-ink-bar {
+    height: 5px;
+  }
+}
+
 .rc-tabs-top .rc-tabs-tab {
-  float: left;
+  float: none;
   height: 100%;
   margin-right: 30px;
 }
+
+@media (min-width: 600px){
+  .rc-tabs-top .rc-tabs-tab {
+    float: left;
+  }
+}
+
 .rc-tabs-top .rc-tabs-tabpane-inactive {
   height: 0;
   overflow: visible;

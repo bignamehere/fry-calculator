@@ -5,6 +5,7 @@ import DownPaymentTotal from '../DownPaymentTotal/downPaymentTotal';
 import PaymentsTotal from '../PaymentsTotal/paymentsTotal';
 import MonthsTotal from '../MonthsTotal/monthsTotal';
 import CostTotal from '../CostTotal/costTotal';
+import './totals.scss';
 
 class Totals extends Component {
   constructor(props){
@@ -23,21 +24,21 @@ class Totals extends Component {
 
   render() {
     return (
-      <div className="fry-grid">
+      <div className="fry-grid fry-grid--no-gutter">
         
-        <div className="fry-grid__1/4"> 
-          <DownPaymentTotal value={this.state.downpayment} />
-        </div>
-        <div className="fry-grid__1/4">
-          <PaymentsTotal value={this.state.payments} />
-        </div>
-        <div className="fry-grid__1/4">
-          <MonthsTotal value={this.state.months} />
-        </div>
-        <div className="fry-grid__1/4">
+        <div className="fry-grid__1/2 fry-grid__1/4@m">
           <CostTotal value={this.state.amountOwed} />
         </div>
-
+        <div className="fry-grid__1/2 fry-grid__1/4@m"> 
+          <DownPaymentTotal value={this.state.downpayment} />
+        </div>
+        <div className="fry-grid__1/2 fry-grid__1/4@m">
+          <PaymentsTotal value={this.state.payments} />
+        </div>
+        <div className="fry-grid__1/2 fry-grid__1/4@m">
+          <MonthsTotal value={this.state.months} />
+        </div>
+        
       </div>
     );
   }
