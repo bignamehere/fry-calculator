@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import Knob from './core.js';  // 'svg-knob';
 //import Knob from './knobsrc.js';
-import './knob.css';
+import './knob.scss';
 
 class FryKnob extends Component {
   constructor(props) {
@@ -15,9 +15,11 @@ class FryKnob extends Component {
   }
 
   handleChange(e) {
-    let v = this.props.roundNumber > 0 ? this.roundUp(this.props.roundNumber, e.detail) : e.detail;
-    this.setState({ value: v });
-    if (this.props.onChange) this.props.onChange(this.state.value);
+    if(!this.props.locked){
+      let v = this.props.roundNumber > 0 ? this.roundUp(this.props.roundNumber, e.detail) : e.detail;
+      this.setState({ value: v });
+      if (this.props.onChange) this.props.onChange(this.state.value);
+    }
   }
 
   roundUp(r,v){
@@ -25,7 +27,13 @@ class FryKnob extends Component {
   }
   
   setKnobValue(v){
-    this.k.value = v;
+    if(!this.props.locked){
+      this.k.value = v;
+    }
+  }
+
+  setKnobLock(v){
+    this.k.locked = v;
   }
 
   dataLoaded(){

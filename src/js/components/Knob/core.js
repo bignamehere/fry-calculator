@@ -158,6 +158,8 @@ export default function (elem, conf = {}) {
     class_cursor: 'knob-cursor',
     class_markers: 'knob-markers',
 
+    locked: false,
+
     snap_to_steps: false, // TODO
 
     // mouse wheel support:
@@ -295,21 +297,35 @@ export default function (elem, conf = {}) {
     return getRoundedValue(v);
   }
 
+  function setLocked(v){
+    config.locked = v;
+  }
+
+  function isLocked(){
+    return config.locked;
+  }
+
   /**
    * Set knob's value
    * @param v
    */
   function setValue(v) {
-    console.log(`setValue(${v})`);
-    if (v < config.value_min) {
-      value = config.value_min;
-    } else if (v > config.value_max) {
-      value = config.value_max;
+    if( !isLocked() ){
+      console.log(`setValue(${v})`);
+      if (v < config.value_min) {
+        value = config.value_min;
+      } else if (v > config.value_max) {
+        value = config.value_max;
+      } else {
+        value = v;
+      }
+      setAngle(((v - config.value_min) / (config.value_max - config.value_min)) * (config.angle_max - config.angle_min) + config.angle_min);
+      
+      return true;
+
     } else {
-      value = v;
+      return false;
     }
-    setAngle(((v - config.value_min) / (config.value_max - config.value_min)) * (config.angle_max - config.angle_min) + config.angle_min);
-    return true;
   }
 
   /**
@@ -568,10 +584,10 @@ export default function (elem, conf = {}) {
   function attachEventHandlers() {
     console.log('attach attachEventHandlers');
     svg_element.addEventListener("mousedown", function (e) {
-      startDrag(e);
+      if(!isLocked()) startDrag(e);
     });
     svg_element.addEventListener("wheel", function (e) {
-      mouseWheelHandler(e);
+      if(!isLocked()) mouseWheelHandler(e);
     });
     svg_element.addEventListener("touchstart", startTouch, {
       passive: false
@@ -898,6 +914,8 @@ export default function (elem, conf = {}) {
    */
   function redraw() {
 
+    if( !isLocked() ){
+
     let p = getTrackPath();
     if (p) {
       if (svg_track) {
@@ -933,6 +951,8 @@ export default function (elem, conf = {}) {
     if (svg_value_text) {
       svg_value_text.textContent = config.prefix + getDisplayValue();
     }
+
+    }
   }
 
   /**
@@ -947,6 +967,9 @@ export default function (elem, conf = {}) {
       config = Object.assign({}, defaults, conf, new_config);
       init();
       draw();
+    },
+    set locked(v){
+      setLocked(v);
     },
     enableDebug: function () {
       trace = true;

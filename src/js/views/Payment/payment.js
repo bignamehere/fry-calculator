@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import FryKnob from '../../components/Knob/knob';
 import Totals from '../../components/displays/Totals/totals';
 import Consultation from '../Consultation/consultation';
+import LockIcon from '../../components/icons/Lock/lockIcon';
 
 const API_URL = 'api/data.json';
 
@@ -11,7 +12,10 @@ class Payment extends Component {
   constructor(props){
     super(props);
     this.state = {
-      prevInvestment: 3 //set to random number that would never be set by system
+      prevInvestment: 3, //set to random number that would never be set by system
+      dpKnobLocked: false,
+      mpKnobLocked: false,
+      mKnobLocked: false
     };
 
     this.onDownPaymentChange = this.onDownPaymentChange.bind(this);
@@ -19,6 +23,7 @@ class Payment extends Component {
     this.onMonthsChange = this.onMonthsChange.bind(this);
     this.onInvestmentChange = this.onInvestmentChange.bind(this);
     this.recalculateTotals = this.recalculateTotals.bind(this);
+    this.setKnobLock = this.setKnobLock.bind(this);
   }
 
   componentWillMount(){
@@ -88,18 +93,22 @@ class Payment extends Component {
 
     switch( who ){
       case "dp":
-        dp = amount;
-        amountOwed = investment - amount;
-        adjMP = Math.round(amountOwed / m);
-        if( mp >= maxPayments){
-          //m = Math.round( maxCost - (dp / maxPayments) );
-          m = Math.round( (amountOwed / mp) - m );
-        }
+      
+          if(!this.state.dpKnobLocked) dp = amount;
+
+          amountOwed = investment - dp;
+          adjMP = Math.round(amountOwed / m);
+          if( mp >= maxPayments){
+            //m = Math.round( maxCost - (dp / maxPayments) );
+            m = Math.round( (amountOwed / mp) - m );
+          }
+
         break;
 
       case "mp":
         amountOwed = investment;
-        adjMP = amount;
+        if(!this.state.mpKnobLocked) adjMP = amount;
+        else adjMP = mp;
         
         if( m < maxMonths ){
           m = Math.round( (amountOwed - dp) / amount );
@@ -128,12 +137,12 @@ class Payment extends Component {
         break;
 
       case "m":
-        m = amount;
+        if(!this.state.mKnobLocked) m = amount;
         if( mp > maxPayments ){
-          dp = investment - (amount * maxPayments);
+          dp = investment - (m * maxPayments);
         }
           amountOwed = investment - dp;
-          adjMP = Math.round(amountOwed / amount);
+          adjMP = Math.round(amountOwed / m);
         break;
       
       case "total":
@@ -158,6 +167,17 @@ class Payment extends Component {
     this.setValues( totalsObject );
   } 
 
+  rCal(dp,mp,m,o){
+    let totalsObject = {
+      downpayment: dp,
+      payments: mp,
+      months: m,
+      amountOwed: o
+    };
+    this.setState( totalsObject );
+    this.setValues( totalsObject );
+  }
+
   setValues( data ){
     console.log("setValues");
     // Set values of individual Knobs
@@ -168,8 +188,34 @@ class Payment extends Component {
     this.refs.display.setValues( data );
   }
 
+  getPaymentParameters(){
+    return {
+      dp: this.state.downpayment,
+      mp: this.state.payments,
+      m: this.state.months,
+      maxMonths: this.state.maxMonths,
+      investment: this.props.investment,
+      maxPayments: this.state.maxPayments,
+      amountOwed: 0,
+      adjMP: 0
+    };
+  }
+
   onDownPaymentChange(amount){
     this.recalculateTotals("dp", amount);
+    /*
+    let o = this.getPaymentParameters();
+
+    if(!this.state.dpKnobLocked) o.dp = amount;
+    o.amountOwed = o.investment - amount;
+    o.adjMP = Math.round(o.amountOwed / o.m);
+    if( o.mp >= o.maxPayments){
+      //m = Math.round( maxCost - (dp / maxPayments) );
+      o.m = Math.round( (o.amountOwed / o.mp) - o.m );
+    }
+
+    this.rCal( o.dp, o.adjMP, o.m, o.amountOwed);
+    */
   }
 
   onMonthlyPaymentsChange(amount){
@@ -182,6 +228,61 @@ class Payment extends Component {
 
   onInvestmentChange(amount){
     this.recalculateTotals("total", amount);
+  }
+
+  setKnobLock(e){
+    // do things here to lock the knob
+    console.log(e.id + " ???  ");
+    let boo = e.value ? false : true;
+    switch (e.id){
+      case "dp":
+        console.log("dpKnob");
+        this.refs.dpKnob.setKnobLock( boo );
+        this.setState({ dpKnobLocked: boo});
+        //
+        this.refs.mpKnob.setKnobLock( false );
+        this.refs.mpLock.setToggle(false);
+        //
+        this.refs.mKnob.setKnobLock( false );
+        this.refs.mLock.setToggle(false);
+        //
+        this.setState({ mpKnobLocked: false});
+        this.setState({ mKnobLocked: false});
+        break;
+      case "mp":
+        console.log("mpKnob");
+        this.refs.mpKnob.setKnobLock( boo );
+        this.setState({ mpKnobLocked: boo});
+
+        this.refs.dpKnob.setKnobLock( false );
+        this.refs.dpLock.setToggle(false);
+        //
+        this.refs.mKnob.setKnobLock( false );
+        this.refs.mLock.setToggle(false);
+        //
+        this.setState({ dpKnobLocked: false});
+        this.setState({ mKnobLocked: false});
+        
+        break;
+      case "m":
+        console.log("mKnob");
+        this.refs.mKnob.setKnobLock( boo );
+        this.setState({ mKnobLocked: boo});
+        //
+        this.refs.dpKnob.setKnobLock( false );
+        this.refs.dpLock.setToggle(false);
+        //
+        this.refs.mpKnob.setKnobLock( false );
+        this.refs.mpLock.setToggle(false);
+        //
+        this.setState({ dpKnobLocked: false});
+        this.setState({ mpKnobLocked: false});
+        
+        break;
+      default:
+        break;
+    }
+
   }
 
 	render() {
@@ -200,9 +301,13 @@ class Payment extends Component {
                 settings={ this.state.DownPaymentKnobSettings }
                 onChange={ this.onDownPaymentChange }
               />
-              
-              
-              <p>Down Payment Amount</p>
+              <LockIcon
+                className="knob-lock"
+                ref="dpLock"
+                onToggle={this.setKnobLock}
+                lockId="dp"
+              />
+              <h4>Down Payment</h4>
             </div>
           </div>
           <div className="fry-grid__1/1 fry-grid__4/12@m">
@@ -213,9 +318,13 @@ class Payment extends Component {
                 settings={ this.state.MonthlyPaymentsKnobSettings }
                 onChange={ this.onMonthlyPaymentsChange }
               />
-              
-              
-              <p>Monthly Payment</p>
+              <LockIcon
+                className="knob-lock"
+                ref="mpLock"
+                onToggle={this.setKnobLock}
+                lockId="mp"
+              />
+              <h4>Monthly Payments</h4>
             </div>
           </div>
           <div className="fry-grid__1/1 fry-grid__3/12@m">
@@ -226,9 +335,13 @@ class Payment extends Component {
                 settings={ this.state.MonthsKnobSettings }
                 onChange={ this.onMonthsChange }
               />
-              
-              
-              <p>Number of Months</p>
+              <LockIcon
+                className="knob-lock"
+                ref="mLock"
+                onToggle={this.setKnobLock}
+                lockId="m"
+              />
+              <h4>Months</h4>
             </div>
           </div>
 
