@@ -7,10 +7,7 @@
   border: 1px solid $box-border-color;
   background-color: $box-bgcolor-default;
   padding: $box-padding;
-
-  &__hd {
-    
-  }
+  font-weight: 200;
 
   &__bd {
     > :first-child {
@@ -20,8 +17,6 @@
       margin-bottom: 0;
     }
   }
-
-  &__ft {}
 
   &__title {
     color: $color-white;
@@ -33,6 +28,12 @@
     display: block;
     flex: 1;
     border-bottom: 1px solid $color-white;
+  }
+
+  &__title-bold {
+    background-color: #365e63;
+    font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica";
+    font-weight: 500;
   }
 
   &__content {
