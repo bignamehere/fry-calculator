@@ -367,7 +367,7 @@ class Payment extends Component {
 	render() {
     const { modalOpen } = this.state;
     return (
-        <div>
+      <div>
           
           <Modal
             open={this.state.modalOpen}
@@ -405,13 +405,17 @@ class Payment extends Component {
                   settings={ this.state.DownPaymentKnobSettings }
                   onChange={ this.onDownPaymentChange }
                 />
-                <Lock
-                  className="knob-lock"
-                  ref="dpLock"
-                  onToggle={this.setKnobLock}
-                  lockId="dp"
-                />
-                <h4>Down Payment</h4>
+
+                  <p className="fry-text--h2">
+                  <Lock
+                    className="knob-lock"
+                    ref="dpLock"
+                    onToggle={this.setKnobLock}
+                    lockId="dp"
+                  />
+                  Down Payment</p>
+                
+
               </div>
             </div>
             <div className="fry-grid__1/1 fry-grid__4/12@m">
@@ -422,13 +426,17 @@ class Payment extends Component {
                   settings={ this.state.MonthlyPaymentsKnobSettings }
                   onChange={ this.onMonthlyPaymentsChange }
                 />
-                <Lock
-                  className="knob-lock"
-                  ref="mpLock"
-                  onToggle={this.setKnobLock}
-                  lockId="mp"
-                />
-                <h4>Monthly Payments</h4>
+
+                  <p className="fry-text--h2">
+                  <Lock
+                    className="knob-lock"
+                    ref="mpLock"
+                    onToggle={this.setKnobLock}
+                    lockId="mp"
+                  />
+                  Monthly Payments</p>
+                
+
               </div>
             </div>
             <div className="fry-grid__1/1 fry-grid__3/12@m">
@@ -439,26 +447,31 @@ class Payment extends Component {
                   settings={ this.state.MonthsKnobSettings }
                   onChange={ this.onMonthsChange }
                 />
-                <Lock
-                  className="knob-lock"
-                  ref="mLock"
-                  onToggle={this.setKnobLock}
-                  lockId="m"
-                />
-                <h4>Months</h4>
+
+                  <p className="fry-text--h2">
+                  <Lock
+                    className="knob-lock"
+                    ref="mLock"
+                    onToggle={this.setKnobLock}
+                    lockId="m"
+                  />
+                  Months</p>
+                
+
               </div>
             </div>
 
-            <div className="fry-grid__1/1 fry-grid__1/12@m"></div>
+          <div className="fry-grid__1/1 fry-grid__1/12@m"></div>
           
-            <div className="fry-grid__1/1">
-              <Totals ref="display"/>
-            </div>
-            <div className="fry-grid__1/1">
-              <Disclaimer />
-            </div>
+          <div className="fry-grid__1/1">
+            <Totals ref="display"/>
+          </div>
+          <div className="fry-grid__1/1">
+            <Disclaimer />
           </div>
         </div>
+      </div>
+
 		);
 	}
 }
