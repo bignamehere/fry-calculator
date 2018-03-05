@@ -15,7 +15,8 @@ class AppTabs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      investment: 0
+      investment: 0,
+      paymentDisabled: true
     };
     this.handleInvestmentChange = this.handleInvestmentChange.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
@@ -38,6 +39,10 @@ class AppTabs extends Component {
   }
 
   resetAmount(amount){
+    this.setState({
+      paymentDisabled: false,
+      investment: amount
+    });
     if(this.refs.paymentTab) this.refs.paymentTab.onInvestmentChange(amount);
   }
 
@@ -55,12 +60,10 @@ class AppTabs extends Component {
         <TabPane tab='Consultation' key="1">
           <Consultation onContinue={this.handleContinue} onChange={this.handleInvestmentChange}/>
         </TabPane>
-        <TabPane tab='Payment' key="2">
+        <TabPane tab='Payment' key="2" disabled={this.state.paymentDisabled}>
           <Payment ref="paymentTab" investment={ this.state.investment } />
         </TabPane>
-        <TabPane tab='Savings' key="3">
-          <Savings />
-        </TabPane>
+        
       </Tabs>
 		);
 	}
