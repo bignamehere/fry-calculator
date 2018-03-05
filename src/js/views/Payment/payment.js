@@ -18,7 +18,6 @@ class Payment extends Component {
     super(props);
     this.state = {
       modalOpen: false,
-      prevInvestment: 3, //set to random number that would never be set by system
       dpKnobLocked: false,
       mpKnobLocked: false,
       mKnobLocked: false
@@ -44,13 +43,6 @@ class Payment extends Component {
 
   initAppData(data){
     // manipulate the value if using value from Consultation Screen
-    /*
-    let tempInvestment = this.props.investment > 0 ? this.props.investment : data.DownPaymentKnobSettings.value_max;
-    this.setState({
-      prevInvestment: tempInvestment,
-      investment: tempInvestment
-    });
-    */
 
     this.setState({
       investment: this.props.investment,
@@ -78,7 +70,6 @@ class Payment extends Component {
     this.refs.mpKnob.dataLoaded();
     this.refs.mKnob.dataLoaded();
 
-    //this.setPaymentsData(data);
     // SET INITIAL STATE OF KNOBS
     this.recalculateTotals("total", this.props.investment);
   }
@@ -120,10 +111,6 @@ class Payment extends Component {
   ///
   ///
   ///
-
-  showDiscountPopup(){
-    this.onOpenModal();
-  }
 
   recalculateTotals(who, amount){
     // do things here to manipulate view
@@ -363,6 +350,10 @@ class Payment extends Component {
         break;
     }
 
+  }
+
+  showDiscountPopup(){
+    this.onOpenModal();
   }
 
   onOpenModal = () => {
