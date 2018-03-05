@@ -159,75 +159,82 @@ class Payment extends Component {
           dp = amount;
           amountOwed = investment - dp;
 
-          if( amount < maxDownPayment){
+          if( dp < maxDownPayment){
+
             if( !mpLocked && mp >= minPayments && mp <= maxPayments ){
               mp = Math.round(amountOwed / m);
-            }
-
-            if( !mLocked && m >= minMonths && m <= maxMonths ) {
+            } else if( !mLocked && m >= minMonths && m <= maxMonths ) {
               m = Math.round( (amountOwed / mp) );
-            }
+              
+              if(m >= maxMonths){
+                m = maxMonths;
+                dp = dp > this.state.downpayment ? dp : this.state.downpayment;
+              }
+              if(m <= minMonths){
+                m = minMonths;
+                dp = dp < this.state.downpayment ? dp : this.state.downpayment;
+              }
+
+            } 
+
+            amountOwed = investment - dp;
+
           } else {
             mp = minPayments;
             m = minMonths;
-
-            this.showDiscountPopup();
+            if(dp != this.state.downpayment) this.showDiscountPopup();
           }
-          /*
-          if( m <= minMonths || m >= maxMonths ) {
-            m = this.state.months;
-            dp = this.state.downpayment;
-          }
-
-            } else if( m <= minMonths || m >= maxMonths ) {
-              mp = Math.round(amountOwed / m);
-            } else {
-              dp = this.state.downpayment;
-            }
-
-          } else {
-            if( mp <= minPayments || mp >= maxPayments ){
-              m = Math.round( (amountOwed / mp) );
-              if( m <= minMonths || m >= maxMonths ) {
-                m = this.state.months;
-                dp = this.state.downpayment;
-              }
-            } else if( mLocked || m <= minMonths || m >= maxMonths ) {
-              mp = Math.round(amountOwed / m);
-            } else {
-              dp = this.state.downpayment;
-            }
-          }
-          */
-
         }
 
         break;
 
       case "mp":
 
-        if( mpLocked || amount <= minPayments || amount >= maxPayments ){
+        if( mpLocked || amount < minPayments || amount > maxPayments ){
           skip = true;
         } else {
           
           mp = amount;
-          amountOwed = investment;
+          amountOwed = investment - dp;
 
-          if( !mLocked && m >= minMonths && m <= maxMonths ) {
-            m = Math.round( (amountOwed / mp) );
+          if( mp < maxPayments){
+            
+            if( !mLocked && m >= minMonths && m <= maxMonths ) {
+              m = Math.round( (amountOwed / mp) );
+              
+              if(m >= maxMonths){
+                m = maxMonths;
+                mp = mp > this.state.payments ? mp : this.state.payments;
+              }
+              if(m <= minMonths){
+                m = minMonths;
+                mp = mp < this.state.payments ? mp : this.state.payments;
+              }
+
+            } else {
+
+              if( !dpLocked && dp >= minDownPayment && dp <= maxDownPayment ) {
+                dp = Math.round(investment - (mp * m));
+              }else if(amount < this.state.payments){
+                mp = amount;
+                dp = Math.round(investment - (mp * m));
+              }else{
+                mp = this.state.payments;
+              }
+
+            }
+          } else {
+            dp = minDownPayment;
+            m = minMonths;
           }
-
-          if( !dpLocked && m >= minDownPayment && m <= maxDownPayment ) {
-            dp = Math.round( amountOwed - (mp * m) );
-          }
-
         }
+        if(dp == maxDownPayment) this.showDiscountPopup();
 
         break;
 
       case "m":
 
-        if( mLocked || amount <= minMonths || amount >= maxMonths ){
+        if( mLocked || amount < minMonths || amount > maxMonths ){
           skip = true;
         } else {
           
