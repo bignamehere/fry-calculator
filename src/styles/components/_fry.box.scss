@@ -1,6 +1,6 @@
 .fry-box {
-
-  $box-bgcolor-default: $white;
+  color: $color-white;
+  $box-bgcolor-default: $color-fry-green;
   $box-border-color: $color-fry-tertiary-100;
   $box-padding: $size-medium;
 
@@ -8,7 +8,9 @@
   background-color: $box-bgcolor-default;
   padding: $box-padding;
 
-  &__hd {}
+  &__hd {
+    
+  }
 
   &__bd {
     > :first-child {
@@ -22,9 +24,42 @@
   &__ft {}
 
   &__title {
-    @include h3();
+    color: $color-white;
+    @include h2();
     font-family: $font-sans;
     margin-top: 0;
+    margin-bottom: $size-medium;
+
+    display: block;
+    flex: 1;
+    border-bottom: 1px solid $color-white;
+  }
+
+  &__content {
+    color: $color-white;
+  }
+
+  &__content--m {
+    @include h3();
+    padding: 0;
+    font-family: $font-sans;
+    color: $color-white;
+  }
+
+  &__content--lg {
+    font-size: $font-size-7;
+    padding: 0;
+    font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica";
+    color: $color-white;
+  }
+
+  &__centered {
+    text-align: center;
+  }
+
+  &-condensed {
+    margin: 0;
+    padding: 0 0 10px 0;
   }
 
 }

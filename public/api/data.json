@@ -1,7 +1,7 @@
 {
   "DownPaymentKnobSettings": {
     "value_min": 0,
-    "value_max": 5750,
+    "value_max": 5800,
     "initial_value": 1500,
     "track_bg_radius": 40,
     "track_bg_width": 12,
@@ -18,8 +18,8 @@
   },
   "MonthlyPaymentsKnobSettings" : {
     "value_min": 0,
-    "value_max": 575,
-    "initial_value": 177,
+    "value_max": 485,
+    "initial_value": 180,
     "track_bg_radius": 40,
     "track_bg_width": 12,
     "track_radius": 40,
@@ -34,7 +34,7 @@
     "prefix": "$"
   },
   "MonthsKnobSettings" : {
-    "value_min": 6,
+    "value_min": 12,
     "value_max": 32,
     "initial_value": 24,
     "track_bg_radius": 40,

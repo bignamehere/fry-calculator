@@ -3,7 +3,7 @@
 import React, { Component } from 'react';
 import './lock.scss';
 
-class LockIcon extends Component {
+class Lock extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -21,7 +21,7 @@ class LockIcon extends Component {
 
   setToggle(v){
     // this is stupid ugly... refactor soon!!
-    console.log(this.props.lockId + " .. " + v)
+    console.log(this.props.lockId + " locked? " + v)
     if(!v){
       document.getElementById(this.props.lockId)
         .getElementsByClassName('lock-locked')[0]
@@ -82,4 +82,4 @@ class LockIcon extends Component {
     );
   }
 }
-export default LockIcon;
+export default Lock;

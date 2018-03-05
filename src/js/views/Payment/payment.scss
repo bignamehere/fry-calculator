@@ -1,0 +1,43 @@
+.modal-custom{
+	background: #4d868e !important;
+	color: #FFFFFF !important;
+	padding: 3rem !important;
+	font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica";
+
+	&__content{
+		font-size: 2rem;
+		padding-bottom: 4rem;
+	}
+
+	&__content-centered {
+		font-size: 6rem;
+		display: block;
+		color: #FFFFFF;
+		font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica";
+	}
+	&__header {
+		margin-top: 0;
+		margin-bottom: 4rem;
+		display: block;
+		flex: 1;
+		font-size: 3rem;
+		color: #FFFFFF;		
+		font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica";
+		padding-bottom: 1.4rem;
+		border-bottom: 1px solid #FFFFFF;
+	}
+
+	&__logo{
+
+		text-align: right;
+
+		@media (min-width: 360px) {
+			padding-top: 2rem;
+			text-align: center;
+		}
+	}
+}
+
+.modal-custom-close{	
+	fill: #FFFFFF;
+}

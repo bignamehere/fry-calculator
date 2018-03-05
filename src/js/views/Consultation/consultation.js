@@ -6,6 +6,7 @@ class Consultation extends Component {
   constructor(props){
     super(props);
     this.state = {
+      investment: 0
     };
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
     this.handleContinueClick = this.handleContinueClick.bind(this);
@@ -79,12 +80,12 @@ class Consultation extends Component {
                 </div>
             </div>
 
-            <div>
-              <div className={"fry-grid__1/1 rc-tab-display-lg"}>
+            <div className={"fry-grid__1/1 fry-grid__1/2@m"}>
+              <div className={"rc-tab-display-lg"}>
                 <div className={"fry-box"}>
-                  <h1>Investment Amount</h1>
+                  <h3 className={"fry-box__title"}>Investment Amount</h3>
                   <p>Your initial investment for Orthodontic Braces is valued at:</p>
-                  <h1>${this.state.investment}</h1>
+                  <span className="fry-box__content--lg">${this.state.investment}</span>
                 </div>
               </div>
             </div>
