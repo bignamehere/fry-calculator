@@ -138,7 +138,6 @@ class Payment extends Component {
       case "dp":
 
         if( dpLocked || amount < minDownPayment || amount > maxDownPayment ){
-          console.log(amount);
           if(dp >= maxDownPayment) this.showDiscountPopup();
           skip = true;
         } else {
