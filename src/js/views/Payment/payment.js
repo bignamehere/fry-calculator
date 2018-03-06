@@ -87,7 +87,6 @@ class Payment extends Component {
   }
 
   onInvestmentChange(amount){
-    console.log("ON INVESTMENT CHANGE ");
     let newAmount = amount == undefined ? this.props.investment : amount;
     let tempDPObj = this.state.DownPaymentKnobSettings;
     let tempMPObj = this.state.MonthlyPaymentsKnobSettings;
@@ -114,7 +113,6 @@ class Payment extends Component {
 
   recalculateTotals(who, amount){
     // do things here to manipulate view
-    console.log( "recalculateTotals " + who );
 
     let skip = false;
     //
@@ -138,8 +136,10 @@ class Payment extends Component {
 
     switch( who ){
       case "dp":
-        
+
         if( dpLocked || amount < minDownPayment || amount > maxDownPayment ){
+          console.log(amount);
+          if(dp >= maxDownPayment) this.showDiscountPopup();
           skip = true;
         } else {
           
@@ -148,28 +148,34 @@ class Payment extends Component {
 
           if( dp < maxDownPayment){
 
+            // set Monthly Payments if able
             if( !mpLocked && mp >= minPayments && mp <= maxPayments ){
               mp = Math.round(amountOwed / m);
+            // set Months if Monthly payment fails and Months able   
             } else if( !mLocked && m >= minMonths && m <= maxMonths ) {
               m = Math.round( (amountOwed / mp) );
               
+              // Reset Months - out of range High
               if(m >= maxMonths){
                 m = maxMonths;
-                dp = dp > this.state.downpayment ? dp : this.state.downpayment;
+                //dp = dp > this.state.downpayment ? dp : this.state.downpayment;
               }
+              // Reset Months - out of range Low
               if(m <= minMonths){
                 m = minMonths;
-                dp = dp < this.state.downpayment ? dp : this.state.downpayment;
+                //dp = dp < this.state.downpayment ? dp : this.state.downpayment;
               }
 
             } 
-
+            // reset amount owed based on new data
             amountOwed = investment - dp;
-
           } else {
+            // set other dials to minimums and show popup
             mp = minPayments;
             m = minMonths;
-            if(dp != this.state.downpayment) this.showDiscountPopup();
+            dp = maxDownPayment;
+            //if(dp != this.state.downpayment) 
+            this.showDiscountPopup();
           }
         }
 
@@ -215,7 +221,7 @@ class Payment extends Component {
             m = minMonths;
           }
         }
-        if(dp == maxDownPayment) this.showDiscountPopup();
+        if(dp >= maxDownPayment) this.showDiscountPopup();
 
         break;
 
@@ -272,7 +278,6 @@ class Payment extends Component {
   ///
   ///
   ///
-
 
   setValues( data ){
     console.log("setValues");
@@ -406,14 +411,14 @@ class Payment extends Component {
                   onChange={ this.onDownPaymentChange }
                 />
 
-                  <p className="fry-text--h2">
+                  <span className="fry-text--h2">
                   <Lock
                     className="knob-lock"
                     ref="dpLock"
                     onToggle={this.setKnobLock}
                     lockId="dp"
                   />
-                  Down Payment</p>
+                  Down Payment</span>
                 
 
               </div>
@@ -427,14 +432,14 @@ class Payment extends Component {
                   onChange={ this.onMonthlyPaymentsChange }
                 />
 
-                  <p className="fry-text--h2">
+                  <span className="fry-text--h2">
                   <Lock
                     className="knob-lock"
                     ref="mpLock"
                     onToggle={this.setKnobLock}
                     lockId="mp"
                   />
-                  Monthly Payments</p>
+                  Monthly Payments</span>
                 
 
               </div>
@@ -448,14 +453,14 @@ class Payment extends Component {
                   onChange={ this.onMonthsChange }
                 />
 
-                  <p className="fry-text--h2">
+                  <span className="fry-text--h2">
                   <Lock
                     className="knob-lock"
                     ref="mLock"
                     onToggle={this.setKnobLock}
                     lockId="m"
                   />
-                  Months</p>
+                  Months</span>
                 
 
               </div>
