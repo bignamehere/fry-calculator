@@ -75,6 +75,7 @@ class Payment extends Component {
   }
 
   onDownPaymentChange(amount){
+    console.log(amount);
     this.recalculateTotals("dp", amount);
   }
 
@@ -138,7 +139,10 @@ class Payment extends Component {
       case "dp":
 
         if( dpLocked || amount < minDownPayment || amount > maxDownPayment ){
-          if(dp >= maxDownPayment) this.showDiscountPopup();
+
+          //if(dp >= maxDownPayment) 
+          dp = maxDownPayment;
+          this.showDiscountPopup();
           skip = true;
         } else {
           
@@ -410,15 +414,19 @@ class Payment extends Component {
                   onChange={ this.onDownPaymentChange }
                 />
 
-                  <span className="fry-text--h2">
-                  <Lock
-                    className="knob-lock"
-                    ref="dpLock"
-                    onToggle={this.setKnobLock}
-                    lockId="dp"
-                  />
-                  Down Payment</span>
-                
+                <div className="lock-toggle-container">
+                  <div className="lock-toggle-lock__sm">
+                    <Lock
+                      className="knob-lock"
+                      ref="dpLock"
+                      onToggle={this.setKnobLock}
+                      lockId="dp"
+                    />
+                  </div>
+                  <div className="lock-toggle__text-sm">
+                    <span className="fry-text--h2">Down Payment</span>
+                  </div>
+                </div>
 
               </div>
             </div>
@@ -431,15 +439,19 @@ class Payment extends Component {
                   onChange={ this.onMonthlyPaymentsChange }
                 />
 
-                  <span className="fry-text--h2">
-                  <Lock
-                    className="knob-lock"
-                    ref="mpLock"
-                    onToggle={this.setKnobLock}
-                    lockId="mp"
-                  />
-                  Monthly Payments</span>
-                
+                <div className="lock-toggle-container">
+                  <div className="lock-toggle-lock__lg">
+                    <Lock
+                      className="knob-lock"
+                      ref="mpLock"
+                      onToggle={this.setKnobLock}
+                      lockId="mp"
+                    />
+                  </div>
+                  <div className="lock-toggle__text-lg">
+                    <span className="fry-text--h2">Monthly Payment</span>
+                  </div>
+                </div>
 
               </div>
             </div>
@@ -452,15 +464,19 @@ class Payment extends Component {
                   onChange={ this.onMonthsChange }
                 />
 
-                  <span className="fry-text--h2">
-                  <Lock
-                    className="knob-lock"
-                    ref="mLock"
-                    onToggle={this.setKnobLock}
-                    lockId="m"
-                  />
-                  Months</span>
-                
+                <div className="lock-toggle-container">
+                  <div className="lock-toggle-lock__sm">
+                    <Lock
+                      className="knob-lock"
+                      ref="mLock"
+                      onToggle={this.setKnobLock}
+                      lockId="m"
+                    />
+                  </div>
+                  <div className="lock-toggle__text-sm">
+                    <span className="fry-text--h2">Months</span>
+                  </div>
+                </div>
 
               </div>
             </div>

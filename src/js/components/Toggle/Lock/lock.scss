@@ -1,7 +1,11 @@
 .lock-container {
-    width: 48px;
-    height: 48px;
+    width: 75%;
+    height: 75%;
     cursor:  pointer;
+    left: 0;
+    right: 0;
+    padding-top: 10rem;
+    margin: 0 auto;
 }
 
 .lock-icon-show {

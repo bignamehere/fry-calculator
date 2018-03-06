@@ -1,13 +1,14 @@
 .knob {
   /*width: 250px;*/
 }
+
 .knob-container {
   text-align: center;
 }
 
 @media (min-width: 360px){
   .knob-container {
-    padding: 50px;
+    padding: 10px 50px;
     width: 100%;
   }
 }
