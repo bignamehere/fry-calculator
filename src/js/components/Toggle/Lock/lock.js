@@ -61,7 +61,7 @@ class Lock extends Component {
   //#619aa2
   render(){
     return (
-      <div id={this.props.lockId} className="lock-container" onClick={this.onToggle}>
+      <div id={this.props.lockId} className="lock" onClick={this.onToggle}>
         <div className="lock-locked lock-icon-hide">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
             <path
