@@ -1,5 +1,5 @@
 {
-  "name": "fry-calculator",
+  "name": "consultation",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -108,5 +108,5 @@
     "redux-thunk": "^2.2.0",
     "svg-knob": "^1.4.2"
   },
-  "homepage": "https://bignamehere.github.io/fry-calculator"
+  "homepage": "https://bignamehere.github.io/consultation"
 }
