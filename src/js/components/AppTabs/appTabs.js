@@ -9,7 +9,7 @@ import './appTabs.scss';
 // Views
 import Consultation from '../../views/Consultation/consultation';
 import Payment from '../../views/Payment/payment';
-import Savings from '../../views/Savings/savings';
+//import Savings from '../../views/Savings/savings';
 
 class AppTabs extends Component {
   constructor(props) {
@@ -22,13 +22,8 @@ class AppTabs extends Component {
     this.handleContinue = this.handleContinue.bind(this);
   }
 
-  handleContinue(e){
-    console.log("continue clicked? " + e.activeKey);
-    this.setState({
-      tabKey: e.activeKey
-    });
-    this.refs.tabs.onTabClick( { activeKey: e.activeKey } );
-    //setActiveKey( e.activeKey );
+  handleContinue(v){
+    this.refs.appTabs.setActiveKey( v.toString() );
   }
 
   handleInvestmentChange(e){
@@ -48,12 +43,12 @@ class AppTabs extends Component {
 
 	render() {
 
-    //const { investment } = this.state;
+    //const { paymentPane } = this.state;
     return (
       <Tabs
-        ref="tabs"
+        ref="appTabs"
         defaultActiveKey="1"
-        renderTabBar={() => <InkTabBar onTabClick={this.onTabClick}/>}
+        renderTabBar={() => <InkTabBar ref="inktab" onTabClick={this.onTabClick}/>}
         renderTabContent={() => <TabContent/>}
         //onChange={this.handleTabChange}
       >

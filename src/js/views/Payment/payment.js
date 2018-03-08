@@ -416,7 +416,7 @@ class Payment extends Component {
 
                 <div className="lock-toggle">
                   <div className="lock-toggle-lock__sm">
-                  <div className="lock-container">
+                  <div className="lock-container__sm">
                       <Lock
                         className="knob-lock"
                         ref="dpLock"
@@ -443,7 +443,7 @@ class Payment extends Component {
 
                 <div className="lock-toggle">
                   <div className="lock-toggle-lock__lg">
-                    <div className="lock-container">
+                    <div className="lock-container__lg">
                       <Lock
                         className="knob-lock"
                         ref="mpLock"
@@ -470,7 +470,7 @@ class Payment extends Component {
 
                 <div className="lock-toggle">
                   <div className="lock-toggle-lock__sm">
-                    <div className="lock-container">
+                    <div className="lock-container__sm">
                       <Lock
                         className="knob-lock"
                         ref="mLock"
