@@ -38,7 +38,16 @@
 	font-size: 24px;
 }
 
-.lock-container {
+.lock-container__sm {
+	width: 4rem;
+	height: 4rem;
+	left: 0;
+  right: 0;
+  padding-top: 10rem;
+  margin: 0 auto;
+}
+
+.lock-container__lg {
 	width: 4rem;
 	height: 4rem;
 	left: 0;
@@ -50,38 +59,47 @@
 @media (min-width: 360px){
 
 	.lock-toggle-lock__sm {
-		height: 20rem;
+		height: 25rem;
 	}
 	
 	.lock-toggle-lock__lg {
-		height: 20rem;
+		height: 25rem;
 	}
 
 	.lock-toggle__text-sm {
-		padding-bottom: 1rem;
+		padding-bottom: 0rem;
 		font-size: 28px;
 	}
 
 	.lock-toggle__text-lg {
-		padding-bottom: 1rem;
+		padding-bottom: 0rem;
 		font-size: 28px;
 	}
 
-	.lock-container {
+	.lock-container__sm {
 		width: 4.25rem;
 		height: 4.25rem;
-		padding-top: 10rem;
+		padding-top: 15rem;
+
+	}
+	
+	.lock-container__lg {
+		width: 4.25rem;
+		height: 4.25rem;
+		padding-top: 15rem;
 	}
 }
 
 @media (min-width: 600px){
 
 	.lock-toggle-lock__sm {
-		height: 20rem;
+		height: 13rem;
+		//background:red;
 	}
 	
 	.lock-toggle-lock__lg {
-		height: 20rem;
+		height: 16rem;
+		//background:red;
 	}
 
 	.lock-toggle__text-sm {
@@ -90,14 +108,20 @@
 	}
 
 	.lock-toggle__text-lg {
-		padding-bottom: 1rem;
+		padding-bottom: 0rem;
 		font-size: 16px;
 	}
 
-	.lock-container {
+	.lock-container__sm {
 		width: 2.5rem;
 		height: 2.5rem;
-		padding-top: 14rem;
+		padding-top: 7rem;
+	}
+	
+	.lock-container__lg {
+		width: 2.5rem;
+		height: 2.5rem;
+		padding-top: 10rem;
 	}
 
 }
@@ -105,11 +129,13 @@
 @media (min-width: 768px){
 
 	.lock-toggle-lock__sm {
-		height: 20rem;
+		height: 16rem;
+		//background:blue;
 	}
 	
 	.lock-toggle-lock__lg {
 		height: 20rem;
+		//background:blue;
 	}
 
 	.lock-toggle__text-sm {
@@ -122,10 +148,16 @@
 		font-size: 18px;
 	}
 
-	.lock-container {
-		width: 3.25rem;
-		height: 3.25rem;
-		padding-top: 12rem;
+	.lock-container__sm {
+		width: 2.5rem;
+		height: 2.5rem;
+		padding-top: 8rem;
+	}
+	
+	.lock-container__lg {
+		width: 3rem;
+		height: 3rem;
+		padding-top: 11rem;
 	}
 
 }
@@ -134,12 +166,12 @@
 
 	.lock-toggle-lock__sm {
 		height: 20rem;
-		//background:orange;
+		//background:green;
 	}
 	
 	.lock-toggle-lock__lg {
 		height: 20rem;
-		//background:orange;
+		//background:green;
 	}
 
 	.lock-toggle__text-sm {
@@ -152,10 +184,16 @@
 		font-size: 16px;
 	}
 
-	.lock-container {
+	.lock-container__sm {
+		width: 2.5rem;
+		height: 2.5rem;
+		padding-top: 8rem;
+	}
+	
+	.lock-container__lg {
 		width: 3rem;
 		height: 3rem;
-		padding-top: 13rem;
+		padding-top: 11rem;
 	}
 
 }
@@ -163,11 +201,13 @@
 @media (min-width: 1024px){
 
 	.lock-toggle-lock__sm {
-		height: 19rem;
+		height: 22rem;
+		//background:pink;
 	}
 	
 	.lock-toggle-lock__lg {
-		height: 20rem;
+		height: 28rem;
+		//background:pink;
 	}
 
 	.lock-toggle__text-sm {
@@ -176,14 +216,20 @@
 	}
 
 	.lock-toggle__text-lg {
-		padding-bottom: 2.5rem;
+		padding-bottom: 3rem;
 		font-size: 28px;
 	}
 
-	.lock-container {
-		width: 4.5rem;
-		height: 4.5rem;
-		padding-top: 8rem;
+	.lock-container__sm {
+		width: 4rem;
+		height: 4rem;
+		padding-top: 11.25rem;
+	}
+	
+	.lock-container__lg {
+		width: 4.25rem;
+		height: 4.25rem;
+		padding-top: 15rem;
 	}
 }
 
