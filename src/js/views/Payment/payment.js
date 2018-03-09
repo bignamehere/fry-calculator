@@ -386,7 +386,7 @@ class Payment extends Component {
               closeIcon: 'modal-custom-close'
             }}>
 
-            <h2 className="modal-custom__header">Pay In Full Discount!</h2>
+            <h2 className="modal-custom__header">Pay In Full Discount - 10% Off!</h2>
             <p className="modal-custom__content">
               At Fry Orthodontic Specialists, when you pay the full amount for your braces, you will receive a <strong>10% discount</strong> on your investment.
             </p>
