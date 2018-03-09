@@ -36,6 +36,10 @@ class FryKnob extends Component {
     this.k.locked = v;
   }
 
+  resetKnobSettings(obj){
+    this.k.config = obj;
+  }
+
   dataLoaded(){
     this.k = new Knob(
       this.dom,

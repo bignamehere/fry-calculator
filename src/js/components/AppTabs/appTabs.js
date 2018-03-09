@@ -34,6 +34,7 @@ class AppTabs extends Component {
   }
 
   resetAmount(amount){
+    console.log("resetAmount = " + amount);
     this.setState({
       paymentDisabled: false,
       investment: amount
