@@ -20,7 +20,8 @@ class Payment extends Component {
       modalOpen: false,
       dpKnobLocked: false,
       mpKnobLocked: false,
-      mKnobLocked: false
+      mKnobLocked: false,
+      showDiscount: true
     };
 
     this.onDownPaymentChange = this.onDownPaymentChange.bind(this);
@@ -63,7 +64,8 @@ class Payment extends Component {
     this.setKnobState(
       data.DownPaymentKnobSettings,
       data.MonthlyPaymentsKnobSettings,
-      data.MonthsKnobSettings
+      data.MonthsKnobSettings,
+      this.props.investment
     );
 
     this.refs.dpKnob.dataLoaded();
@@ -75,7 +77,6 @@ class Payment extends Component {
   }
 
   onDownPaymentChange(amount){
-    console.log(amount);
     this.recalculateTotals("dp", amount);
   }
 
@@ -88,21 +89,39 @@ class Payment extends Component {
   }
 
   onInvestmentChange(amount){
-    let newAmount = amount == undefined ? this.props.investment : amount;
+
+//
+// this is NOT DRY... new to refactor
+//
+
+    let newAmount = amount;// == undefined ? this.props.investment : amount;
     let tempDPObj = this.state.DownPaymentKnobSettings;
     let tempMPObj = this.state.MonthlyPaymentsKnobSettings;
     
+    if(this.state.investment !== newAmount){
+      this.setState({
+        investment: newAmount,
+        showDiscount: true
+      });
+    }
+
     tempDPObj.value_max = this.roundUp(this.state.DownPaymentKnobSettings.roundNumber, newAmount);
-    
     tempMPObj.value_max = this.roundUp(
       tempMPObj.roundNumber,
       Math.round( newAmount / this.state.MonthsKnobSettings.value_min )
     );
 
+    /*
+    this.refs.dpKnob.resetKnobSettings(tempDPObj);
+    this.refs.mpKnob.resetKnobSettings(tempMPObj);
+    this.refs.mKnob.resetKnobSettings(this.state.MonthsKnobSettings);
+    */
+   
     this.setKnobState(
       tempDPObj,
       tempMPObj,
-      this.state.MonthsKnobSettings
+      this.state.MonthsKnobSettings,
+      newAmount
     );
 
     this.recalculateTotals("total", amount);
@@ -292,13 +311,13 @@ class Payment extends Component {
     this.refs.display.setValues( data );
   }
 
-  setKnobState(dpKnobData, mpKnobData, mKnobData){
-    
-    dpKnobData.value_max = this.roundUp(dpKnobData.roundNumber, this.props.investment);
+  setKnobState(dpKnobData, mpKnobData, mKnobData, amount){
+
+    dpKnobData.value_max = this.roundUp(dpKnobData.roundNumber, amount);
     
     mpKnobData.value_max = this.roundUp(
       mpKnobData.roundNumber,
-      Math.round( this.props.investment / mKnobData.value_min )
+      Math.round( amount / mKnobData.value_min )
     );
 
     this.setState({
@@ -306,12 +325,13 @@ class Payment extends Component {
       MonthlyPaymentsKnobSettings: mpKnobData,
       MonthsKnobSettings: mKnobData
     });
+
+    
   }
 
   setKnobLock(e){
     // do things here to lock the knob
     let boo = e.value;// ? false : true;
-    console.log(e.id + " ???  " + boo);
     switch (e.id){
       case "dp":
         this.refs.dpKnob.setKnobLock( boo );
@@ -361,7 +381,10 @@ class Payment extends Component {
   }
 
   showDiscountPopup(){
-    this.onOpenModal();
+    if(this.state.showDiscount){
+      this.onOpenModal();
+      this.setState({showDiscount:false});
+    }
   }
 
   onOpenModal = () => {
