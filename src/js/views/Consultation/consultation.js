@@ -53,46 +53,48 @@ class Consultation extends Component {
 
 	render(){
     return (
-      <div className="fry-section">
-        <div className="fry-section__bd">
-          <h1 className="rc-tab-panel__header">Initial Consultation Settings</h1>
-          <div className="fry-grid">
-            <div className="fry-grid__1/1 fry-grid__1/2@m">
-              <div className="fry-grid">
-                <div className="fry-grid__1/1">
-                  <div className="fry-field">
-                    <label className="fry-field__label" htmlFor="initialCost">Initial Cost <span className="fry-field__label-desc">Required</span></label>
-                    <input className="fry-input fry-field__item" id="initialCost" name="initialCost" type="number" placeholder="$" value={this.state.initialCost}/>
+      <div className="consultation-container">
+        <div className="fry-section">
+          <div className="fry-section__bd">
+            {/*<h1 className="rc-tab-panel__header">Initial Consultation Settings</h1>*/}
+            <div className="fry-grid">
+              <div className="fry-grid__1/1 fry-grid__1/2@m">
+                <div className="fry-grid">
+                  <div className="fry-grid__1/1">
+                    <div className="fry-field">
+                      <label className="fry-field__label" htmlFor="initialCost">Treatment Cost <span className="fry-field__label-desc">Required</span></label>
+                      <input className="fry-input fry-field__item" id="initialCost" name="initialCost" type="number" placeholder="$" value={this.state.initialCost}/>
+                    </div>
+                  
+                    <div className="fry-field">
+                      <label className="fry-field__label" htmlFor="insurance">Insurance Coverage </label>
+                      <input className="fry-input fry-field__item" id="insurance" name="insurance" type="number" placeholder="$" value={this.state.insurance}/>
+                    </div>
+                  
+                    <div className="fry-field">
+                      <label className="fry-field__label" htmlFor="discounts">Additional Savings </label>
+                      <input className="fry-input fry-field__item" id="discounts" name="discounts" type="number" placeholder="$" value={this.state.discounts}/>
+                    </div>
                   </div>
-                
-                  <div className="fry-field">
-                    <label className="fry-field__label" htmlFor="insurance">Insurance Amount </label>
-                    <input className="fry-input fry-field__item" id="insurance" name="insurance" type="number" placeholder="$" value={this.state.insurance}/>
+                  <div className="fry-grid__1/2 fry-grid__1/2@m">
+                    <div className="btn btn-show">
+                      <button onClick={this.handleUpdateClick} className="fry-btn fry-btn--secondary" type="button">Update Settings</button>
+                    </div>
                   </div>
-                
-                  <div className="fry-field">
-                    <label className="fry-field__label" htmlFor="discounts">Discounts </label>
-                    <input className="fry-input fry-field__item" id="discounts" name="discounts" type="number" placeholder="$" value={this.state.discounts}/>
-                  </div>
-                </div>
-                <div className="fry-grid__1/2 fry-grid__1/2@m">
-                  <div className="btn btn-show">
-                    <button onClick={this.handleUpdateClick} className="fry-btn fry-btn--secondary" type="button">Update Settings</button>
-                  </div>
-                </div>
-                <div className="fry-grid__1/2 fry-grid__1/2@m">
-                  <div className="btn btn-rt btn-hide">
-                    <button onClick={this.handleContinueClick} className="fry-btn fry-btn--secondary" type="button">Adjust Payments</button>
+                  <div className="fry-grid__1/2 fry-grid__1/2@m">
+                    <div className="btn btn-rt btn-hide">
+                      <button onClick={this.handleContinueClick} className="fry-btn fry-btn--secondary" type="button">Adjust Payments</button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="fry-grid__1/1 fry-grid__1/2@m">
-              <div className="rc-tab-display-lg">
-                <div className="fry-box">
-                  <h3 className="fry-box__title">Investment Amount</h3>
-                  <p>Your initial investment for Orthodontic Braces is valued at:</p>
-                  <span className="fry-box__content--lg">${this.state.investment}</span>
+              <div className="fry-grid__1/1 fry-grid__1/2@m">
+                <div className="rc-tab-display-lg">
+                  <div className="fry-box">
+                    <h3 className="fry-box__title">Your Total Investment</h3>
+                    {/*<p>Your initial investment for Orthodontic Braces is valued at:</p>*/}
+                    <span className="fry-box__content--xlg">${this.state.investment}</span>
+                  </div>
                 </div>
               </div>
             </div>
