@@ -26,16 +26,16 @@ class Totals extends Component {
     return (
       <div className="fry-grid fry-grid--no-gutter">
         
+        <div className="fry-grid__1/2 fry-grid__1/4@m">
+          <CostTotal value={this.state.amountOwed} />
+        </div>
+
         <div className="fry-grid__1/2 fry-grid__1/4@m"> 
           <DownPaymentTotal value={this.state.downpayment} />
         </div>
         
         <div className="fry-grid__1/2 fry-grid__1/4@m">
           <MonthsTotal value={this.state.months} />
-        </div>
-
-        <div className="fry-grid__1/2 fry-grid__1/4@m">
-          <CostTotal value={this.state.amountOwed} />
         </div>
 
         <div className="fry-grid__1/2 fry-grid__1/4@m">

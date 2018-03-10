@@ -54,6 +54,13 @@
     color: $color-white;
   }
 
+  &__content--xlg {
+    font-size: $font-size-7 * 1.5;
+    padding: 0;
+    font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica";
+    color: $color-white;
+  }
+
   &__centered {
     text-align: center;
   }

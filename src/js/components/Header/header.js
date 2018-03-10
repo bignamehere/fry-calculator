@@ -17,7 +17,7 @@ class Header extends Component {
 				<div className="fry-header-app__bd">
 					<div className="fry-header-app__primary">
 						<span className="fry-header-app__app-name">
-							<span className="header-custom__app-name">Braces Cost Calculator</span>
+							<span className="header-custom__app-name">Treatment Fee Calculator</span>
 						</span>
 					</div>
 					<div className="fry-header-app__secondary">

@@ -53,10 +53,10 @@ class AppTabs extends Component {
         renderTabContent={() => <TabContent/>}
         //onChange={this.handleTabChange}
       >
-        <TabPane tab='Consultation' key="1">
+        <TabPane tab='Treatment Fee' key="1">
           <Consultation onContinue={this.handleContinue} onChange={this.handleInvestmentChange}/>
         </TabPane>
-        <TabPane tab='Payment' key="2" disabled={this.state.paymentDisabled}>
+        <TabPane tab='Payment Options' key="2" disabled={this.state.paymentDisabled}>
           <Payment ref="paymentTab" investment={ this.state.investment } />
         </TabPane>
         
