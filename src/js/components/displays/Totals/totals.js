@@ -18,7 +18,7 @@ class Totals extends Component {
       downpayment: data.downpayment,
       payments: data.payments, 
       months: data.months,
-      amountOwed: data.amountOwed,
+      investment: data.investment
     });
   }
 
@@ -27,7 +27,7 @@ class Totals extends Component {
       <div className="fry-grid fry-grid--no-gutter">
         
         <div className="fry-grid__1/2 fry-grid__1/4@m">
-          <CostTotal value={this.state.amountOwed} />
+          <CostTotal value={this.state.investment} />
         </div>
 
         <div className="fry-grid__1/2 fry-grid__1/4@m"> 

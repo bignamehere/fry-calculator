@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import FryKnob from '../../components/Knob/knob';
 import Totals from '../../components/displays/Totals/totals';
-import Consultation from '../Consultation/consultation';
 import Lock from '../../components/Toggle/Lock/lock';
 import Modal from 'react-responsive-modal';
 import Disclaimer from '../../components/Disclaimer/disclaimer';
@@ -89,7 +88,7 @@ class Payment extends Component {
   }
 
   onInvestmentChange(amount){
-
+    console.log("onInvestmentChange() -- "+ amount);
 //
 // this is NOT DRY... new to refactor
 //
@@ -269,7 +268,8 @@ class Payment extends Component {
         break;
       
       case "total":
-        this.setState({ investment: amount });
+        investment = amount;
+        this.setState({ investment: investment });
         amountOwed = amount - dp;
         mp = Math.round(amountOwed / m);
         break;
@@ -285,7 +285,7 @@ class Payment extends Component {
         downpayment: dp,
         payments: mp,
         months: m,
-        amountOwed: amountOwed
+        investment: investment
       };
       this.setState( totalsObject );
       this.setValues( totalsObject );
@@ -302,7 +302,7 @@ class Payment extends Component {
   ///
 
   setValues( data ){
-    console.log("setValues");
+    console.log("setValues ZZZZZZ  " + data.investment);
     // Set values of individual Knobs
     this.refs.dpKnob.setKnobValue( data.downpayment );
     this.refs.mpKnob.setKnobValue( data.payments );
