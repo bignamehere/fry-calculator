@@ -440,22 +440,24 @@ export default function (elem, conf = {}) {
     //      values are relative to the viewport and not absolute).
     //      https://developer.mozilla.org/en/docs/Web/API/Element/getBoundingClientRect
 
-    // targetRect = currentTarget.getBoundingClientRect(); // currentTarget must be the <svg...> object
-    targetRect = svg_element.getBoundingClientRect();
+    if( !isLocked() ){
+      // targetRect = currentTarget.getBoundingClientRect(); // currentTarget must be the <svg...> object
+      targetRect = svg_element.getBoundingClientRect();
 
-    // Note: we must take the boundingClientRect of the <svg> and not the <path> because the <path> bounding rect
-    //       is not constant because it encloses the current arc.
+      // Note: we must take the boundingClientRect of the <svg> and not the <path> because the <path> bounding rect
+      //       is not constant because it encloses the current arc.
 
-    // By design, the arc center is at equal distance from top and left.
-    arcCenterXPixels = targetRect.width / 2;
-    //noinspection JSSuspiciousNameCombination
-    arcCenterYPixels = arcCenterXPixels;
+      // By design, the arc center is at equal distance from top and left.
+      arcCenterXPixels = targetRect.width / 2;
+      //noinspection JSSuspiciousNameCombination
+      arcCenterYPixels = arcCenterXPixels;
 
-    document.addEventListener('mousemove', handleDrag, false);
-    document.addEventListener('mouseup', endDrag, false);
+      document.addEventListener('mousemove', handleDrag, false);
+      document.addEventListener('mouseup', endDrag, false);
 
-    mouseUpdate(e);
-    redraw();
+      mouseUpdate(e);
+      redraw();
+    }
   }
 
   /**
@@ -464,17 +466,21 @@ export default function (elem, conf = {}) {
    */
   function handleDrag(e) {
     e.preventDefault();
-    mouseUpdate(e);
-    redraw();
+    if( !isLocked() ){
+      mouseUpdate(e);
+      redraw();
+    }
   }
 
   /**
    *
    */
   function endDrag() {
-    if (trace) console.log('endDrag');
-    document.removeEventListener('mousemove', handleDrag, false);
-    document.removeEventListener('mouseup', endDrag, false);
+    if( !isLocked() ){
+      if (trace) console.log('endDrag');
+      document.removeEventListener('mousemove', handleDrag, false);
+      document.removeEventListener('mouseup', endDrag, false);
+    }
   }
 
   /**
@@ -495,20 +501,22 @@ export default function (elem, conf = {}) {
 
     e.preventDefault();
 
-    let dy = e.deltaY;
+    if( !isLocked() ){
+      let dy = e.deltaY;
 
-    if (dy !== 0) {
-      // normalize Y delta
-      if (minDeltaY > Math.abs(dy) || !minDeltaY) {
-        minDeltaY = Math.abs(dy);
+      if (dy !== 0) {
+        // normalize Y delta
+        if (minDeltaY > Math.abs(dy) || !minDeltaY) {
+          minDeltaY = Math.abs(dy);
+        }
       }
+
+      incAngle(dy / minDeltaY * mouse_wheel_direction * config.mouse_wheel_acceleration);
+
+      // TODO: mouse speed detection (https://stackoverflow.com/questions/22593286/detect-measure-scroll-speed)
+
+      redraw();
     }
-
-    incAngle(dy / minDeltaY * mouse_wheel_direction * config.mouse_wheel_acceleration);
-
-    // TODO: mouse speed detection (https://stackoverflow.com/questions/22593286/detect-measure-scroll-speed)
-
-    redraw();
 
     return false;
   }
@@ -523,18 +531,19 @@ export default function (elem, conf = {}) {
 
     e.preventDefault(); // necessary to avoid moving all the page
 
-    targetRect = svg_element.getBoundingClientRect();
+    if( !isLocked() ){
+      targetRect = svg_element.getBoundingClientRect();
 
-    // By design, the arc center is at equal distance from top and left.
-    arcCenterXPixels = targetRect.width / 2;
-    //noinspection JSSuspiciousNameCombination
-    arcCenterYPixels = arcCenterXPixels;
+      // By design, the arc center is at equal distance from top and left.
+      arcCenterXPixels = targetRect.width / 2;
+      //noinspection JSSuspiciousNameCombination
+      arcCenterYPixels = arcCenterXPixels;
 
-    document.addEventListener('touchmove', handleTouch, {
-      passive: false
-    });
-    document.addEventListener('touchend', endTouch);
-
+      document.addEventListener('touchmove', handleTouch, {
+        passive: false
+      });
+      document.addEventListener('touchend', endTouch);
+    }
   }
 
   /**
@@ -546,26 +555,27 @@ export default function (elem, conf = {}) {
     if (trace) console.log('handleTouch', e.touches);
 
     e.preventDefault();
+    if( !isLocked() ){
+      let touchesIndex = e.touches.length - 1;
 
-    let touchesIndex = e.touches.length - 1;
+      let dxPixels = e.touches[touchesIndex].clientX - targetRect.left;
+      let dyPixels = e.touches[touchesIndex].clientY - targetRect.top;
 
-    let dxPixels = e.touches[touchesIndex].clientX - targetRect.left;
-    let dyPixels = e.touches[touchesIndex].clientY - targetRect.top;
+      let dx = (dxPixels - arcCenterXPixels) / (targetRect.width / 2);
+      let dy = -(dyPixels - arcCenterYPixels) / (targetRect.width / 2); // targetRect.width car on a 20px de plus en hauteur pour le label
 
-    let dx = (dxPixels - arcCenterXPixels) / (targetRect.width / 2);
-    let dy = -(dyPixels - arcCenterYPixels) / (targetRect.width / 2); // targetRect.width car on a 20px de plus en hauteur pour le label
+      if (config.rotation === CCW) dx = -dx;
 
-    if (config.rotation === CCW) dx = -dx;
+      // convert to polar coordinates
+      let angle_rad = Math.atan2(dy, dx);
+      if (angle_rad < 0) angle_rad = 2.0 * Math.PI + angle_rad;
 
-    // convert to polar coordinates
-    let angle_rad = Math.atan2(dy, dx);
-    if (angle_rad < 0) angle_rad = 2.0 * Math.PI + angle_rad;
+      if (trace) console.log(`handleTouch: position in svg = ${dxPixels}, ${dyPixels} pixels; ${dx.toFixed(3)}, ${dy.toFixed(3)} rel.; angle ${angle_rad.toFixed(3)} rad`);
 
-    if (trace) console.log(`handleTouch: position in svg = ${dxPixels}, ${dyPixels} pixels; ${dx.toFixed(3)}, ${dy.toFixed(3)} rel.; angle ${angle_rad.toFixed(3)} rad`);
+      setAngle(polarToKnobAngle(angle_rad * 180.0 / Math.PI), true);
 
-    setAngle(polarToKnobAngle(angle_rad * 180.0 / Math.PI), true);
-
-    redraw();
+      redraw();
+    }
 
   }
 
@@ -574,8 +584,10 @@ export default function (elem, conf = {}) {
    */
   function endTouch() {
     if (trace) console.log('endTouch');
-    document.removeEventListener('touchmove', handleTouch);
-    document.removeEventListener('touchend', endTouch);
+    if( !isLocked() ){
+      document.removeEventListener('touchmove', handleTouch);
+      document.removeEventListener('touchend', endTouch);
+    }
   }
 
   /**
