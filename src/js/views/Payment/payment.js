@@ -156,11 +156,14 @@ class Payment extends Component {
     switch( who ){
       case "dp":
 
-        if( dpLocked || amount < minDownPayment || amount > maxDownPayment ){
+        if( dpLocked || (amount < minDownPayment) || (amount > maxDownPayment) ){
 
-          //if(dp >= maxDownPayment) 
-          dp = maxDownPayment;
-          this.showDiscountPopup();
+          if(dp >= maxDownPayment) {
+            dp = maxDownPayment;
+            this.showDiscountPopup();
+          } else if(dp <= minDownPayment){
+            dp = minDownPayment;
+          }
           skip = true;
         } else {
           
