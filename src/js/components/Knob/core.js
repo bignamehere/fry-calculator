@@ -913,44 +913,44 @@ export default function (elem, conf = {}) {
    *
    */
   function redraw() {
-
+    // cdh
     if( !isLocked() ){
 
-    let p = getTrackPath();
-    if (p) {
-      if (svg_track) {
-        svg_track.setAttributeNS(null, "d", p);
-      } else {
-        draw_track();
-      }
-    } else {
-      if (svg_track) {
-        svg_track.setAttributeNS(null, "d", ""); // we hide the track
-      }
-    }
-
-    if (!has_changed) {
-      has_changed = getValue() !== config.default_value;
-      if (has_changed) {
+      let p = getTrackPath();
+      if (p) {
         if (svg_track) {
-          svg_track.setAttribute("stroke", `${config.track_color}`);
+          svg_track.setAttributeNS(null, "d", p);
+        } else {
+          draw_track();
+        }
+      } else {
+        if (svg_track) {
+          svg_track.setAttributeNS(null, "d", ""); // we hide the track
         }
       }
-    }
 
-    p = getTrackCursor();
-    if (p) {
-      if (svg_cursor) {
-        svg_cursor.setAttributeNS(null, "d", p);
+      if (!has_changed) {
+        has_changed = getValue() !== config.default_value;
         if (has_changed) {
-          svg_cursor.setAttribute("stroke", `${config.cursor_color}`);
+          if (svg_track) {
+            svg_track.setAttribute("stroke", `${config.track_color}`);
+          }
         }
       }
-    }
 
-    if (svg_value_text) {
-      svg_value_text.textContent = config.prefix + getDisplayValue();
-    }
+      p = getTrackCursor();
+      if (p) {
+        if (svg_cursor) {
+          svg_cursor.setAttributeNS(null, "d", p);
+          if (has_changed) {
+            svg_cursor.setAttribute("stroke", `${config.cursor_color}`);
+          }
+        }
+      }
+
+      if (svg_value_text) {
+        svg_value_text.textContent = config.prefix + getDisplayValue();
+      }
 
     }
   }
