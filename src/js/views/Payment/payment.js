@@ -158,10 +158,10 @@ class Payment extends Component {
 
         if( dpLocked || (amount < minDownPayment) || (amount > maxDownPayment) ){
 
-          if(dp >= maxDownPayment) {
+          if(amount >= maxDownPayment) {
             dp = maxDownPayment;
             this.showDiscountPopup();
-          } else if(dp <= minDownPayment){
+          } else if(amount <= minDownPayment){
             dp = minDownPayment;
           }
           skip = true;
@@ -207,34 +207,50 @@ class Payment extends Component {
 
       case "mp":
 
-        if( mpLocked || amount < minPayments || amount > maxPayments ){
+        if( mpLocked || (amount < minPayments) || (amount > maxPayments) ){
+
+          if(amount >= maxPayments) {
+            mp = maxDownPayment;
+          } else if(amount <= minPayments){
+            mp = minDownPayment;
+          }
           skip = true;
+
         } else {
           
           mp = amount;
           amountOwed = investment - dp;
 
+          // monthly payment less Max allowed
           if( mp < maxPayments){
-            
-            if( !mLocked && m >= minMonths && m <= maxMonths ) {
+            // if month dial not locked and in range
+            if( !mLocked && (m >= minMonths) && (m <= maxMonths) ) {
+              // new months total based on MP and DP
               m = Math.round( (amountOwed / mp) );
-              
+              // reset if out of bounds
+              m = m >= maxMonths ? maxMonths : m;
+              m = m <= minMonths ? minMonths : m;
+
               if(m >= maxMonths){
-                m = maxMonths;
+                // allow MORE MP but not less
                 mp = mp > this.state.payments ? mp : this.state.payments;
               }
+
               if(m <= minMonths){
-                m = minMonths;
+                // allow LESS MP but not more
                 mp = mp < this.state.payments ? mp : this.state.payments;
               }
 
             } else {
 
-              if( !dpLocked && dp >= minDownPayment && dp <= maxDownPayment ) {
+              if( !dpLocked && (dp > minDownPayment) && (dp < maxDownPayment) ) {
                 dp = Math.round(investment - (mp * m));
+
               }else if(amount < this.state.payments){
+
                 mp = amount;
                 dp = Math.round(investment - (mp * m));
+
               }else{
                 mp = this.state.payments;
               }
@@ -251,18 +267,24 @@ class Payment extends Component {
 
       case "m":
 
-        if( mLocked || amount < minMonths || amount > maxMonths ){
+        if( mLocked || (amount < minMonths) || (amount > maxMonths) ){
+          // reset months
+          if(amount >= maxMonths) {
+            m = maxMonths;
+          } else if(amount <= minMonths){
+            m = minMonths;
+          }
           skip = true;
         } else {
           
           m = amount;
           amountOwed = investment - dp;
 
-          if( !mpLocked && mp >= minPayments && mp <= maxPayments ){
+          if( !mpLocked && (mp >= minPayments) && (mp <= maxPayments) ){
             mp = Math.round(amountOwed / m);
           }
 
-          if( !dpLocked && m >= minDownPayment && m <= maxDownPayment ) {
+          if( !dpLocked && (m >= minDownPayment) && (m <= maxDownPayment) ) {
             dp = Math.round( investment - (mp * m) );
           }
 
@@ -386,7 +408,7 @@ class Payment extends Component {
   showDiscountPopup(){
     if(this.state.showDiscount){
       this.onOpenModal();
-      //this.setState({showDiscount:false});
+      this.setState({showDiscount:false});
     }
   }
 
