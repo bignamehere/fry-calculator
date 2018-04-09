@@ -208,11 +208,11 @@ class Payment extends Component {
       case "mp":
 
         if( mpLocked || (amount < minPayments) || (amount > maxPayments) ){
-
+          
           if(amount >= maxPayments) {
-            mp = maxDownPayment;
+            mp = maxPayments;
           } else if(amount <= minPayments){
-            mp = minDownPayment;
+            mp = minPayments;
           }
           skip = true;
 
@@ -223,6 +223,7 @@ class Payment extends Component {
 
           // monthly payment less Max allowed
           if( mp < maxPayments){
+
             // if month dial not locked and in range
             if( !mLocked && (m >= minMonths) && (m <= maxMonths) ) {
               // new months total based on MP and DP
@@ -242,17 +243,23 @@ class Payment extends Component {
               }
 
             } else {
-
-              if( !dpLocked && (dp > minDownPayment) && (dp < maxDownPayment) ) {
+              
+              if( !dpLocked && (dp >= minDownPayment) && (dp <= maxDownPayment) ) {
+                
                 dp = Math.round(investment - (mp * m));
+                // reset if out of bounds
+                dp = dp >= maxDownPayment ? maxDownPayment : dp;
+                dp = dp <= minDownPayment ? minDownPayment : dp;
 
-              }else if(amount < this.state.payments){
+                if(dp >= maxDownPayment){
+                  // allow MORE MP but not less
+                  mp = mp > this.state.payments ? mp : minPayments;
+                }
 
-                mp = amount;
-                dp = Math.round(investment - (mp * m));
-
-              }else{
-                mp = this.state.payments;
+                if(dp <= minDownPayment){
+                  // allow LESS MP but not more
+                  mp = mp < this.state.payments ? mp : this.roundUp( 5, Math.round(amountOwed / m) );
+                }
               }
 
             }
@@ -421,7 +428,7 @@ class Payment extends Component {
   };
 
 	render() {
-    const { modalOpen } = this.state;
+    //const { modalOpen } = this.state; is this needed?
     return (
       <div>
           
