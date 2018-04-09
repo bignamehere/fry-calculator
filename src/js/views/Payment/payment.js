@@ -180,13 +180,13 @@ class Payment extends Component {
               mp = mp <= minPayments ? minPayments : mp;
 
               if(mp >= maxPayments){
-                // allow MORE MP but not less
-                mp = mp > this.state.payments ? mp : minPayments;
+                // allow MORE DP but not less
+                dp = dp > this.state.downpayment ? dp : minDownPayment;
               }
 
               if(mp <= minPayments){
-                // allow LESS MP but not more
-                mp = mp < this.state.payments ? mp : this.roundUp( 5, Math.round(amountOwed / m) );
+                // allow LESS DP but not more
+                dp = dp < this.state.downpayments ? dp : this.roundUp( 100, Math.round(investment - (mp * m)) );
               }
 
             } else {
