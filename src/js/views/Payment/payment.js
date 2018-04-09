@@ -172,27 +172,42 @@ class Payment extends Component {
 
           if( dp < maxDownPayment){
 
-            // set Monthly Payments if able
+
             if( !mpLocked && mp >= minPayments && mp <= maxPayments ){
               mp = Math.round(amountOwed / m);
-            // set Months if Monthly payment fails and Months able   
-            } else if( !mLocked && m >= minMonths && m <= maxMonths ) {
-              m = Math.round( (amountOwed / mp) );
-              
-              // Reset Months - out of range High
-              if(m >= maxMonths){
-                m = maxMonths;
-                //dp = dp > this.state.downpayment ? dp : this.state.downpayment;
-              }
-              // Reset Months - out of range Low
-              if(m <= minMonths){
-                m = minMonths;
-                //dp = dp < this.state.downpayment ? dp : this.state.downpayment;
+              // reset if out of bounds
+              mp = mp >= maxPayments ? maxPayments : mp;
+              mp = mp <= minPayments ? minPayments : mp;
+
+              if(mp >= maxPayments){
+                // allow MORE MP but not less
+                mp = mp > this.state.payments ? mp : minPayments;
               }
 
-            } 
-            // reset amount owed based on new data
-            amountOwed = investment - dp;
+              if(mp <= minPayments){
+                // allow LESS MP but not more
+                mp = mp < this.state.payments ? mp : this.roundUp( 5, Math.round(amountOwed / m) );
+              }
+
+            } else {
+
+              m = Math.round( (amountOwed / mp) );
+              // reset if out of bounds
+              m = m >= maxMonths ? maxMonths : m;
+              m = m <= minMonths ? minMonths : m;
+
+              if(m >= maxMonths){
+                // allow MORE MP but not less
+                mp = mp > this.state.payments ? mp : this.state.payments;
+              }
+
+              if(m <= minMonths){
+                // allow LESS MP but not more
+                mp = mp < this.state.payments ? mp : this.state.payments;
+              }
+
+            }
+
           } else {
             // set other dials to minimums and show popup
             mp = minPayments;
@@ -201,6 +216,8 @@ class Payment extends Component {
             //if(dp != this.state.downpayment) 
             this.showDiscountPopup();
           }
+          // reset amount owed based on new data
+          amountOwed = investment - dp;
         }
 
         break;
