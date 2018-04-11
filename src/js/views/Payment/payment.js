@@ -5,7 +5,7 @@ import FryKnob from '../../components/Knob/knob';
 import Totals from '../../components/displays/Totals/totals';
 import Lock from '../../components/Toggle/Lock/lock';
 import Modal from 'react-responsive-modal';
-import Disclaimer from '../../components/Disclaimer/disclaimer';
+
 import logo from '../../../img/fry-logo-w.png';
 import './payment.scss';
 
@@ -564,9 +564,7 @@ class Payment extends Component {
           <div className="fry-grid__1/1">
             <Totals ref="display"/>
           </div>
-          <div className="fry-grid__1/1">
-            <Disclaimer />
-          </div>
+          
         </div>
       </div>
 

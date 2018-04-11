@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import './app.css';
 import Header from '../components/Header/header';
 import AppTabs from '../components/AppTabs/appTabs';
+import Disclaimer from '../components/Disclaimer/disclaimer';
 
 class App extends Component {
 
@@ -21,6 +22,7 @@ class App extends Component {
             <AppTabs />
           </div>
         </div>
+        <Disclaimer />
       </div>
     );
   }
