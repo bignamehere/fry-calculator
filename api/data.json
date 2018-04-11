@@ -48,5 +48,18 @@
     "font_size": 18,
     "palette": "light",
     "roundNumber": 0
+  },
+  "AppText" : {
+    "lang": "en",
+    "headerTextLabel": "Treatment Fee Calculator",
+    "tabOneLabel": "Treatment Fee",
+    "tabTwoLabel": "Payment Options",
+    "treatmentCostLabel": "Treatment Cost",
+    "requiredLabel": "Required",
+    "insuranceCoverageLabel": "Insurance Coverage",
+    "additionalSavingsLabel": "Additional Savings",
+    "updateSettingsLabel": "Update Settings",
+    "adjustPaymentsLabel": "Adjust Payments",
+    "yourTotalInvestmentLabel": "Your Total Investment"
   }
 }
