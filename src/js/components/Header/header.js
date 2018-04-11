@@ -7,7 +7,9 @@ import './header.scss';
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+			headerText: 'Treatment Fee Calculator'
+		};
   }
 
 
@@ -17,7 +19,7 @@ class Header extends Component {
 				<div className="fry-header-app__bd">
 					<div className="fry-header-app__primary">
 						<span className="fry-header-app__app-name">
-							<span className="header-custom__app-name">Treatment Fee Calculator</span>
+							<span className="header-custom__app-name">{this.state.headerText}</span>
 						</span>
 					</div>
 					<div className="fry-header-app__secondary">

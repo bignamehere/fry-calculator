@@ -7,7 +7,7 @@ class DownPaymentTotal extends Component {
     return (
       <div className="fry-box fry-box-condensed">
         <div className="fry-box__content--lg fry-box__centered">${this.props.value}</div>
-        <div className="fry-box__content--m fry-box__centered">Down Payment</div> 
+        <div className="fry-box__content--m fry-box__centered">{this.props.label}</div> 
       </div>
     );
   }

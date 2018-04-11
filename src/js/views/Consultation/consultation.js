@@ -11,6 +11,7 @@ class Consultation extends Component {
     };
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
     this.handleContinueClick = this.handleContinueClick.bind(this);
+    this.setText = this.setText.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
   }
   // NOT IN USE
@@ -39,6 +40,18 @@ class Consultation extends Component {
     
   }
 
+  setText(data){
+    this.setState({
+      treatmentCostLabel: data.treatmentCostLabel,
+      requiredLabel: data.requiredLabel,
+      insuranceCoverageLabel: data.insuranceCoverageLabel,
+      additionalSavingsLabel: data.additionalSavingsLabel,
+      updateSettingsLabel: data.updateSettingsLabel,
+      adjustPaymentsLabel: data.adjustPaymentsLabel,
+      yourTotalInvestmentLabel: data.yourTotalInvestmentLabel
+    });
+  }
+
   getInvestment(){
 
     let initialCost = document.getElementById('initialCost').value <= 0 ? 0 : parseInt(document.getElementById('initialCost').value); 
@@ -62,28 +75,28 @@ class Consultation extends Component {
                 <div className="fry-grid">
                   <div className="fry-grid__1/1">
                     <div className="fry-field">
-                      <label className="fry-field__label" htmlFor="initialCost">Treatment Cost <span className="fry-field__label-desc">Required</span></label>
+                      <label className="fry-field__label" htmlFor="initialCost">{this.state.treatmentCostLabel} <span className="fry-field__label-desc">{this.state.requiredLabel}</span></label>
                       <input className="fry-input fry-field__item" id="initialCost" name="initialCost" type="number" placeholder="$" value={this.state.initialCost}/>
                     </div>
                   
                     <div className="fry-field">
-                      <label className="fry-field__label" htmlFor="insurance">Insurance Coverage </label>
+                      <label className="fry-field__label" htmlFor="insurance">{this.state.insuranceCoverageLabel} </label>
                       <input className="fry-input fry-field__item" id="insurance" name="insurance" type="number" placeholder="$" value={this.state.insurance}/>
                     </div>
                   
                     <div className="fry-field">
-                      <label className="fry-field__label" htmlFor="discounts">Additional Savings </label>
+                      <label className="fry-field__label" htmlFor="discounts">{this.state.additionalSavingsLabel} </label>
                       <input className="fry-input fry-field__item" id="discounts" name="discounts" type="number" placeholder="$" value={this.state.discounts}/>
                     </div>
                   </div>
                   <div className="fry-grid__1/2 fry-grid__1/2@m">
                     <div className="btn btn-show">
-                      <button onClick={this.handleUpdateClick} className="fry-btn fry-btn--secondary" type="button">Update Settings</button>
+                      <button onClick={this.handleUpdateClick} className="fry-btn fry-btn--secondary" type="button">{this.state.updateSettingsLabel}</button>
                     </div>
                   </div>
                   <div className="fry-grid__1/2 fry-grid__1/2@m">
                     <div className="btn btn-rt btn-hide">
-                      <button onClick={this.handleContinueClick} className="fry-btn fry-btn--secondary" type="button">Adjust Payments</button>
+                      <button onClick={this.handleContinueClick} className="fry-btn fry-btn--secondary" type="button">{this.state.adjustPaymentsLabel}</button>
                     </div>
                   </div>
                 </div>
@@ -91,7 +104,7 @@ class Consultation extends Component {
               <div className="fry-grid__1/1 fry-grid__1/2@m">
                 <div className="rc-tab-display-lg">
                   <div className="fry-box">
-                    <h3 className="fry-box__title">Your Total Investment</h3>
+                    <h3 className="fry-box__title">{this.state.yourTotalInvestmentLabel}</h3>
                     {/*<p>Your initial investment for Orthodontic Braces is valued at:</p>*/}
                     <span className="fry-box__content--xlg">${this.state.investment}</span>
                   </div>

@@ -7,7 +7,7 @@ class MonthsTotal extends Component {
     return (
       <div className="fry-box fry-box-condensed">
         <div className="fry-box__content--lg fry-box__centered">{this.props.value}</div>
-        <div className="fry-box__content--m fry-box__centered">Months</div> 
+        <div className="fry-box__content--m fry-box__centered">{this.props.label}</div> 
       </div>
     );
   }

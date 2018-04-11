@@ -22,6 +22,21 @@ class AppTabs extends Component {
     this.handleContinue = this.handleContinue.bind(this);
   }
 
+  componentDidMount(){
+    console.log('CWM - appsTabs');
+    let data = {
+      treatmentCostLabel: 'Treatment Cost',
+      requiredLabel: 'Required',
+      insuranceCoverageLabel: 'Insurance Coverage',
+      additionalSavingsLabel: 'Additional Savings',
+      updateSettingsLabel: 'Update Settings',
+      adjustPaymentsLabel: 'Adjust Payments',
+      yourTotalInvestmentLabel: 'Your Total Investment'
+    };
+    if(this.refs.consultationTab) this.refs.consultationTab.setText(data);
+
+  }
+
   handleContinue(v){
     this.refs.appTabs.setActiveKey( v.toString() );
   }
@@ -34,7 +49,6 @@ class AppTabs extends Component {
   }
 
   resetAmount(amount){
-    console.log("resetAmount = " + amount);
     this.setState({
       paymentDisabled: false,
       investment: amount
@@ -53,10 +67,10 @@ class AppTabs extends Component {
         renderTabContent={() => <TabContent/>}
         //onChange={this.handleTabChange}
       >
-        <TabPane tab='Treatment Fee' key="1">
-          <Consultation onContinue={this.handleContinue} onChange={this.handleInvestmentChange}/>
+        <TabPane tab={'Treatment Fee'} key="1">
+          <Consultation ref='consultationTab' onContinue={this.handleContinue} onChange={this.handleInvestmentChange} />
         </TabPane>
-        <TabPane tab='Payment Options' key="2" disabled={this.state.paymentDisabled}>
+        <TabPane tab={'Payment Options'} key="2" disabled={this.state.paymentDisabled}>
           <Payment ref="paymentTab" investment={ this.state.investment } />
         </TabPane>
         
