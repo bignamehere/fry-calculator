@@ -8,8 +8,13 @@ class Header extends Component {
   constructor(props) {
     super(props);
     this.state = {
-			headerText: 'Treatment Fee Calculator'
 		};
+  }
+
+  setText(data){
+		this.setState({
+			headerText: data.headerTextLabel
+		});
   }
 
 

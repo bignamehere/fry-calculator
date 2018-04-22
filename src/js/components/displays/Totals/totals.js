@@ -22,24 +22,33 @@ class Totals extends Component {
     });
   }
 
+  setText(data){
+    this.setState({
+      investmentDisplayLabel: data.investmentDisplayLabel,
+      downPaymentDisplayLabel: data.downPaymentDisplayLabel,
+      monthlyPaymentsDisplayLabel: data.monthlyPaymentsDisplayLabel,
+      monthsDisplayLabel: data.monthsDisplayLabel
+    });
+  }
+
   render() {
     return (
       <div className="fry-grid fry-grid--no-gutter">
         
         <div className="fry-grid__1/2 fry-grid__1/4@m">
-          <CostTotal value={this.state.investment} label={'Investment'} />
+          <CostTotal ref="costTotal" value={this.state.investment} label={this.state.investmentDisplayLabel} />
         </div>
 
         <div className="fry-grid__1/2 fry-grid__1/4@m"> 
-          <DownPaymentTotal value={this.state.downpayment} label={'Down Payment'} />
+          <DownPaymentTotal ref="downPaymentTotal" value={this.state.downpayment} label={this.state.downPaymentDisplayLabel} />
         </div>
         
         <div className="fry-grid__1/2 fry-grid__1/4@m">
-          <MonthsTotal value={this.state.months} label={'Months'} />
+          <MonthsTotal ref="monthsTotal" value={this.state.months} label={this.state.monthsDisplayLabel} />
         </div>
 
         <div className="fry-grid__1/2 fry-grid__1/4@m">
-          <PaymentsTotal value={this.state.payments} label={'Monthly Payment'} />
+          <PaymentsTotal ref="paymentsTotal" value={this.state.payments} label={this.state.monthlyPaymentsDisplayLabel} />
         </div>
         
       </div>

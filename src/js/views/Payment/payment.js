@@ -10,8 +10,6 @@ import logo from '../../../img/fry-logo-w.png';
 import './payment.scss';
 
 
-const API_URL = 'api/data.json';
-
 class Payment extends Component {
   constructor(props){
     super(props);
@@ -33,12 +31,25 @@ class Payment extends Component {
   }
 
   componentWillMount(){
-    fetch(API_URL)
-      .then(response => response.json())
-      .then( data => this.initAppData(data) )
-      .catch(function(error) {
-        console.log(error);
-      });  
+    
+  }
+
+  setData(data){
+    console.log("payment.js - setData  " +data.MonthlyPaymentsKnobSettings.initial_value)
+    this.initAppData(data);
+  }
+
+  setText(data){
+    this.setState({
+      downPaymentLockLabel: data.downPaymentLockLabel,
+      monthlyPaymentsLockLabel: data.monthlyPaymentsLockLabel,
+      monthsLockLabel: data.monthsLockLabel,
+      discountPopupHeaderLabel: data.discountPopupHeaderLabel,
+      discountPopupContent: data.discountPopupContent,
+      discountPriceLabel: data.discountPriceLabel
+    });
+
+    if(this.refs.display) this.refs.display.setText(data);
   }
 
   initAppData(data){
@@ -72,7 +83,8 @@ class Payment extends Component {
     this.refs.mKnob.dataLoaded();
 
     // SET INITIAL STATE OF KNOBS
-    this.recalculateTotals("total", this.props.investment);
+    //this.recalculateTotals("total", this.props.investment);
+    //this.onInvestmentChange(this.props.investment);
   }
 
   onDownPaymentChange(amount){
@@ -88,7 +100,7 @@ class Payment extends Component {
   }
 
   onInvestmentChange(amount){
-    console.log("onInvestmentChange() -- "+ amount);
+    console.log("payment - onInvestmentChange() -- "+ amount);
 //
 // this is NOT DRY... new to refactor
 //
@@ -109,12 +121,6 @@ class Payment extends Component {
       tempMPObj.roundNumber,
       Math.round( newAmount / this.state.MonthsKnobSettings.value_min )
     );
-
-    /*
-    this.refs.dpKnob.resetKnobSettings(tempDPObj);
-    this.refs.mpKnob.resetKnobSettings(tempMPObj);
-    this.refs.mKnob.resetKnobSettings(this.state.MonthsKnobSettings);
-    */
    
     this.setKnobState(
       tempDPObj,
@@ -458,13 +464,13 @@ class Payment extends Component {
               closeIcon: 'modal-custom-close'
             }}>
 
-            <h2 className="modal-custom__header">Pay In Full Discount - 10% Off!</h2>
+            <h2 className="modal-custom__header">{this.state.discountPopupHeaderLabel}</h2>
             <p className="modal-custom__content">
-              At Fry Orthodontic Specialists, when you pay the full amount for your braces, you will receive a <strong>10% discount</strong> on your investment.
+              {this.state.discountPopupContent}
             </p>
             <div className="fry-grid">
               <div className="fry-grid__1/1 fry-grid__auto@m">
-                <h1 className="modal-custom__content-centered">Price: ${this.props.investment - Math.round(this.props.investment*.1)}</h1>
+                <h1 className="modal-custom__content-centered">{this.state.discountPriceLabel} ${this.props.investment - Math.round(this.props.investment*.1)}</h1>
               </div>
               <div className="fry-grid__1/1 fry-grid__1/4@m modal-custom__logo">
                 <img src={logo} className="logo" alt="Fry Orthodontics Logo" />
@@ -498,7 +504,7 @@ class Payment extends Component {
                     </div>
                   </div>
                   <div className="lock-toggle__text-sm">
-                    <span className="">Down Payment</span>
+                    <span className="">{this.state.downPaymentLockLabel}</span>
                   </div>
                 </div>
 
@@ -525,7 +531,7 @@ class Payment extends Component {
                     </div>
                   </div>
                   <div className="lock-toggle__text-lg">
-                    <span className="">Monthly Payment</span>
+                    <span className="">{this.state.monthlyPaymentsLockLabel}</span>
                   </div>
                 </div>
 
@@ -552,7 +558,7 @@ class Payment extends Component {
                     </div>
                   </div>
                   <div className="lock-toggle__text-sm">
-                    <span className="">Months</span>
+                    <span className="">{this.state.monthsLockLabel}</span>
                   </div>
                 </div>
 
