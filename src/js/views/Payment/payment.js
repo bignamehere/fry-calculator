@@ -56,11 +56,11 @@ class Payment extends Component {
     // manipulate the value if using value from Consultation Screen
 
     this.setState({
-      investment: this.props.investment,
+      investment: data.DownPaymentKnobSettings.value_max,
       downpayment: data.DownPaymentKnobSettings.initial_value,
       payments: data.MonthlyPaymentsKnobSettings.initial_value,
       months: data.MonthsKnobSettings.initial_value,
-      maxDownPayment: this.props.investment,
+      maxDownPayment: data.DownPaymentKnobSettings.value_max,
       maxPayments: data.MonthlyPaymentsKnobSettings.value_max,
       maxMonths: data.MonthsKnobSettings.value_max,
       minDownPayment: data.DownPaymentKnobSettings.value_min,
@@ -75,7 +75,7 @@ class Payment extends Component {
       data.DownPaymentKnobSettings,
       data.MonthlyPaymentsKnobSettings,
       data.MonthsKnobSettings,
-      this.props.investment
+      data.DownPaymentKnobSettings.value_max
     );
 
     this.refs.dpKnob.dataLoaded();
@@ -84,7 +84,7 @@ class Payment extends Component {
 
     // SET INITIAL STATE OF KNOBS
     //this.recalculateTotals("total", this.props.investment);
-    //this.onInvestmentChange(this.props.investment);
+    this.onInvestmentChange(data.DownPaymentKnobSettings.value_max);
   }
 
   onDownPaymentChange(amount){
@@ -102,7 +102,7 @@ class Payment extends Component {
   onInvestmentChange(amount){
     console.log("payment - onInvestmentChange() -- "+ amount);
 //
-// this is NOT DRY... new to refactor
+// this is NOT DRY... need to refactor
 //
 
     let newAmount = amount;// == undefined ? this.props.investment : amount;
@@ -145,9 +145,10 @@ class Payment extends Component {
     let dp = this.state.downpayment;
     let mp = this.state.payments;
     let m = this.state.months;
-    let investment = this.props.investment;
+    let investment = this.state.investment;//this.props.investment;
     //
-    let maxDownPayment = this.props.investment;
+    console.log(investment + " << ");
+    let maxDownPayment = this.state.investment;
     let maxPayments = this.state.maxPayments;
     let maxMonths = this.state.maxMonths;
     //
@@ -470,7 +471,7 @@ class Payment extends Component {
             </p>
             <div className="fry-grid">
               <div className="fry-grid__1/1 fry-grid__auto@m">
-                <h1 className="modal-custom__content-centered">{this.state.discountPriceLabel} ${this.props.investment - Math.round(this.props.investment*.1)}</h1>
+                <h1 className="modal-custom__content-centered">{this.state.discountPriceLabel} ${this.state.investment - Math.round(this.state.investment*.1)}</h1>
               </div>
               <div className="fry-grid__1/1 fry-grid__1/4@m modal-custom__logo">
                 <img src={logo} className="logo" alt="Fry Orthodontics Logo" />

@@ -39,7 +39,7 @@ class App extends Component {
   initApplicationData(data){
     console.log('app - initApplicationData()');
     this.setState({
-      appConfig: data,
+      appConfig: data.AppConfig,
       allAppText: data.AppText,
       language: data.InitialLanguage
     });

@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import Tabs, { TabPane } from 'rc-tabs';
 import TabContent from 'rc-tabs/lib/TabContent';
-//import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar';
 import InkTabBar from 'rc-tabs/lib/InkTabBar';
 import './appTabs.scss';
 // Views
@@ -16,8 +15,7 @@ class AppTabs extends Component {
     super(props);
     this.state = {
       investment: 0,
-      paymentDisabled: true,
-      paymentConfig: {}
+      paymentDisabled: true
     };
     this.handleInvestmentChange = this.handleInvestmentChange.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
@@ -37,9 +35,6 @@ class AppTabs extends Component {
 
   setConfig(data){
     console.log("appTabs - setConfig()");
-    this.setState({
-      paymentConfig: data
-    });
     if(this.refs.paymentTab) this.refs.paymentTab.setData(data);
   }
 
@@ -59,13 +54,15 @@ class AppTabs extends Component {
   }
 
   handleInvestmentChange(e){
+    
     this.setState({
       investment: e.investment
     });
-    this.resetAmount(e.investment);
+    
+    this.setInvestmentAmount(e.investment);
   }
 
-  resetAmount(amount){
+  setInvestmentAmount(amount){
     this.setState({
       paymentDisabled: false,
       investment: amount
@@ -74,7 +71,6 @@ class AppTabs extends Component {
   }
 
 	render() {
-
     //const { paymentPane } = this.state;
     return (
       <Tabs
@@ -88,7 +84,7 @@ class AppTabs extends Component {
           <Consultation ref='consultationTab' onContinue={this.handleContinue} onChange={this.handleInvestmentChange} />
         </TabPane>
         <TabPane tab={this.state.tabTwoLabel} key="2" forceRender={true} disabled={this.state.paymentDisabled}>
-          <Payment ref="paymentTab" investment={ this.state.investment } />
+          <Payment ref="paymentTab" />
         </TabPane>
         
       </Tabs>
