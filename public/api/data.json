@@ -74,7 +74,7 @@
       "monthsDisplayLabel": "Months",
       "monthlyPaymentsDisplayLabel": "Monthly Payment",
       "discountPopupHeaderLabel": "Pay In Full Discount - 10% Off!",
-      "discountPopupContent": "At Fry Orthodontic Specialists, when you pay the full amount for your braces, you will receive a <strong>10% discount</strong> on your investment.",
+      "discountPopupContent": "At Fry Orthodontic Specialists, when you pay the full amount for your braces, you will receive a 10% discount on your investment.",
       "discountPriceLabel": "Price"
     },
     "es" : {
@@ -97,8 +97,8 @@
       "downPaymentDisplayLabel": "Pago inicial",
       "monthsDisplayLabel": "Meses",
       "monthlyPaymentsDisplayLabel": "Mensualidad",
-      "discountPopupHeaderLabel": "Pay In Full Discount - 10% Off!",
-      "discountPopupContent": "En Fry Orthodontic Specialists, cuando pague el monto total por sus llaves, recibirá un <strong>10% de descuento</strong> en su inversión.",
+      "discountPopupHeaderLabel": "Pagar con descuento completo - 10% de descuento!",
+      "discountPopupContent": "En Fry Orthodontic Specialists, cuando pague el monto total por sus llaves, recibirá un 10% de descuento en su inversión.",
       "discountPriceLabel": "Precio"
     }
   }
