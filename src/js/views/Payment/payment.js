@@ -218,7 +218,7 @@ class Payment extends Component {
           } else {
             // set other dials to minimums and show popup
             mp = minPayments;
-            m = minMonths;
+            //m = minMonths;
             dp = maxDownPayment;
             //if(dp != this.state.downpayment) 
             this.showDiscountPopup();
@@ -289,7 +289,7 @@ class Payment extends Component {
             }
           } else {
             dp = minDownPayment;
-            m = minMonths;
+            //m = minMonths;
           }
         }
         if(dp >= maxDownPayment) this.showDiscountPopup();
