@@ -79,10 +79,10 @@
     },
     "es" : {
       "headerTextLabel": "Calculadora de tarifas",
-      "tabOneLabel": "Tarifa de tratamiento",
+      "tabOneLabel": "Costo de Tratamiento",
       "tabTwoLabel": "Opciones de pago",
       "treatmentCostLabel": "Costo de tratamiento",
-      "requiredLabel": "Necesario",
+      "requiredLabel": "Requerido",
       "insuranceCoverageLabel": "Cobertura del seguro",
       "additionalSavingsLabel": "Ahorros adicionales",  
       "updateSettingsLabel": "Ajustes de actualización",
@@ -96,7 +96,7 @@
       "investmentDisplayLabel": "Inversión",
       "downPaymentDisplayLabel": "Pago inicial",
       "monthsDisplayLabel": "Meses",
-      "monthlyPaymentsDisplayLabel": "Mensualidad",
+      "monthlyPaymentsDisplayLabel": "Pago Mensual",
       "discountPopupHeaderLabel": "Pagar con descuento completo - 10% de descuento!",
       "discountPopupContent": "En Fry Orthodontic Specialists, cuando pague el monto total por sus llaves, recibirá un 10% de descuento en su inversión.",
       "discountPriceLabel": "Precio"
