@@ -58,7 +58,9 @@ class Payment extends Component {
       minMonths: data.MonthsKnobSettings.value_min,
 		  dpkRoundNumber: data.DownPaymentKnobSettings.roundNumber,
 		  mpkRoundNumber: data.MonthlyPaymentsKnobSettings.roundNumber,
-		  mkRoundNumber: data.MonthsKnobSettings.roundNumber
+      mkRoundNumber: data.MonthsKnobSettings.roundNumber,
+      zeroMonthsDownPaymentMin: data.DownPaymentKnobSettings.zeroMonthsDownPaymentMin,
+      zeroDownPaymentMonthsMax: data.MonthsKnobSettings.zeroDownPaymentMonthsMax
     });
 
     this.setKnobState(
@@ -141,6 +143,9 @@ class Payment extends Component {
     let mp = this.state.payments;
     let m = this.state.months;
     let investment = this.props.investment;
+    //
+    let zeroMDPMin = this.state.zeroMonthsDownPaymentMin;
+    let zeroDPMMax = this.state.zeroDownPaymentMonthsMax;
     //
     let maxDownPayment = this.props.investment;
     let maxPayments = this.state.maxPayments;

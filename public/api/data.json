@@ -14,7 +14,8 @@
     "font_size": 18,
     "palette": "light",
     "roundNumber": 100,
-    "prefix": "$"
+    "prefix": "$",
+    "zeroMonthsDownPaymentMin": 249
   },
   "MonthlyPaymentsKnobSettings" : {
     "value_min": 0,
@@ -47,6 +48,7 @@
     "font_family": "sans-serif",
     "font_size": 18,
     "palette": "light",
-    "roundNumber": 0
+    "roundNumber": 0,
+    "zeroDownPaymentMonthsMax": 24
   }
 }
