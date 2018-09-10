@@ -1,0 +1,41 @@
+////////////////////////////////////////////////////////////////////////
+// fry Grids
+
+// Customization and SCSS'ification of Pure Grids, formerly known as YUI Grids.
+
+.fry-grid {
+
+  @include fry-grid-row();
+
+  &--no-gutter {
+    margin-left: 0;
+  }
+
+  &__demo {
+
+    background-color: $color-fry-tertiary-100;
+    padding: $size-base;
+
+    code {
+
+      background-color: $color-fry-tertiary-100;
+      border: 0;
+      padding: 0;
+
+    }
+
+  }
+
+}
+
+@include fry-grid();
+
+@include breakpoint(S) {
+  @include fry-grid(\@s);
+}
+@include breakpoint(M) {
+  @include fry-grid(\@m);
+}
+@include breakpoint(L) {
+  @include fry-grid(\@l);
+}
