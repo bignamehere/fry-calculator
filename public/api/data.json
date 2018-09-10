@@ -15,7 +15,7 @@
     "palette": "light",
     "roundNumber": 100,
     "prefix": "$",
-    "zeroMonthsDownPaymentMin": 249
+    "zeroMonthsDownPaymentMin": 300
   },
   "MonthlyPaymentsKnobSettings" : {
     "value_min": 0,

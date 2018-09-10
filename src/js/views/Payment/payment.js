@@ -144,8 +144,8 @@ class Payment extends Component {
     let m = this.state.months;
     let investment = this.props.investment;
     //
-    let zeroMDPMin = this.state.zeroMonthsDownPaymentMin;
-    let zeroDPMMax = this.state.zeroDownPaymentMonthsMax;
+    let DPMinTwoFourMonths = this.state.zeroMonthsDownPaymentMin;
+    let MonthsMaxDPZero = this.state.zeroDownPaymentMonthsMax;
     //
     let maxDownPayment = this.props.investment;
     let maxPayments = this.state.maxPayments;
@@ -159,12 +159,12 @@ class Payment extends Component {
     let mpLocked = this.state.mpKnobLocked;
     let mLocked = this.state.mKnobLocked;
 
+    let zSkip = false;
+
     switch( who ){
       case "dp":
 
         if( dpLocked || amount < minDownPayment || amount > maxDownPayment ){
-
-          //if(dp >= maxDownPayment) 
           dp = maxDownPayment;
           this.showDiscountPopup();
           skip = true;
@@ -173,7 +173,14 @@ class Payment extends Component {
           dp = amount;
           amountOwed = investment - dp;
 
-          if( dp < maxDownPayment){
+          //check if dp is set to zero and adjust MP and M
+          if( (dp <= DPMinTwoFourMonths) && (m >= MonthsMaxDPZero) ){
+            m = MonthsMaxDPZero;
+            mp = Math.round(amountOwed / m);
+            zSkip = true;
+          }
+
+          if(!zSkip && (dp < maxDownPayment) ){
 
             // set Monthly Payments if able
             if( !mpLocked && mp >= minPayments && mp <= maxPayments ){
@@ -196,7 +203,7 @@ class Payment extends Component {
             } 
             // reset amount owed based on new data
             amountOwed = investment - dp;
-          } else {
+          } else if(!zSkip) {
             // set other dials to minimums and show popup
             mp = minPayments;
             m = minMonths;
@@ -217,7 +224,16 @@ class Payment extends Component {
           mp = amount;
           amountOwed = investment - dp;
 
-          if( mp < maxPayments){
+          if( mp < this.state.payments ){
+            if( (dp<=DPMinTwoFourMonths) && (m >= MonthsMaxDPZero) ){
+              dp = DPMinTwoFourMonths;
+              mp = Math.round(amountOwed / m);
+              zSkip = true;
+            }
+          }
+          
+
+          if( !zSkip && ( mp < maxPayments) ){
             
             if( !mLocked && m >= minMonths && m <= maxMonths ) {
               m = Math.round( (amountOwed / mp) );
@@ -243,7 +259,7 @@ class Payment extends Component {
               }
 
             }
-          } else {
+          } else if (!zSkip) {
             dp = minDownPayment;
             m = minMonths;
           }
@@ -261,11 +277,18 @@ class Payment extends Component {
           m = amount;
           amountOwed = investment - dp;
 
-          if( !mpLocked && mp >= minPayments && mp <= maxPayments ){
+          //check if dp is set to zero and adjust MP and M
+          if( (dp <= DPMinTwoFourMonths) && (m >= MonthsMaxDPZero) ){
+            dp = DPMinTwoFourMonths;
+            mp = Math.round(amountOwed / m);
+            zSkip = true;
+          }
+
+          if( !zSkip && ( !mpLocked && mp >= minPayments && mp <= maxPayments )){
             mp = Math.round(amountOwed / m);
           }
 
-          if( !dpLocked && m >= minDownPayment && m <= maxDownPayment ) {
+          if( !zSkip && ( !dpLocked && m >= minDownPayment && m <= maxDownPayment ) ) {
             dp = Math.round( investment - (mp * m) );
           }
 
