@@ -1,6 +1,6 @@
 {
   "short_name": "Braces Calculator",
-  "name": "Cardinal Orthodontics - Braces Calculator",
+  "name": "Fry Orthodontic Specialists - Braces Calculator",
   "icons": [
     {
       "src": "favicon.ico",
@@ -11,5 +11,5 @@
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#ffffff",
-  "background_color": "#902e38"
+  "background_color": "#4e4084"
 }
