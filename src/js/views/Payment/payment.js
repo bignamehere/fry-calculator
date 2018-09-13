@@ -6,6 +6,7 @@ import Totals from '../../components/displays/Totals/totals';
 import Consultation from '../Consultation/consultation';
 import Lock from '../../components/Toggle/Lock/lock';
 import Modal from 'react-responsive-modal';
+import Instructions from '../../components/Instructions/instructions';
 import Disclaimer from '../../components/Disclaimer/disclaimer';
 import logo from '../../../img/fry-logo-w.png';
 import './payment.scss';
@@ -225,14 +226,17 @@ class Payment extends Component {
           amountOwed = investment - dp;
 
           if( mp < this.state.payments ){
-            if( (dp<=DPMinTwoFourMonths) && (m >= MonthsMaxDPZero) ){
-              dp = DPMinTwoFourMonths;
+            if( (dp < DPMinTwoFourMonths) && (m >= MonthsMaxDPZero) ){
+              if(!dpLocked){
+                dp = DPMinTwoFourMonths;
+              } else if( m >= MonthsMaxDPZero) {
+                m = MonthsMaxDPZero;
+              }
               mp = Math.round(amountOwed / m);
               zSkip = true;
             }
           }
           
-
           if( !zSkip && ( mp < maxPayments) ){
             
             if( !mLocked && m >= minMonths && m <= maxMonths ) {
@@ -278,17 +282,19 @@ class Payment extends Component {
           amountOwed = investment - dp;
 
           //check if dp is set to zero and adjust MP and M
-          if( (dp <= DPMinTwoFourMonths) && (m >= MonthsMaxDPZero) ){
-            dp = DPMinTwoFourMonths;
-            mp = Math.round(amountOwed / m);
+          if( (dp < DPMinTwoFourMonths) && (m > MonthsMaxDPZero) ){
+            if(!dpLocked){
+              dp = DPMinTwoFourMonths;
+              mp = Math.round(amountOwed / m);
+            } else if (m > MonthsMaxDPZero) {
+              m = MonthsMaxDPZero;
+            }
             zSkip = true;
           }
 
           if( !zSkip && ( !mpLocked && mp >= minPayments && mp <= maxPayments )){
             mp = Math.round(amountOwed / m);
-          }
-
-          if( !zSkip && ( !dpLocked && m >= minDownPayment && m <= maxDownPayment ) ) {
+          } else if ( !zSkip && ( !dpLocked && m >= minDownPayment && m <= maxDownPayment ) ) {
             dp = Math.round( investment - (mp * m) );
           }
 
@@ -539,13 +545,19 @@ class Payment extends Component {
             </div>
 
           <div className="fry-grid__1/1 fry-grid__1/12@m"></div>
-          
+
+          <div className="fry-grid__1/1 instructions-spacing">
+            <Instructions dpAmount={this.state.zeroMonthsDownPaymentMin} mAmount={this.state.zeroDownPaymentMonthsMax} />
+          </div>
+
           <div className="fry-grid__1/1">
             <Totals ref="display"/>
           </div>
+
           <div className="fry-grid__1/1">
             <Disclaimer />
           </div>
+
         </div>
       </div>
 
