@@ -17,7 +17,7 @@ class Instructions extends Component {
 
   render() {
     return (
-        <p class="instructions">A minimum Down Payment of ${this.props.dpAmount}  is required to extend financing beyond {this.props.mAmount} months.</p>
+        <p className="instructions">A minimum Down Payment of ${this.props.dpAmount}  is required to extend financing beyond {this.props.mAmount} months.</p>
     );
   }
 }
