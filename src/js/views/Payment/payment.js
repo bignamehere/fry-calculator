@@ -245,20 +245,35 @@ class Payment extends Component {
           mp = amount;
           amountOwed = investment - dp;
 
-          if( (dp < DPMinTwoFourMonths) && (m > MonthsMaxDPZero) ){
+          if( (dp < DPMinTwoFourMonths) && (m >= MonthsMaxDPZero) ){
 
             if(dpLocked){
-              m = MonthsMaxDPZero;
-              mp = Math.ceil(amountOwed / m);
-            }
+              
+              if(mp <= mpState){
+                m = MonthsMaxDPZero;
+                mp = mpState;
+              } else {
+                m = Math.round( (amountOwed / mp) );
+              }
+              //mp = mp < mpState ? mpState : mp;
+              //m = m < MonthsMaxDPZero ? m : MonthsMaxDPZero;
+              
+            } else if(mLocked){
 
-            if(mLocked){
               dp = DPMinTwoFourMonths;
               amountOwed = investment - dp;
-              mp = Math.ceil(amountOwed / m);
+              mp = Math.round(amountOwed / m);
+            
+            } else {
+
+              dp = Math.round( investment - (mp * m) );
+              dp = dp < DPMinTwoFourMonths ? DPMinTwoFourMonths : dp;
+              amountOwed = investment - dp; 
+              
             }
 
             zSkip = true;
+            console.log("~~ zeroTwoFour");
           }
 
           if( !zSkip ){
@@ -266,13 +281,13 @@ class Payment extends Component {
             if( mp < maxPayments ){
               if( !mLocked && m >= minMonths && m <= maxMonths ) {
                 
-                m = Math.ceil( (amountOwed / mp) );
+                m = Math.round( (amountOwed / mp) );
                 
-                if(m >= maxMonths){
+                if(m > maxMonths){
                   m = maxMonths;
                   mp = mp > mpState ? mp : mpState;
                 }
-                if(m <= minMonths){
+                if(m < minMonths){
                   m = minMonths;
                   mp = mp < mpState ? mp : mpState;
                 }
@@ -280,6 +295,7 @@ class Payment extends Component {
               } else {
 
                 if( !dpLocked && dp >= minDownPayment && dp <= maxDownPayment ) {
+                  
                   dp = Math.ceil(investment - (mp * m));
                   amountOwed = investment - dp;
                 } else if(amount < mpState){
@@ -313,16 +329,7 @@ class Payment extends Component {
           m = amount;
           amountOwed = investment - dp;
           
-          if( !zSkip && ((!mpLocked) && (mp >= minPayments) && (mp <= maxPayments)) ){
-            mp = Math.ceil(amountOwed / m);
-          } else if( !zSkip && ((!dpLocked) && (dp >= minDownPayment) && (dp <= maxDownPayment)) ){
-            dp = Math.round( investment - (mp * m) );
-            dp = dp < minDownPayment ? minDownPayment : dp;
-            amountOwed = investment - dp;
-            m = Math.round( (amountOwed / mp) );
-          }
-
-          if( (dp <= DPMinTwoFourMonths) && (m >= MonthsMaxDPZero) ){
+          if( (dp <= DPMinTwoFourMonths) && (m > MonthsMaxDPZero) ){
             if( !dpLocked && !mpLocked ){
               dp = DPMinTwoFourMonths;
               amountOwed = investment - dp;
@@ -338,6 +345,19 @@ class Payment extends Component {
             }
             zSkip = true;
           }
+
+          if( !zSkip && !mpLocked ){
+            if( (mp >= minPayments) && (mp <= maxPayments) ){
+              mp = Math.ceil(amountOwed / m);
+            }
+          } else if( !zSkip && ((!dpLocked) && (dp >= minDownPayment) && (dp <= maxDownPayment)) ){
+
+            dp = Math.round( investment - (mp * m) );
+            dp = dp < minDownPayment ? minDownPayment : dp;
+            amountOwed = investment - dp;
+            m = Math.round( (amountOwed / mp) );
+          }
+
         }
 
         break;
@@ -381,7 +401,7 @@ class Payment extends Component {
   ///
 
   setValues( data ){
-    //console.log("payment > setValues "+data.downpayment+"-"+data.payments+"-"+data.months);
+    console.log("payment > setValues "+data.downpayment+"-"+data.payments+"-"+data.months);
     // Set values of individual Knobs
     this.refs.dpKnob.setKnobValue( data.downpayment );
     this.refs.mpKnob.setKnobValue( data.payments );
