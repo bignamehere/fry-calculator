@@ -204,7 +204,7 @@ class Payment extends Component {
             // set Months if Monthly payment fails and Months able   
             } else if( !mLocked && m >= minMonths && m <= maxMonths ) {
                       
-              m = Math.round( (investment - dp) / mp ); // ceil
+              m = Math.ceil( (investment - dp) / mp ); // ceil
 
               // Reset Months - out of range High
               if(m >= maxMonths){
