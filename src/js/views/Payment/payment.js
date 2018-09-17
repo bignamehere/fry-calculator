@@ -207,13 +207,13 @@ class Payment extends Component {
               m = Math.ceil( (investment - dp) / mp ); // ceil
 
               // Reset Months - out of range High
-              if(m >= maxMonths){
+              if(m > maxMonths){
                 m = maxMonths;
                 dp = dpState;
                 //dp = dp > this.state.downpayment ? dp : this.state.downpayment;
               }
               // Reset Months - out of range Low
-              if(m <= minMonths){
+              if(m < minMonths){
                 m = minMonths;
                 dp = dpState;
                 //dp = dp < this.state.downpayment ? dp : this.state.downpayment;
