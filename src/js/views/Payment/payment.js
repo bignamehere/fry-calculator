@@ -90,7 +90,6 @@ class Payment extends Component {
     this.refs.mKnob.dataLoaded();
 
     // SET INITIAL STATE OF KNOBS
-    //this.recalculateTotals("total", this.props.investment);
     if(!this.calculating) this.onInvestmentChange(data.DownPaymentKnobSettings.value_max);
   }
 
@@ -149,16 +148,16 @@ class Payment extends Component {
     // do things here to manipulate view
 
     let skip = false;
-    //
+    let investment = this.state.investment;
     let amountOwed = 0;
+    //
     let dp = this.state.downpayment;
-    let dpState = dp;
     let mp = this.state.payments;
-    let mpState = mp;
     let m = this.state.months;
+    //
+    let dpState = dp;
+    let mpState = mp;
     let mState = m;
-    let investment = this.state.investment;//this.props.investment;
-
     //
     let DPMinTwoFourMonths = this.state.zeroMonthsDownPaymentMin;
     let MonthsMaxDPZero = this.state.zeroDownPaymentMonthsMax;
@@ -211,30 +210,26 @@ class Payment extends Component {
             // set Months if Monthly payment fails and Months able   
             } else if( !mLocked && m >= minMonths && m <= maxMonths ) {
                       
-              m = Math.ceil( (investment - dp) / mp ); // ceil
+              m = Math.ceil( (investment - dp) / mp );
 
               // Reset Months - out of range High
               if(m > maxMonths){
                 m = maxMonths;
                 dp = dpState;
-                //dp = dp > this.state.downpayment ? dp : this.state.downpayment;
               }
               // Reset Months - out of range Low
               if(m < minMonths){
                 m = minMonths;
                 dp = dpState;
-                //dp = dp < this.state.downpayment ? dp : this.state.downpayment;
               }
             } 
             
           } else if(!zSkip) {
             // set other dials to minimums and show popup
             mp = minPayments;
-            //m = minMonths;
             dp = maxDownPayment;
             // reset amount owed based on new data
             amountOwed = investment - dp;
-            //if(dp != this.state.downpayment) 
             this.showDiscountPopup();
           }
         }
@@ -262,8 +257,6 @@ class Payment extends Component {
               } else {
                 m = Math.round( (amountOwed / mp) );
               }
-              //mp = mp < mpState ? mpState : mp;
-              //m = m < MonthsMaxDPZero ? m : MonthsMaxDPZero;
               
             } else if(mLocked){
 
@@ -280,7 +273,6 @@ class Payment extends Component {
             }
 
             zSkip = true;
-            console.log("~~ zeroTwoFour");
           }
 
           if( !zSkip ){
@@ -323,7 +315,6 @@ class Payment extends Component {
         }
 
         if(dp >= maxDownPayment) this.showDiscountPopup();
-        //amountOwed = investment - dp;
 
         break;
   
@@ -364,15 +355,17 @@ class Payment extends Component {
             amountOwed = investment - dp;
             m = Math.round( (amountOwed / mp) );
           }
-
         }
 
         break;
       
       case "total":
-        this.setState({ investment: amount });
+
+        investment = amount;
+        this.setState({ investment: investment });
         amountOwed = amount - dp;
         mp = Math.ceil(amountOwed / m);
+        
         break;
 
       default:
@@ -390,7 +383,7 @@ class Payment extends Component {
         downpayment: dp,
         payments: mp,
         months: m,
-        amountOwed: amountOwed
+        investment: investment
       };
       this.setState( totalsObject );
       this.setValues( totalsObject );
@@ -618,7 +611,7 @@ class Payment extends Component {
 
           <div className="card-grid__1/1 card-grid__1/12@m"></div>
           
-          <div className="fry-grid__1/1 instructions-spacing">
+          <div className="card-grid__1/1 instructions-spacing">
             <Instructions
               ref="instructions"
               dpAmount={this.state.zeroMonthsDownPaymentMin}
