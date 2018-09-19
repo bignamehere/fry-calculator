@@ -1,10 +1,15 @@
 .knob {
   /*width: 250px;*/
+  //border: 1px solid green;
 }
 
 .knob-container {
   text-align: center;
-  //background: yellow;
+  //border: 1px solid red;
+}
+
+.knob-track {
+  //border: 1px solid blue;
 }
 
 @media (min-width: 360px){

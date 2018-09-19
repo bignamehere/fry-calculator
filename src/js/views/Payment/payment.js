@@ -3,16 +3,13 @@
 import React, { Component } from 'react';
 import FryKnob from '../../components/Knob/knob';
 import Totals from '../../components/displays/Totals/totals';
-import Consultation from '../Consultation/consultation';
 import Lock from '../../components/Toggle/Lock/lock';
 import Modal from 'react-responsive-modal';
 import Instructions from '../../components/Instructions/instructions';
-import Disclaimer from '../../components/Disclaimer/disclaimer';
-import logo from '../../../img/fry-logo-w.png';
+
+import logo from '../../../img/cardinal-logo-white.png';
 import './payment.scss';
 
-
-const API_URL = 'api/data.json';
 
 class Payment extends Component {
   constructor(props){
@@ -37,23 +34,38 @@ class Payment extends Component {
   }
 
   componentWillMount(){
-    fetch(API_URL)
-      .then(response => response.json())
-      .then( data => this.initAppData(data) )
-      .catch(function(error) {
-        console.log(error);
-      });  
+    
+  }
+
+  setData(data){
+    console.log("payment.js - setData  " +data.MonthlyPaymentsKnobSettings.initial_value)
+    this.initAppData(data);
+  }
+
+  setText(data){
+    this.setState({
+      downPaymentLockLabel: data.downPaymentLockLabel,
+      monthlyPaymentsLockLabel: data.monthlyPaymentsLockLabel,
+      monthsLockLabel: data.monthsLockLabel,
+      discountPopupHeaderLabel: data.discountPopupHeaderLabel,
+      discountPopupContent: data.discountPopupContent,
+      discountPriceLabel: data.discountPriceLabel,
+      instructionsText: data.instructionsText
+    });
+
+    if(this.refs.display) this.refs.display.setText(data);
+    if(this.refs.instructions) this.refs.instructions.setText(data);
   }
 
   initAppData(data){
     // manipulate the value if using value from Consultation Screen
 
     this.setState({
-      investment: this.props.investment,
+      investment: data.DownPaymentKnobSettings.value_max,
       downpayment: data.DownPaymentKnobSettings.initial_value,
       payments: data.MonthlyPaymentsKnobSettings.initial_value,
       months: data.MonthsKnobSettings.initial_value,
-      maxDownPayment: this.props.investment,
+      maxDownPayment: data.DownPaymentKnobSettings.value_max,
       maxPayments: data.MonthlyPaymentsKnobSettings.value_max,
       maxMonths: data.MonthsKnobSettings.value_max,
       minDownPayment: data.DownPaymentKnobSettings.value_min,
@@ -70,7 +82,7 @@ class Payment extends Component {
       data.DownPaymentKnobSettings,
       data.MonthlyPaymentsKnobSettings,
       data.MonthsKnobSettings,
-      this.props.investment
+      data.DownPaymentKnobSettings.value_max
     );
 
     this.refs.dpKnob.dataLoaded();
@@ -78,7 +90,8 @@ class Payment extends Component {
     this.refs.mKnob.dataLoaded();
 
     // SET INITIAL STATE OF KNOBS
-    if(!this.calculating) this.recalculateTotals("total", this.props.investment);
+    //this.recalculateTotals("total", this.props.investment);
+    if(!this.calculating) this.onInvestmentChange(data.DownPaymentKnobSettings.value_max);
   }
 
   onDownPaymentChange(amount){
@@ -94,9 +107,9 @@ class Payment extends Component {
   }
 
   onInvestmentChange(amount){
-
+    console.log("payment - onInvestmentChange() -- "+ amount);
 //
-// this is NOT DRY... new to refactor
+// this is NOT DRY... need to refactor
 //
 
     let newAmount = amount;// == undefined ? this.props.investment : amount;
@@ -115,12 +128,6 @@ class Payment extends Component {
       tempMPObj.roundNumber,
       Math.round( newAmount / this.state.MonthsKnobSettings.value_min )
     );
-
-    /*
-    this.refs.dpKnob.resetKnobSettings(tempDPObj);
-    this.refs.mpKnob.resetKnobSettings(tempMPObj);
-    this.refs.mKnob.resetKnobSettings(this.state.MonthsKnobSettings);
-    */
    
     this.setKnobState(
       tempDPObj,
@@ -150,13 +157,13 @@ class Payment extends Component {
     let mpState = mp;
     let m = this.state.months;
     let mState = m;
-    let investment = this.props.investment;
+    let investment = this.state.investment;//this.props.investment;
 
     //
     let DPMinTwoFourMonths = this.state.zeroMonthsDownPaymentMin;
     let MonthsMaxDPZero = this.state.zeroDownPaymentMonthsMax;
     //
-    let maxDownPayment = this.props.investment;
+    let maxDownPayment = this.state.investment;
     let maxPayments = this.state.maxPayments;
     let maxMonths = this.state.maxMonths;
     //
@@ -401,7 +408,7 @@ class Payment extends Component {
   ///
 
   setValues( data ){
-    console.log("payment > setValues "+data.downpayment+"-"+data.payments+"-"+data.months);
+    console.log("setValues ZZZZZZ  " + data.investment);
     // Set values of individual Knobs
     this.refs.dpKnob.setKnobValue( data.downpayment );
     this.refs.mpKnob.setKnobValue( data.payments );
@@ -482,7 +489,7 @@ class Payment extends Component {
   showDiscountPopup(){
     if(this.state.showDiscount){
       this.onOpenModal();
-      //this.setState({showDiscount:false});
+      this.setState({showDiscount:false});
     }
   }
 
@@ -495,7 +502,7 @@ class Payment extends Component {
   };
 
 	render() {
-    const { modalOpen } = this.state;
+    //const { modalOpen } = this.state; is this needed?
     return (
       <div>
           
@@ -508,26 +515,26 @@ class Payment extends Component {
               closeIcon: 'modal-custom-close'
             }}>
 
-            <h2 className="modal-custom__header">Pay In Full Discount - 10% Off!</h2>
+            <h2 className="modal-custom__header">{this.state.discountPopupHeaderLabel}</h2>
             <p className="modal-custom__content">
-              At Fry Orthodontic Specialists, when you pay the full amount for your braces, you will receive a <strong>10% discount</strong> on your investment.
+              {this.state.discountPopupContent}
             </p>
-            <div className="fry-grid">
-              <div className="fry-grid__1/1 fry-grid__auto@m">
-                <h1 className="modal-custom__content-centered">Price: ${this.props.investment - Math.round(this.props.investment*.1)}</h1>
+            <div className="card-grid">
+              <div className="card-grid__1/1 card-grid__auto@m">
+                <h1 className="modal-custom__content-centered">{this.state.discountPriceLabel} ${this.state.investment - Math.round(this.state.investment*.1)}</h1>
               </div>
-              <div className="fry-grid__1/1 fry-grid__1/4@m modal-custom__logo">
+              <div className="card-grid__1/1 card-grid__1/4@m modal-custom__logo">
                 <img src={logo} className="logo" alt="Fry Orthodontics Logo" />
               </div>
             </div>
           
           </Modal>
           
-          <div className="fry-grid app-knob-container">
+          <div className="card-grid app-knob-container">
 
-            <div className="fry-grid__1/1 fry-grid__1/12@m"></div>
+            <div className="card-grid__1/1 card-grid__1/12@m"></div>
 
-            <div className="fry-grid__1/1 fry-grid__3/12@m">
+            <div className="card-grid__1/1 card-grid__3/12@m">
               <div className="knob-container">
 
                 <FryKnob ref="dpKnob"
@@ -548,13 +555,13 @@ class Payment extends Component {
                     </div>
                   </div>
                   <div className="lock-toggle__text-sm">
-                    <span className="">Down Payment</span>
+                    <span className="">{this.state.downPaymentLockLabel}</span>
                   </div>
                 </div>
 
               </div>
             </div>
-            <div className="fry-grid__1/1 fry-grid__4/12@m">
+            <div className="card-grid__1/1 card-grid__4/12@m">
               <div className="knob-container">
 
                 <FryKnob ref="mpKnob"
@@ -575,13 +582,13 @@ class Payment extends Component {
                     </div>
                   </div>
                   <div className="lock-toggle__text-lg">
-                    <span className="">Monthly Payment</span>
+                    <span className="">{this.state.monthlyPaymentsLockLabel}</span>
                   </div>
                 </div>
 
               </div>
             </div>
-            <div className="fry-grid__1/1 fry-grid__3/12@m">
+            <div className="card-grid__1/1 card-grid__3/12@m">
               <div className="knob-container">
               
                 <FryKnob ref="mKnob"
@@ -602,27 +609,27 @@ class Payment extends Component {
                     </div>
                   </div>
                   <div className="lock-toggle__text-sm">
-                    <span className="">Months</span>
+                    <span className="">{this.state.monthsLockLabel}</span>
                   </div>
                 </div>
 
               </div>
             </div>
 
-          <div className="fry-grid__1/1 fry-grid__1/12@m"></div>
-
+          <div className="card-grid__1/1 card-grid__1/12@m"></div>
+          
           <div className="fry-grid__1/1 instructions-spacing">
-            <Instructions dpAmount={this.state.zeroMonthsDownPaymentMin} mAmount={this.state.zeroDownPaymentMonthsMax} />
+            <Instructions
+              ref="instructions"
+              dpAmount={this.state.zeroMonthsDownPaymentMin}
+              mAmount={this.state.zeroDownPaymentMonthsMax}
+            />
           </div>
 
-          <div className="fry-grid__1/1">
+          <div className="card-grid__1/1">
             <Totals ref="display"/>
           </div>
-
-          <div className="fry-grid__1/1">
-            <Disclaimer />
-          </div>
-
+          
         </div>
       </div>
 

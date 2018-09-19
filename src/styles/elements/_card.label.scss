@@ -1,0 +1,104 @@
+$label-spacing: ($size-base - .1rem);
+
+$label-text-color: $color-card-white;
+$label-text-color-warning: $color-black;
+
+$label-bgc: $color-card-tertiary-300;
+$label-bgc-general: $color-card-secondary-900;
+$label-bgc-alert: $color-card-red;
+$label-bgc-warning: $color-gold-light;
+$label-bgc-success: $color-card-primary;
+
+.card-label {
+
+  @include font-size(0);
+  @include reset-button();
+  line-height: 1;
+  display: inline-block;
+  background-color: $label-bgc;
+  color: $label-text-color;
+  text-transform: uppercase;
+  text-decoration: none;
+  line-height: 1;
+  padding: $label-spacing ($label-spacing + .1rem);
+  cursor: default;
+
+  &:visited {
+    color: $label-text-color;
+  }
+
+  &[href]:hover {
+    color: $label-text-color;
+  }
+
+  &[disabled] {
+    opacity: .65;
+    filter: saturate(70%);
+    cursor: not-allowed;
+  }
+
+  & + & {
+    margin-left: $label-spacing;
+  }
+
+  &--general {
+    background-color: $label-bgc-general;
+    &[href]:hover {
+      color: $label-text-color;
+    }
+  }
+
+  &--alert {
+    background-color: $label-bgc-alert;
+    &[href]:hover {
+      color: $label-text-color;
+    }
+  }
+
+  &--warning {
+
+    background-color: $label-bgc-warning;
+    color: $label-text-color-warning;
+
+    &[href]:hover {
+      color: $label-text-color-warning;
+    }
+
+    &:visited {
+      color: $label-text-color-warning;
+    }
+
+  }
+
+  &--success {
+    background-color: $label-bgc-success;
+  }
+
+  &--large {
+    @include font-size(3);
+    padding-left: ($label-spacing * 1.5);
+    padding-right: ($label-spacing * 1.5);
+  }
+
+  h1 & {
+    position: relative;
+    top: -$size-base;
+    margin-left: $size-base;
+  }
+
+}
+
+// scss-lint:disable QualifyingElement
+button.card-label,
+a.card-label {
+
+  cursor: pointer;
+
+  &:hover,
+  &:focus,
+  &:active {
+    color: $label-text-color !important;
+    background-color: $color-card-aqua-900;
+  }
+
+}

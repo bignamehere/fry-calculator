@@ -3,7 +3,6 @@
 import React, { Component } from 'react';
 import Tabs, { TabPane } from 'rc-tabs';
 import TabContent from 'rc-tabs/lib/TabContent';
-import ScrollableInkTabBar from 'rc-tabs/lib/ScrollableInkTabBar';
 import InkTabBar from 'rc-tabs/lib/InkTabBar';
 import './appTabs.scss';
 // Views
@@ -20,6 +19,34 @@ class AppTabs extends Component {
     };
     this.handleInvestmentChange = this.handleInvestmentChange.bind(this);
     this.handleContinue = this.handleContinue.bind(this);
+    this.setConfig = this.setConfig.bind(this);
+    this.setText = this.setText.bind(this);
+  }
+
+  componentWillMount(){
+    console.log("appTabs - cWm");
+  }
+
+  componentDidMount(){
+    console.log('appTabs - cDm');
+    if(this.refs.consultationTab) console.log("consultationTab EXIST");
+    if(this.refs.paymentTab) console.log("paymentTab EXIST");
+  }
+
+  setConfig(data){
+    console.log("appTabs - setConfig()");
+    if(this.refs.paymentTab) this.refs.paymentTab.setData(data);
+  }
+
+  setText(data){
+    console.log("appTabs - setText()");
+    if(this.refs.consultationTab) this.refs.consultationTab.setText(data);
+    if(this.refs.paymentTab) this.refs.paymentTab.setText(data);
+
+    this.setState({
+      tabOneLabel: data.tabOneLabel,
+      tabTwoLabel: data.tabTwoLabel
+    })
   }
 
   handleContinue(v){
@@ -27,14 +54,15 @@ class AppTabs extends Component {
   }
 
   handleInvestmentChange(e){
+    
     this.setState({
       investment: e.investment
     });
-    this.resetAmount(e.investment);
+    
+    this.setInvestmentAmount(e.investment);
   }
 
-  resetAmount(amount){
-    console.log("resetAmount = " + amount);
+  setInvestmentAmount(amount){
     this.setState({
       paymentDisabled: false,
       investment: amount
@@ -43,7 +71,6 @@ class AppTabs extends Component {
   }
 
 	render() {
-
     //const { paymentPane } = this.state;
     return (
       <Tabs
@@ -53,11 +80,11 @@ class AppTabs extends Component {
         renderTabContent={() => <TabContent/>}
         //onChange={this.handleTabChange}
       >
-        <TabPane tab='Treatment Fee' key="1">
-          <Consultation onContinue={this.handleContinue} onChange={this.handleInvestmentChange}/>
+        <TabPane tab={this.state.tabOneLabel} key="1" forceRender={true}>
+          <Consultation ref='consultationTab' onContinue={this.handleContinue} onChange={this.handleInvestmentChange} />
         </TabPane>
-        <TabPane tab='Payment Options' key="2" disabled={this.state.paymentDisabled}>
-          <Payment ref="paymentTab" investment={ this.state.investment } />
+        <TabPane tab={this.state.tabTwoLabel} key="2" forceRender={true} disabled={this.state.paymentDisabled}>
+          <Payment ref="paymentTab" />
         </TabPane>
         
       </Tabs>

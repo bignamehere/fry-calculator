@@ -15,9 +15,25 @@ class Instructions extends Component {
 
   }
 
+  setText(data){
+    let dp1 = data.instructionsText.split("|dpZeroMin|")[0];
+    let dp2 = data.instructionsText.split("|dpZeroMin|")[1];
+    
+    let newText = dp1 + this.props.dpAmount + dp2;
+
+    let m1 = newText.split("|mZeroMax|")[0];
+    let m2 = newText.split("|mZeroMax|")[1];
+
+    newText = m1 + this.props.mAmount + m2;
+    
+    this.setState({
+      instructionsText: newText,
+    });
+  }
+
   render() {
     return (
-        <p className="instructions">A minimum Down Payment of ${this.props.dpAmount}  is required to extend financing beyond {this.props.mAmount} months.</p>
+        <p className="instructions">{this.state.instructionsText}</p> 
     );
   }
 }

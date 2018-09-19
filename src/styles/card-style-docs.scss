@@ -1,0 +1,637 @@
+// Vendor USWDS -------------- //
+
+@import 'lib/uswds/lib/bourbon';
+@import 'lib/uswds/lib/neat';
+
+// Core USWDS -------------- //
+@import 'lib/uswds/core/defaults';
+@import 'lib/uswds/core/grid-settings';
+@import 'lib/uswds/core/utilities';
+
+// Core card -------------- //
+@import 'core/card.variables';
+@import 'core/card.utilities';
+@import 'core/card.grid-breakpointbar';
+
+$color-annotation: $color-card-secondary; //  $color-card-red
+
+@keyframes peekInFromAbove {
+  from {
+    opacity: 0;
+    transform: translateY(-200%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
+
+.docs {
+
+  // -----------------------------------------------------------------------------
+  // Doc Titles
+
+  &__title {
+
+    margin-top: 2em;
+    margin-top: 20vh;
+    color: $color-card-white;
+
+    @include breakpoint(M) {
+      @include font-size(7);
+    }
+
+    &__version {
+      font-size: 66%;
+      font-family: $font-sans;
+      color: $color-card-primary-100;
+    }
+
+  }
+
+  &__figure-group {
+    margin-top: $size-large;
+    border-bottom: 2px solid $color-card-tertiary-300;
+  }
+
+  &__figure {
+
+    border-bottom: 1px solid $color-card-tertiary-300;
+    margin-bottom: 1em;
+    margin-top: $size-large;
+
+    .docs__figure-group + & {
+
+      // margin-top: $size-large;
+
+    }
+
+  }
+
+  &__sub_style {
+    // @include font-size(1);
+    // font-family: $font-sans;
+    // font-weight: $font-bold;
+    margin-top: $size-medium;
+    // color: $color-annotation;
+  }
+
+  // -----------------------------------------------------------------------------
+  // Overview
+
+  &__overview {
+    background-color: $color-card-tertiary-100;
+    padding-bottom: $size-large;
+    margin-bottom: $size-medium;
+  }
+
+  // -----------------------------------------------------------------------------
+  // Nav
+
+  &__nav {
+
+    &--fixed {
+
+      @include breakpoint(L) {
+        @include position(fixed, 0px 0px 0 0px); // scss-lint:disable ZeroUnit
+        margin: 0;
+        background-color: $color-card-primary-900;
+        color: $color-white;
+        z-index: 100;
+        padding-top: 1em;
+        animation: peekInFromAbove 300ms ease-in-out;
+      }
+
+    }
+
+  }
+
+  &__primary-nav {
+
+    @include reset-ul();
+    max-width: $site-max-width;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1em;
+
+    &-item {
+
+      @include reset-li();
+      display: inline-block;
+
+      // scss-lint:disable NestingDepth
+      &--floater {
+
+        display: block;
+        margin-top: 1em;
+        margin-right: 0;
+
+        @include breakpoint(L) {
+          float: right;
+          margin-top: 0;
+        }
+
+      }
+
+    }
+
+    &-link {
+
+      display: inline-block;
+      margin-right: $size-small;
+      text-decoration: none;
+      color: $color-card-white;
+
+      @include breakpoint(M) {
+        margin-right: $size-small;
+      }
+
+      // scss-lint:disable NestingDepth
+      &:hover {
+        text-decoration: underline;
+      }
+
+      &:active,
+      &:hover,
+      &:hover:visited,
+      &:visited {
+
+        color: $color-card-white;
+
+      }
+
+    }
+
+    &__icon {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: $size-small;
+      width: $size-medium;
+      height: $size-medium;
+      margin-top: -2px;
+    }
+
+  }
+
+  // -----------------------------------------------------------------------------
+  // Structure
+
+  &__page {} // scss-lint:disable EmptyRule
+
+  &__section {
+
+    padding-right: $size-default;
+    padding-left: $size-default;
+
+    &:before {
+      $fudge-amount: $size-extra-large;
+      content: '';
+      display: block;
+      height: $fudge-amount;
+      margin: (-$fudge-amount) 0 0;
+    }
+
+  }
+
+  &__section-title {
+    position: relative;
+  }
+
+  &__section-link {
+
+    position: absolute;
+    right: 0;
+
+    .docs__figure + & {
+      top: -($size-default);
+    }
+
+  }
+
+  &__intro {
+    padding-top: $size-medium;
+    padding-bottom: $size-medium;
+    background-color: $color-card-primary;
+    margin-bottom: $size-medium;
+  }
+
+  &__bd {
+    max-width: $site-max-width;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  &__main {} // scss-lint:disable EmptyRule
+
+  // -----------------------------------------------------------------------------
+  // Logo
+
+  &__logo {
+
+    @include checkerboard();
+
+    padding: $size-small;
+
+    @include breakpoint(S) {
+      padding: $size-medium;
+    }
+
+    @include breakpoint(M) {
+      padding: $size-medium $size-extra-large;
+    }
+
+    &__demo {
+      display: block;
+    }
+
+  }
+
+  // -----------------------------------------------------------------------------
+  // Attribute List
+
+  &__attr-list {
+
+    @include reset-ul();
+
+    margin-bottom: $size-medium;
+
+    @include breakpoint(M) {
+      display: flex;
+    }
+
+    &--spaced {
+      margin-right: -$size-medium;
+    }
+
+    &__item {
+
+      @include reset-li();
+      flex: 1;
+
+      @include breakpoint(M) {
+        margin-right: $card-grid-gutter;
+      }
+
+      &:last-child {
+
+        @include breakpoint(M) {
+          margin-right: 0;
+        }
+
+      }
+
+    }
+
+    &__swatch {
+      height: 7.5rem;
+      display: flex;
+    }
+
+    &__title {
+      @include font-size(3);
+      color: $color-annotation;
+      font-family: $font-serif;
+    }
+
+    &__attr {
+
+      @include reset-ul;
+      margin: $size-small 0 1em;
+
+      // scss-lint:disable NestingDepth
+      &-item {
+        @include reset-li;
+      }
+
+    }
+
+  }
+
+  &__swatch-list {
+
+    @include reset-ul;
+    margin-bottom: 1em;
+
+    &__item {
+
+      @include reset-li;
+      padding: $size-extra-large $size-default $size-default;
+
+      // scss-lint:disable NestingDepth
+      &--main {
+        padding-top: $size-extra-large * 2;
+      }
+
+      code {
+        background-color: transparent;
+        padding: 0;
+        border: 0;
+        color: white;
+      }
+
+
+    }
+
+  }
+
+  // -----------------------------------------------------------------------------
+  // Typography
+
+  &__font {
+
+    display: flex;
+    align-items: center;
+    margin-bottom: $size-medium;
+
+    &--source-sans-pro {
+
+      font-family: $font-sans;
+      font-weight: $font-normal;
+      outline: 1px solid blue;
+
+      // scss-lint:disable NestingDepth
+      &-light {
+        font-weight: $font-light;
+        outline: 1px solid green;
+      }
+
+      &-bold {
+        font-weight: $font-bold;
+        outline: 1px solid red;
+      }
+
+    }
+
+    &--merriweather {
+
+      font-family: $font-serif;
+      font-weight: $font-normal;
+      outline: 1px solid purple;
+
+      // scss-lint:disable NestingDepth
+      &-light {
+        font-weight: $font-light;
+        outline: 1px solid black;
+      }
+
+      &-bold {
+        font-weight: $font-bold;
+        outline: 1px solid pink;
+      }
+
+    }
+
+    &--helvetica {
+
+      font-family: $helvetica;
+
+    }
+
+    &--georgia {
+
+      font-family: $georgia;
+
+    }
+
+    &__preview {
+
+      @include font-size(7);
+      flex: 1;
+      line-height: 1;
+      margin: 0;
+      margin-right: $size-default;
+
+      @include breakpoint(S) {
+        font-size: 8.4rem;
+        text-align: center;
+      }
+
+    }
+
+    &__details {
+      flex: 2;
+      overflow: hidden;
+    }
+
+    &__item {
+      @include card-ellipsis();
+      margin: 0;
+      letter-spacing: $size-base;
+    }
+
+  }
+
+
+  // -----------------------------------------------------------------------------
+  // Grid Demo
+
+  &__grid-inventory {
+    &-item {
+
+      margin-bottom: $size-base;
+      margin-left: 0;
+      padding-left: 0;
+
+      > div {
+        padding-left: 0;
+      }
+
+    }
+  }
+
+  // -----------------------------------------------------------------------------
+  // Utilities
+
+  &__utilities {
+
+    &__demo {
+      @include checkerboard();
+      margin-bottom: $size-default;
+    }
+
+    &__demo-item {
+
+      background-color: white;
+      border: 1px solid $color-card-tertiary-300;
+
+      code {
+
+        background-color: $color-card-tertiary-100;
+        border: 0;
+        padding: 0;
+        display: block;
+
+      }
+
+    }
+
+  }
+
+  &__code-sample {} // scss-lint:disable EmptyRule
+
+  &__footer {
+
+    @include font-size(2);
+    margin-top: $size-large;
+    background-color: $color-card-tertiary-100;
+
+    a {
+      text-decoration: underline;
+    }
+
+    &:before {
+      display: none;
+    }
+
+    &__bd {
+      padding: $size-medium 0;
+    }
+
+  }
+
+}
+
+.card-checkerboard {
+  @include checkerboard();
+}
+
+.size-swatch {
+
+  @include checkerboard();
+
+  margin: 0;
+
+  &__blotch {
+
+    background-color: $color-black;
+    display: block;
+    margin: auto;
+
+    &--base {
+      width: $size-base;
+      height: $size-base;
+    }
+
+    &--small {
+      width: $size-small;
+      height: $size-small;
+    }
+
+    &--default {
+      width: $size-default;
+      height: $size-default;
+    }
+
+    &--medium {
+      width: $size-medium;
+      height: $size-medium;
+    }
+
+    &--large {
+      width: $size-large;
+      height: $size-large;
+    }
+
+    &--extra-large {
+      width: $size-extra-large;
+      height: $size-extra-large;
+    }
+
+  }
+
+}
+
+.color-card-primary-dark {
+  background-color: $color-card-primary-900;
+}
+.color-card-primary {
+  background-color: $color-card-primary;
+}
+.color-card-primary-light {
+  background-color: $color-card-primary-300;
+}
+.color-card-primary-lighter {
+  background-color: $color-card-primary-200;
+}
+.color-card-primary-lightest {
+  background-color: $color-card-primary-100;
+}
+
+.color-card-secondary-dark {
+  background-color: $color-card-secondary-900;
+}
+.color-card-secondary {
+  background-color: $color-card-secondary;
+}
+.color-card-secondary-light {
+  background-color: $color-card-secondary-300;
+}
+.color-card-secondary-lighter {
+  background-color: $color-card-secondary-200;
+}
+.color-card-secondary-lightest {
+  background-color: $color-card-secondary-100;
+}
+
+.color-card-tertiary-dark {
+  background-color: $color-card-tertiary-900;
+}
+.color-card-tertiary {
+  background-color: $color-card-tertiary;
+}
+.color-card-tertiary-light {
+  background-color: $color-card-tertiary-300;
+}
+.color-card-tertiary-lighter {
+  background-color: $color-card-tertiary-200;
+}
+.color-card-tertiary-lightest {
+  background-color: $color-card-tertiary-100;
+}
+
+.color-card-aqua-dark {
+  background-color: $color-card-aqua-900;
+}
+.color-card-aqua {
+  background-color: $color-card-aqua;
+}
+.color-card-aqua-light {
+  background-color: $color-card-aqua-300;
+}
+.color-card-aqua-lighter {
+  background-color: $color-card-aqua-200;
+}
+.color-card-aqua-lightest {
+  background-color: $color-card-aqua-100;
+}
+
+.color-card-red-dark {
+  background-color: $color-card-red-900;
+}
+.color-card-red {
+  background-color: $color-card-red;
+}
+.color-card-red-light {
+  background-color: $color-card-red-300;
+}
+.color-card-red-lighter {
+  background-color: $color-card-red-200;
+}
+.color-card-red-lightest {
+  background-color: $color-card-red-100;
+}
+
+.color-card-link {
+  background-color: $color-card-link;
+}
+.color-card-link-hover {
+  background-color: $color-card-link-hover;
+}
+.color-card-link-visited {
+  background-color: $color-card-link-visited;
+}
+
+[class*="lighter"] code,
+[class*="lightest"] code {
+  color: $color-base;
+}

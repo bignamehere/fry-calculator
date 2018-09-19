@@ -1,26 +1,33 @@
 //
 //
 import React, { Component } from 'react';
-import logo from '../../../img/fry-logo-w.png';
+import logo from '../../../img/cardinal-logo-white.png';
 import './header.scss';
 
 class Header extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+		};
+  }
+
+  setText(data){
+		this.setState({
+			headerText: data.headerTextLabel
+		});
   }
 
 
 	render() {
     return (
-			<div className="fry-header-app">
-				<div className="fry-header-app__bd">
-					<div className="fry-header-app__primary">
-						<span className="fry-header-app__app-name">
-							<span className="header-custom__app-name">Treatment Fee Calculator</span>
+			<div className="card-header-app">
+				<div className="card-header-app__bd">
+					<div className="card-header-app__primary">
+						<span className="card-header-app__app-name">
+							<span className="header-custom__app-name">{this.state.headerText}</span>
 						</span>
 					</div>
-					<div className="fry-header-app__secondary">
+					<div className="card-header-app__secondary">
 						<img src={logo} className="logo" alt="logo" />
 					</div>
 				</div>
