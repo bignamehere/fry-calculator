@@ -180,9 +180,14 @@ class Payment extends Component {
     switch( who ){
       case "dp":
 
-        if( dpLocked || amount < minDownPayment || amount > maxDownPayment ){
-          dp = maxDownPayment;
-          this.showDiscountPopup();
+        if( dpLocked || (amount < minDownPayment) || (amount > maxDownPayment) ){
+          
+          if(amount >= maxDownPayment) {
+            dp = maxDownPayment;
+            this.showDiscountPopup();
+          } else if(amount <= minDownPayment){
+            dp = minDownPayment;
+          }
           skip = true;
         } else {
           
@@ -210,7 +215,8 @@ class Payment extends Component {
               }
             // set Months if Monthly payment fails and Months able   
             } else if( !mLocked && m >= minMonths && m <= maxMonths ) {
-                      
+              
+              /*
               m = Math.ceil( (investment - dp) / mp ); // ceil
 
               // Reset Months - out of range High
@@ -225,9 +231,26 @@ class Payment extends Component {
                 dp = dpState;
                 //dp = dp < this.state.downpayment ? dp : this.state.downpayment;
               }
+              */
+              mp = Math.round(amountOwed / m);
+              // reset if out of bounds
+              mp = mp >= maxPayments ? maxPayments : mp;
+              mp = mp <= minPayments ? minPayments : mp;
+
+              if(mp >= maxPayments){
+                // allow MORE DP but not less
+                dp = dp > this.state.downpayment ? dp : minDownPayment;
+              }
+
+              if(mp <= minPayments){
+                // allow LESS DP but not more
+                dp = dp < this.state.downpayments ? dp : this.roundUp( 100, Math.round(investment - (mp * m)) );
+              }
+
             } 
             
           } else if(!zSkip) {
+            /*
             // set other dials to minimums and show popup
             mp = minPayments;
             //m = minMonths;
@@ -236,11 +259,34 @@ class Payment extends Component {
             amountOwed = investment - dp;
             //if(dp != this.state.downpayment) 
             this.showDiscountPopup();
+            */
+            m = Math.round( (amountOwed / mp) );
+            // reset if out of bounds
+            m = m >= maxMonths ? maxMonths : m;
+            m = m <= minMonths ? minMonths : m;
+
+            if(m >= maxMonths){
+              // allow MORE MP but not less
+              mp = mp > this.state.payments ? mp : this.state.payments;
+            }
+
+            if(m <= minMonths){
+              // allow LESS MP but not more
+              mp = mp < this.state.payments ? mp : this.state.payments;
+            }
+          
+          } else {
+            // set other dials to minimums and show popup
+            mp = minPayments;
+            //m = minMonths;
+            dp = maxDownPayment;
+            //if(dp != this.state.downpayment) 
+            this.showDiscountPopup();
           }
+          // reset amount owed based on new data
+          amountOwed = investment - dp;
         }
-
-        amountOwed = investment - dp;
-
+        
         break;
 
       case "mp":
