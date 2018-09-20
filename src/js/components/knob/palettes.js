@@ -21,7 +21,18 @@ function LightenDarkenColor(col, amt) {
 }
 
 export default {
-  light: {
+  fry: {
+    bg_color: '#FFFFFF',
+    bg_border_color: '#FFFFFF',
+    track_bg_color: LightenDarkenColor('#4e4084', 50),
+    track_color_init: LightenDarkenColor('#4e4084', -10),
+    track_color: LightenDarkenColor('#4e4084', -10),
+    cursor_color_init: LightenDarkenColor('#4e4084', -2),
+    cursor_color: LightenDarkenColor('#4e4084', -2),
+    markers_color: '#4e4084',
+    font_color: LightenDarkenColor('#4e4084', -20),
+  },
+  card: {
     bg_color: '#FFFFFF',
     bg_border_color: '#FFFFFF',
     track_bg_color: '#4a80b5',//LightenDarkenColor('#003865', 99),
@@ -31,27 +42,5 @@ export default {
     cursor_color: '#003865',
     markers_color: '#003865',
     font_color: '#003865',
-  },
-  light2: {
-    bg_color: '#B1DAEE',
-    bg_border_color: '#569DC0',
-    track_bg_color: '#B1DAEE',
-    track_color_init: '#569DC0',
-    track_color: '#1D6D93',
-    cursor_color_init: '#569DC0',
-    cursor_color: '#1D6D93',
-    markers_color: '#3680A4',
-    font_color: '#1D6D93',
-  },
-  dark: {
-    bg_color: '#4e4084',
-    bg_border_color: '#4e4084',
-    track_bg_color: LightenDarkenColor('#4e4084', 50),
-    track_color_init: LightenDarkenColor('#FFFFFF', -10),
-    track_color: LightenDarkenColor('#FFFFFF', -10),
-    cursor_color_init: LightenDarkenColor('#FFFFFF', -2),
-    cursor_color: LightenDarkenColor('#FFFFFF', -2),
-    markers_color: '#FFFFFF',
-    font_color: LightenDarkenColor('#FFFFFF', -20),
   }
 }
