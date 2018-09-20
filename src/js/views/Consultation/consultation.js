@@ -67,46 +67,46 @@ class Consultation extends Component {
 	render(){
     return (
       <div className="consultation-container">
-        <div className="card-section">
-          <div className="card-section__bd">
+        <div className="fry-section">
+          <div className="fry-section__bd">
             {/*<h1 className="rc-tab-panel__header">Initial Consultation Settings</h1>*/}
-            <div className="card-grid">
-              <div className="card-grid__1/1 card-grid__1/2@m">
-                <div className="card-grid">
-                  <div className="card-grid__1/1">
-                    <div className="card-field">
-                      <label className="card-field__label" htmlFor="initialCost">{this.state.treatmentCostLabel} <span className="card-field__label-desc">{this.state.requiredLabel}</span></label>
-                      <input className="card-input card-field__item" id="initialCost" name="initialCost" type="number" placeholder="$" value={this.state.initialCost}/>
+            <div className="fry-grid">
+              <div className="fry-grid__1/1 fry-grid__1/2@m">
+                <div className="fry-grid">
+                  <div className="fry-grid__1/1">
+                    <div className="fry-field">
+                      <label className="fry-field__label" htmlFor="initialCost">{this.state.treatmentCostLabel} <span className="fry-field__label-desc">{this.state.requiredLabel}</span></label>
+                      <input className="fry-input fry-field__item" id="initialCost" name="initialCost" type="number" placeholder="$" value={this.state.initialCost}/>
                     </div>
                   
-                    <div className="card-field">
-                      <label className="card-field__label" htmlFor="insurance">{this.state.insuranceCoverageLabel} </label>
-                      <input className="card-input card-field__item" id="insurance" name="insurance" type="number" placeholder="$" value={this.state.insurance}/>
+                    <div className="fry-field">
+                      <label className="fry-field__label" htmlFor="insurance">{this.state.insuranceCoverageLabel} </label>
+                      <input className="fry-input fry-field__item" id="insurance" name="insurance" type="number" placeholder="$" value={this.state.insurance}/>
                     </div>
                   
-                    <div className="card-field">
-                      <label className="card-field__label" htmlFor="discounts">{this.state.additionalSavingsLabel} </label>
-                      <input className="card-input card-field__item" id="discounts" name="discounts" type="number" placeholder="$" value={this.state.discounts}/>
+                    <div className="fry-field">
+                      <label className="fry-field__label" htmlFor="discounts">{this.state.additionalSavingsLabel} </label>
+                      <input className="fry-input fry-field__item" id="discounts" name="discounts" type="number" placeholder="$" value={this.state.discounts}/>
                     </div>
                   </div>
-                  <div className="card-grid__1/2 card-grid__1/2@m">
+                  <div className="fry-grid__1/2 fry-grid__1/2@m">
                     <div className="btn btn-show">
-                      <button onClick={this.handleUpdateClick} className="card-btn card-btn--secondary" type="button">{this.state.updateSettingsLabel}</button>
+                      <button onClick={this.handleUpdateClick} className="fry-btn fry-btn--secondary" type="button">{this.state.updateSettingsLabel}</button>
                     </div>
                   </div>
-                  <div className="card-grid__1/2 card-grid__1/2@m">
+                  <div className="fry-grid__1/2 fry-grid__1/2@m">
                     <div className="btn btn-rt btn-hide">
-                      <button onClick={this.handleContinueClick} className="card-btn card-btn--secondary" type="button">{this.state.adjustPaymentsLabel}</button>
+                      <button onClick={this.handleContinueClick} className="fry-btn fry-btn--secondary" type="button">{this.state.adjustPaymentsLabel}</button>
                     </div>
                   </div>
                 </div>
               </div>
-              <div className="card-grid__1/1 card-grid__1/2@m">
+              <div className="fry-grid__1/1 fry-grid__1/2@m">
                 <div className="rc-tab-display-lg">
-                  <div className="card-box">
-                    <h3 className="card-box__title">{this.state.yourTotalInvestmentLabel}</h3>
+                  <div className="fry-box">
+                    <h3 className="fry-box__title">{this.state.yourTotalInvestmentLabel}</h3>
                     {/*<p>Your initial investment for Orthodontic Braces is valued at:</p>*/}
-                    <span className="card-box__content--xlg">${this.state.investment}</span>
+                    <span className="fry-box__content--xlg">${this.state.investment}</span>
                   </div>
                 </div>
               </div>

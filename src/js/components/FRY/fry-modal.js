@@ -66,7 +66,7 @@ export default function () {
     var _el = value;
     _el.addEventListener('click', function(e){
       // pass associated modal to method
-      var _m = getClosest(e.currentTarget, '.card-modal');
+      var _m = getClosest(e.currentTarget, '.fry-modal');
       modal__close( _m );
     }, false);
   });
@@ -93,7 +93,7 @@ export default function () {
 
     // Fix double scrollbar issue
     var _body = document.getElementsByTagName('body')[0];
-    _body.className = _body.className + ' card-modal-scroll-fix';
+    _body.className = _body.className + ' fry-modal-scroll-fix';
 
     // gain focus --- needs rewrite
     setTimeout(function() {
@@ -111,7 +111,7 @@ export default function () {
 
     // Fix double scrollbar issue
     var _body = document.getElementsByTagName('body')[0];
-    _body.className = _body.className.replace(' card-modal-scroll-fix','');
+    _body.className = _body.className.replace(' fry-modal-scroll-fix','');
 
     // set focus back to the originating element
     var _origin = document.querySelector('[data-modal-origin]');

@@ -71,7 +71,7 @@ forEach(growl__closeButtons, function(index, value) {
   var _el = value;
   _el.addEventListener('click', function(e){
     // pass associated growl to method
-    var _g = getClosest(e.currentTarget, '.card-growl');
+    var _g = getClosest(e.currentTarget, '.fry-growl');
     growl__dismiss( _g );
   }, false);
 });
@@ -81,7 +81,7 @@ function growl__show(g){
   _growl.setAttribute('aria-hidden', 'false');
 
   // for Center Modal style only
-  if( growl__hasClass(_growl, 'card-growl--centered') ){
+  if( growl__hasClass(_growl, 'fry-growl--centered') ){
     // trap tabs inside of modal
     _growl.addEventListener('keydown', growl__trapTab);
     // Find all focusable children
@@ -109,9 +109,9 @@ function growl__showDelay(e){
 
 function growl__dismiss(g){
   var _growl = g;
-  _growl.className = _growl.className + ' card-growl--dismissing';
+  _growl.className = _growl.className + ' fry-growl--dismissing';
   _growl.addEventListener( growl__getAnimationString(_growl), growl__dismissDelay);
-  if( growl__hasClass(_growl, 'card-growl--centered') ){
+  if( growl__hasClass(_growl, 'fry-growl--centered') ){
     _growl.focus();
   }
 }
@@ -119,7 +119,7 @@ function growl__dismiss(g){
 function growl__dismissDelay(e){
   var _growl = e.target;
 
-  _growl.className = _growl.className.replace(' card-growl--dismissing','');
+  _growl.className = _growl.className.replace(' fry-growl--dismissing','');
   _growl.setAttribute('aria-hidden', 'true');
 
   var _origin = document.querySelector('[data-growl-origin]');

@@ -12,33 +12,33 @@ class Savings extends Component {
 
 	render() {
     return (
-      <div className={"card-section"}>
-        <div className={"card-section__bd"}>
+      <div className={"fry-section"}>
+        <div className={"fry-section__bd"}>
           <h1>How much could you save?</h1>
-          <div className={"card-grid"}>
-            <div className={"card-grid__1 card-grid__1/2@m"}>
+          <div className={"fry-grid"}>
+            <div className={"fry-grid__1 fry-grid__1/2@m"}>
               <p>
-                <div className={"card-box"}>
+                <div className={"fry-box"}>
                   <h1>First Label</h1>
                   <h1>$150</h1>
                 </div>
               </p>
               <p>
-                <div className={"card-box"}>
+                <div className={"fry-box"}>
                   <h1>Second Label</h1>
                   <h1>$800</h1>
                 </div>
               </p>
             </div>
-            <div className={"card-grid__1 card-grid__1/2@m"}>
+            <div className={"fry-grid__1 fry-grid__1/2@m"}>
               <p>
-                <div className={"card-box"}>
+                <div className={"fry-box"}>
                   <h1>Third Label</h1>
                   <h1>$50 a month</h1>
                 </div>
               </p>
               <p>
-                <div className={"card-box"}>
+                <div className={"fry-box"}>
                   <h1>Fourth Label</h1>
                   <h1>$2750</h1>
                 </div>

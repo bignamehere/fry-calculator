@@ -33,21 +33,21 @@ class Totals extends Component {
 
   render() {
     return (
-      <div className="card-grid card-grid--no-gutter">
+      <div className="fry-grid fry-grid--no-gutter">
         
-        <div className="card-grid__1/2 card-grid__1/4@m">
+        <div className="fry-grid__1/2 fry-grid__1/4@m">
           <CostTotal ref="costTotal" value={this.state.investment} label={this.state.investmentDisplayLabel} />
         </div>
 
-        <div className="card-grid__1/2 card-grid__1/4@m"> 
+        <div className="fry-grid__1/2 fry-grid__1/4@m"> 
           <DownPaymentTotal ref="downPaymentTotal" value={this.state.downpayment} label={this.state.downPaymentDisplayLabel} />
         </div>
         
-        <div className="card-grid__1/2 card-grid__1/4@m">
+        <div className="fry-grid__1/2 fry-grid__1/4@m">
           <MonthsTotal ref="monthsTotal" value={this.state.months} label={this.state.monthsDisplayLabel} />
         </div>
 
-        <div className="card-grid__1/2 card-grid__1/4@m">
+        <div className="fry-grid__1/2 fry-grid__1/4@m">
           <PaymentsTotal ref="paymentsTotal" value={this.state.payments} label={this.state.monthlyPaymentsDisplayLabel} />
         </div>
         

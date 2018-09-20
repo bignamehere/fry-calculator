@@ -21,7 +21,7 @@ var forEach = function (array, callback, scope) {
 forEach(whiteoutShow, function (index, value) {
   var _el = value;
   _el.addEventListener('click', function(e){
-    var _whiteout = document.getElementById('card-whiteout');
+    var _whiteout = document.getElementById('fry-whiteout');
     _whiteout.setAttribute('aria-hidden', 'false');
     _whiteout.setAttribute('aria-expanded', 'false');
   }, false);
@@ -30,7 +30,7 @@ forEach(whiteoutShow, function (index, value) {
 forEach(whiteoutDismiss, function (index, value) {
   var _el = value;
   _el.addEventListener('click', function(e){
-    var _whiteout = document.getElementById('card-whiteout');
+    var _whiteout = document.getElementById('fry-whiteout');
     _whiteout.setAttribute('aria-hidden', 'true');
     _whiteout.setAttribute('aria-expanded', 'true');
   }, false);

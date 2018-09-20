@@ -13,8 +13,8 @@
 // Disable functionality if class is present
 if (document.querySelectorAll('.docs__page').length == 0) {
 
-  var $menuItem = document.querySelectorAll('.card-nav-global__link--has-sub-menu');
-  var $main = document.querySelectorAll('.card-tophat, .card-header-app, #main-content, .card-footer');
+  var $menuItem = document.querySelectorAll('.fry-nav-global__link--has-sub-menu');
+  var $main = document.querySelectorAll('.fry-tophat, .fry-header-app, #main-content, .fry-footer');
 
   // Utility method to loop thru NodeList correctly
   var forEach = function (array, callback, scope) {
@@ -50,9 +50,9 @@ if (document.querySelectorAll('.docs__page').length == 0) {
   forEach($main, function (index, value) {
     var _el = value;
     _el.addEventListener('click', function (e) {
-      if (document.querySelector('.card-nav-global__link[aria-expanded="true"]')) {
-        document.querySelector('.card-nav-global__link[aria-expanded="true"]').setAttribute('aria-expanded', 'false');
-        document.querySelector('.card-nav-global__sub-menu[aria-hidden="false"]').setAttribute('aria-hidden', 'true');
+      if (document.querySelector('.fry-nav-global__link[aria-expanded="true"]')) {
+        document.querySelector('.fry-nav-global__link[aria-expanded="true"]').setAttribute('aria-expanded', 'false');
+        document.querySelector('.fry-nav-global__sub-menu[aria-hidden="false"]').setAttribute('aria-hidden', 'true');
       }
     });
   });
@@ -62,11 +62,11 @@ if (document.querySelectorAll('.docs__page').length == 0) {
     _el.addEventListener('click', function (e) {
 
       var $self = this;
-      var $component = getClosest($self, '.card-nav-global');
-      var $listItem = getClosest($self, '.card-nav-global__list-item');
-      var $target = $listItem.querySelector('.card-nav-global__sub-menu');
-      var $currentlyActiveTab = $component.querySelector('.card-nav-global__link[aria-expanded="true"]');
-      var $currentlyActiveFlyout = $component.querySelector('.card-nav-global__sub-menu[aria-hidden="false"]');
+      var $component = getClosest($self, '.fry-nav-global');
+      var $listItem = getClosest($self, '.fry-nav-global__list-item');
+      var $target = $listItem.querySelector('.fry-nav-global__sub-menu');
+      var $currentlyActiveTab = $component.querySelector('.fry-nav-global__link[aria-expanded="true"]');
+      var $currentlyActiveFlyout = $component.querySelector('.fry-nav-global__sub-menu[aria-hidden="false"]');
       var menuState = $self.getAttribute('aria-expanded');
       // $target.classList.add('OUTLINE');
 
@@ -97,9 +97,9 @@ if (document.querySelectorAll('.docs__page').length == 0) {
     });
 
     _el.addEventListener('focus', function (e) {
-      if (document.querySelector('.card-nav-global__link[aria-expanded="true"]')) {
-        document.querySelector('.card-nav-global__link[aria-expanded="true"]').setAttribute('aria-expanded', 'false');
-        document.querySelector('.card-nav-global__sub-menu[aria-hidden="false"]').setAttribute('aria-hidden', 'true');
+      if (document.querySelector('.fry-nav-global__link[aria-expanded="true"]')) {
+        document.querySelector('.fry-nav-global__link[aria-expanded="true"]').setAttribute('aria-expanded', 'false');
+        document.querySelector('.fry-nav-global__sub-menu[aria-hidden="false"]').setAttribute('aria-hidden', 'true');
       }
       console.log('you focused an item');
     });

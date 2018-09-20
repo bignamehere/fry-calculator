@@ -52,7 +52,7 @@ forEach(selectMulti__triggers, function(index, value) {
 
     var _check = e.target;
     //var _parent = el.closest('ry-select-multi');
-    var _parent = getClosest(_el, '.card-select-multi');
+    var _parent = getClosest(_el, '.fry-select-multi');
     var _selectAll = _parent.querySelector('[data-behavior~="select-multi-all"]');
 
     if(_el != _selectAll){
@@ -98,8 +98,8 @@ function selectMulti__setState(){
   forEach(_selectAll, function (index, value) {
 
     //console.log(typeof value);
-    //var _parent = value.closest('.card-select-multi');
-    var _parent = getClosest(value, '.card-select-multi');
+    //var _parent = value.closest('.fry-select-multi');
+    var _parent = getClosest(value, '.fry-select-multi');
     var _selectAll = value;
 
     var _len = _parent.querySelectorAll('[data-behavior~="select-multi"]').length;

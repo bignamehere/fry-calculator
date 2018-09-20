@@ -7,7 +7,7 @@ import Lock from '../../components/Toggle/Lock/lock';
 import Modal from 'react-responsive-modal';
 import Instructions from '../../components/Instructions/instructions';
 
-import logo from '../../../img/cardinal-logo-white.png';
+import logo from '../../../img/fry-logo-w.png';
 import './payment.scss';
 
 
@@ -512,22 +512,22 @@ class Payment extends Component {
             <p className="modal-custom__content">
               {this.state.discountPopupContent}
             </p>
-            <div className="card-grid">
-              <div className="card-grid__1/1 card-grid__auto@m">
+            <div className="fry-grid">
+              <div className="fry-grid__1/1 fry-grid__auto@m">
                 <h1 className="modal-custom__content-centered">{this.state.discountPriceLabel} ${this.state.investment - Math.round(this.state.investment*.1)}</h1>
               </div>
-              <div className="card-grid__1/1 card-grid__1/4@m modal-custom__logo">
+              <div className="fry-grid__1/1 fry-grid__1/4@m modal-custom__logo">
                 <img src={logo} className="logo" alt="Fry Orthodontics Logo" />
               </div>
             </div>
           
           </Modal>
           
-          <div className="card-grid app-knob-container">
+          <div className="fry-grid app-knob-container">
 
-            <div className="card-grid__1/1 card-grid__1/12@m"></div>
+            <div className="fry-grid__1/1 fry-grid__1/12@m"></div>
 
-            <div className="card-grid__1/1 card-grid__3/12@m">
+            <div className="fry-grid__1/1 fry-grid__3/12@m">
               <div className="knob-container">
 
                 <FryKnob ref="dpKnob"
@@ -554,7 +554,7 @@ class Payment extends Component {
 
               </div>
             </div>
-            <div className="card-grid__1/1 card-grid__4/12@m">
+            <div className="fry-grid__1/1 fry-grid__4/12@m">
               <div className="knob-container">
 
                 <FryKnob ref="mpKnob"
@@ -581,7 +581,7 @@ class Payment extends Component {
 
               </div>
             </div>
-            <div className="card-grid__1/1 card-grid__3/12@m">
+            <div className="fry-grid__1/1 fry-grid__3/12@m">
               <div className="knob-container">
               
                 <FryKnob ref="mKnob"
@@ -609,9 +609,9 @@ class Payment extends Component {
               </div>
             </div>
 
-          <div className="card-grid__1/1 card-grid__1/12@m"></div>
+          <div className="fry-grid__1/1 fry-grid__1/12@m"></div>
           
-          <div className="card-grid__1/1 instructions-spacing">
+          <div className="fry-grid__1/1 instructions-spacing">
             <Instructions
               ref="instructions"
               dpAmount={this.state.zeroMonthsDownPaymentMin}
@@ -619,7 +619,7 @@ class Payment extends Component {
             />
           </div>
 
-          <div className="card-grid__1/1">
+          <div className="fry-grid__1/1">
             <Totals ref="display"/>
           </div>
           
