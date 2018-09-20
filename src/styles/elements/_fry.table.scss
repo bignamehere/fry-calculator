@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////
 // Table
 
-$table-bgc:          $color-card-white;
-$table-header-bgc:   $color-card-tertiary-100;
-$table-border-color: $color-card-tertiary-200;
+$table-bgc:          $color-fry-white;
+$table-header-bgc:   $color-fry-tertiary-100;
+$table-border-color: $color-fry-tertiary-200;
 $table-padding:      $size-default;
 
 table {
@@ -20,7 +20,7 @@ caption {
   caption-side: bottom;
   text-align: left;
   margin-top: .5em;
-  color: $color-card-tertiary-300;
+  color: $color-fry-tertiary-300;
   font-weight: $font-bold;
 }
 
@@ -53,7 +53,7 @@ th {
 
 }
 
-.card-table {
+.fry-table {
 
   background-color: $table-bgc;
 

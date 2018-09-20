@@ -1,4 +1,4 @@
-.card-whiteout {
+.fry-whiteout {
 
   position: fixed;
   left: 0;
@@ -7,7 +7,7 @@
   bottom: 0;
   visibility: hidden;
   opacity: 0;
-  background-color: transparentize($color-card-tertiary-900, .4);
+  background-color: transparentize($color-fry-tertiary-900, .4);
 
   &[aria-hidden="false"] {
     visibility: visible;

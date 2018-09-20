@@ -3,17 +3,17 @@
 
 // TODO: so much of this is repeatable, convert to mixin sometime!
 
-.card-sr-only,
+.fry-sr-only,
 .sr-only {
   @include sr-only(); // mixin from USWDS
 }
 
-.card-email-string {
+.fry-email-string {
   word-break: break-all;
   overflow-wrap: break-word;
 }
 
-.card {
+.fry {
 
   // scss-lint:disable ImportantRule SpaceBeforeBrace DeclarationOrder
 
@@ -182,7 +182,7 @@
   // Text ----------------------------------------------------------------------
 
   &-ellipsis {
-    @include card-ellipsis();
+    @include fry-ellipsis();
   }
 
   &-text {

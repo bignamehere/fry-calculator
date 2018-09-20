@@ -1,7 +1,7 @@
-.card-box {
-  color: $color-card-tertiary;;
-  $box-bgcolor-default: $color-card-tan;
-  $box-border-color: $color-card-tertiary-100;
+.fry-box {
+  color: $color-white;
+  $box-bgcolor-default: $color-fry-green;
+  $box-border-color: $color-fry-tertiary-100;
   $box-padding: $size-medium;
 
   border: 1px solid $box-border-color;
@@ -19,7 +19,7 @@
   }
 
   &__title {
-    
+    color: $color-white;
     @include h2();
     font-family: $font-sans;
     margin-top: 0;
@@ -27,40 +27,38 @@
 
     display: block;
     flex: 1;
-    border-bottom: 1px solid $color-card-navy;
-    color: $color-card-tertiary;;
+    border-bottom: 1px solid $color-white;
   }
 
   &__title-bold {
-    background-color: $color-card-tan;
+    background-color: #365e63;
     font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica";
     font-weight: 500;
-    color: $color-card-tertiary;;
   }
 
   &__content {
-    color: $color-card-tertiary;;
+    color: $color-white;
   }
 
   &__content--m {
     @include h3();
     padding: 0;
     font-family: $font-sans;
-    color: $color-card-tertiary;;
+    color: $color-white;
   }
 
   &__content--lg {
     font-size: $font-size-7;
     padding: 0;
     font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica";
-    color: $color-card-tertiary;;
+    color: $color-white;
   }
 
   &__content--xlg {
     font-size: $font-size-7 * 1.5;
     padding: 0;
     font-family: "Source Sans Pro", "Helvetica Neue", "Helvetica";
-    color: $color-card-tertiary;;
+    color: $color-white;
   }
 
   &__centered {

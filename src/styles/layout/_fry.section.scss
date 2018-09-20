@@ -1,4 +1,4 @@
-.card-section {
+.fry-section {
 
   padding-left: $size-default;
   padding-right: $size-default;
@@ -8,12 +8,12 @@
   border-bottom: 1px solid transparent;
   */
   &--contrast {
-    background-color: $color-card-tertiary-100;
+    background-color: $color-fry-tertiary-100;
   }
 
   &--light {
-    $bc: shade($color-card-tertiary-100, 5%);
-    background-color: $color-card-white;
+    $bc: shade($color-fry-tertiary-100, 5%);
+    background-color: $color-fry-white;
     border-top-color: $bc;
     border-bottom-color: $bc;
   }

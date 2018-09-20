@@ -1,4 +1,4 @@
-.card-select-multi {
+.fry-select-multi {
 
   &__list {
 
@@ -8,10 +8,10 @@
     padding: $size-base 0;
     border: 1px solid $form-outline-color;
     border-radius: $form-border-radius;
-    background-color: $color-card-white;
+    background-color: $color-fry-white;
 
     // scss-lint:disable SelectorFormat
-    .card-select-multi--disabled & {
+    .fry-select-multi--disabled & {
       background-color: $form-disabled-bg-color;
       color: $form-text-color-disabled;
     }
@@ -23,7 +23,7 @@
     overflow: auto;
     max-height: 190px;
     padding: $size-base 0 0 ($size-base * 2);
-    background-color: $color-card-white;
+    background-color: $color-fry-white;
 
   }
 
@@ -35,10 +35,10 @@
 
     &:hover {
 
-      background-color: tint($color-card-tertiary, 94%);
+      background-color: tint($color-fry-tertiary, 94%);
 
       // scss-lint:disable SelectorFormat
-      .card-select-multi--disabled & {
+      .fry-select-multi--disabled & {
         background-color: $form-disabled-bg-color;
       }
 
@@ -52,7 +52,7 @@
 
     padding: $size-base 0;
 
-    .card-select-multi__check + & {
+    .fry-select-multi__check + & {
       display: block;
     }
 

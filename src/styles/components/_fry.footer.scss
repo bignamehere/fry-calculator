@@ -1,6 +1,6 @@
-.card-footer {
+.fry-footer {
 
-  $bgcolor: $color-card-tertiary-300;
+  $bgcolor: $color-fry-tertiary-300;
 
   padding-left: $size-default;
   padding-right: $size-default;
@@ -45,7 +45,7 @@
 
     @include breakpoint(L) {
       border-top: 0;
-      border-left: 1px solid tint($color-card-tertiary, 50%);
+      border-left: 1px solid tint($color-fry-tertiary, 50%);
       padding-left: $size-large;
     }
 
@@ -76,7 +76,7 @@
 
   &__secondary-list {
 
-    border-top: 1px solid tint($color-card-tertiary, 50%);
+    border-top: 1px solid tint($color-fry-tertiary, 50%);
     padding-top: $size-large;
 
     @include breakpoint(L) {

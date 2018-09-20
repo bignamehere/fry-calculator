@@ -3,7 +3,7 @@
 
 // scss-lint:disable PropertySpelling
 
-@mixin card-grid-row() {
+@mixin fry-grid-row() {
   letter-spacing: -.31em;
   *letter-spacing: normal;
   *word-spacing: -.43em;
@@ -12,10 +12,10 @@
   display: flex;
   flex-flow: row wrap;
   align-content: flex-start;
-  margin-left: -$card-grid-gutter;
+  margin-left: -$fry-grid-gutter;
 }
 
-@mixin card-grid-column() {
+@mixin fry-grid-column() {
 
   display: inline-block;
   *display: inline;
@@ -24,104 +24,104 @@
   word-spacing: normal;
   vertical-align: top;
   text-rendering: auto;
-  padding-left: $card-grid-gutter;
+  padding-left: $fry-grid-gutter;
 
   // scss-lint:disable SelectorFormat
-  .card-grid--no-gutter & {
+  .fry-grid--no-gutter & {
     padding-left: 0;
   }
 
 }
 
-@mixin card-grid-column-width($numerator, $denominator: $card-grid-columns) {
+@mixin fry-grid-column-width($numerator, $denominator: $fry-grid-columns) {
   width: ($numerator / $denominator) * 100%;
 }
 
-@mixin card-grid($namespace: '') {
+@mixin fry-grid($namespace: '') {
 
-  .card-grid__auto#{$namespace} {
-    @include card-grid-column();
+  .fry-grid__auto#{$namespace} {
+    @include fry-grid-column();
     flex: 1;
   }
 
-  .card-grid__1#{$namespace},
-  .card-grid__1\/1#{$namespace},
-  .card-grid__1\/12#{$namespace},
-  .card-grid__1\/2#{$namespace},
-  .card-grid__1\/3#{$namespace},
-  .card-grid__1\/4#{$namespace},
-  .card-grid__1\/6#{$namespace},
-  .card-grid__10\/12#{$namespace},
-  .card-grid__11\/12#{$namespace},
-  .card-grid__12\/12#{$namespace},
-  .card-grid__2\/12#{$namespace},
-  .card-grid__2\/3#{$namespace},
-  .card-grid__3\/12#{$namespace},
-  .card-grid__3\/4#{$namespace},
-  .card-grid__4\/12#{$namespace},
-  .card-grid__5\/12#{$namespace},
-  .card-grid__5\/6#{$namespace},
-  .card-grid__6\/12#{$namespace},
-  .card-grid__7\/12#{$namespace},
-  .card-grid__8\/12#{$namespace},
-  .card-grid__9\/12#{$namespace} {
-    @include card-grid-column();
+  .fry-grid__1#{$namespace},
+  .fry-grid__1\/1#{$namespace},
+  .fry-grid__1\/12#{$namespace},
+  .fry-grid__1\/2#{$namespace},
+  .fry-grid__1\/3#{$namespace},
+  .fry-grid__1\/4#{$namespace},
+  .fry-grid__1\/6#{$namespace},
+  .fry-grid__10\/12#{$namespace},
+  .fry-grid__11\/12#{$namespace},
+  .fry-grid__12\/12#{$namespace},
+  .fry-grid__2\/12#{$namespace},
+  .fry-grid__2\/3#{$namespace},
+  .fry-grid__3\/12#{$namespace},
+  .fry-grid__3\/4#{$namespace},
+  .fry-grid__4\/12#{$namespace},
+  .fry-grid__5\/12#{$namespace},
+  .fry-grid__5\/6#{$namespace},
+  .fry-grid__6\/12#{$namespace},
+  .fry-grid__7\/12#{$namespace},
+  .fry-grid__8\/12#{$namespace},
+  .fry-grid__9\/12#{$namespace} {
+    @include fry-grid-column();
   }
 
-  .card-grid__1\/12#{$namespace} {
-    @include card-grid-column-width(1);
+  .fry-grid__1\/12#{$namespace} {
+    @include fry-grid-column-width(1);
   }
 
-  .card-grid__1\/6#{$namespace},
-  .card-grid__2\/12#{$namespace} {
-    @include card-grid-column-width(2);
+  .fry-grid__1\/6#{$namespace},
+  .fry-grid__2\/12#{$namespace} {
+    @include fry-grid-column-width(2);
   }
 
-  .card-grid__1\/4#{$namespace},
-  .card-grid__3\/12#{$namespace} {
-    @include card-grid-column-width(3);
+  .fry-grid__1\/4#{$namespace},
+  .fry-grid__3\/12#{$namespace} {
+    @include fry-grid-column-width(3);
   }
 
-  .card-grid__1\/3#{$namespace},
-  .card-grid__4\/12#{$namespace} {
-    @include card-grid-column-width(4);
+  .fry-grid__1\/3#{$namespace},
+  .fry-grid__4\/12#{$namespace} {
+    @include fry-grid-column-width(4);
   }
 
-  .card-grid__5\/12#{$namespace} {
-    @include card-grid-column-width(5);
+  .fry-grid__5\/12#{$namespace} {
+    @include fry-grid-column-width(5);
   }
 
-  .card-grid__1\/2#{$namespace},
-  .card-grid__6\/12#{$namespace} {
-    @include card-grid-column-width(6);
+  .fry-grid__1\/2#{$namespace},
+  .fry-grid__6\/12#{$namespace} {
+    @include fry-grid-column-width(6);
   }
 
-  .card-grid__7\/12#{$namespace} {
-    @include card-grid-column-width(7);
+  .fry-grid__7\/12#{$namespace} {
+    @include fry-grid-column-width(7);
   }
 
-  .card-grid__2\/3#{$namespace},
-  .card-grid__8\/12#{$namespace} {
-    @include card-grid-column-width(8);
+  .fry-grid__2\/3#{$namespace},
+  .fry-grid__8\/12#{$namespace} {
+    @include fry-grid-column-width(8);
   }
 
-  .card-grid__3\/4#{$namespace},
-  .card-grid__9\/12#{$namespace} {
-    @include card-grid-column-width(9);
+  .fry-grid__3\/4#{$namespace},
+  .fry-grid__9\/12#{$namespace} {
+    @include fry-grid-column-width(9);
   }
 
-  .card-grid__10\/12#{$namespace},
-  .card-grid__5\/6#{$namespace} {
-    @include card-grid-column-width(10);
+  .fry-grid__10\/12#{$namespace},
+  .fry-grid__5\/6#{$namespace} {
+    @include fry-grid-column-width(10);
   }
-  .card-grid__11\/12#{$namespace} {
-    @include card-grid-column-width(11);
+  .fry-grid__11\/12#{$namespace} {
+    @include fry-grid-column-width(11);
   }
 
-  .card-grid__1#{$namespace},
-  .card-grid__1\/1#{$namespace},
-  .card-grid__12\/12#{$namespace} {
-    @include card-grid-column-width(12);
+  .fry-grid__1#{$namespace},
+  .fry-grid__1\/1#{$namespace},
+  .fry-grid__12\/12#{$namespace} {
+    @include fry-grid-column-width(12);
   }
 
 }
@@ -322,23 +322,23 @@ $breakpoints: (
 
 // -----------------------------------------------------------------------------
 // Space between form elements
-@mixin card-space-between() {
+@mixin fry-space-between() {
   // scss-lint:disable UnnecessaryParentReference
-  & + .card-select,
+  & + .fry-select,
   & + .form-text,
-  & + .card-btn {
+  & + .fry-btn {
     margin-left: $form-between-space;
   }
-  & + .card-btn--flat {
+  & + .fry-btn--flat {
     margin-left: ($form-between-space * 2);
   }
 }
 
 // -----------------------------------------------------------------------------
 // Shared properties between select and input text elements
-@mixin card-shared-form-properties() {
+@mixin fry-shared-form-properties() {
 
-  @include card-space-between();
+  @include fry-space-between();
 
   appearance: none;
   display: inline-block;
@@ -361,7 +361,7 @@ $breakpoints: (
 
   &[readonly] {
 
-    background-color: $color-card-site-bg;
+    background-color: $color-fry-site-bg;
     cursor: default;
 
     &:focus {
@@ -395,7 +395,7 @@ $breakpoints: (
 
 // -----------------------------------------------------------------------------
 // Dot dot dot por favor
-@mixin card-ellipsis {
+@mixin fry-ellipsis {
   max-width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -408,9 +408,9 @@ $breakpoints: (
 
 @mixin overflow-gradient(
     // Defaults:
-    $bgAll: $color-card-site-bg,
+    $bgAll: $color-fry-site-bg,
     $bgEdge: transparent,
-    $bgShadow: transparentize($color-card-tertiary, .7),
+    $bgShadow: transparentize($color-fry-tertiary, .7),
     $size: $size-large
   ) {
 
@@ -450,7 +450,7 @@ $breakpoints: (
 
 // -----------------------------------------------------------------------------
 // button reset ?
-@mixin card-button-reset {
+@mixin fry-button-reset {
   text-align: left;
   appearance: none;
   margin: 0;

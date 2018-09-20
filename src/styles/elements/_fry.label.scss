@@ -1,15 +1,15 @@
 $label-spacing: ($size-base - .1rem);
 
-$label-text-color: $color-card-white;
+$label-text-color: $color-fry-white;
 $label-text-color-warning: $color-black;
 
-$label-bgc: $color-card-tertiary-300;
-$label-bgc-general: $color-card-secondary-900;
-$label-bgc-alert: $color-card-red;
+$label-bgc: $color-fry-tertiary-300;
+$label-bgc-general: $color-fry-secondary-900;
+$label-bgc-alert: $color-fry-red;
 $label-bgc-warning: $color-gold-light;
-$label-bgc-success: $color-card-primary;
+$label-bgc-success: $color-fry-primary;
 
-.card-label {
+.fry-label {
 
   @include font-size(0);
   @include reset-button();
@@ -89,8 +89,8 @@ $label-bgc-success: $color-card-primary;
 }
 
 // scss-lint:disable QualifyingElement
-button.card-label,
-a.card-label {
+button.fry-label,
+a.fry-label {
 
   cursor: pointer;
 
@@ -98,7 +98,7 @@ a.card-label {
   &:focus,
   &:active {
     color: $label-text-color !important;
-    background-color: $color-card-aqua-900;
+    background-color: $color-fry-aqua-900;
   }
 
 }

@@ -1,7 +1,7 @@
-.card-header-app {
+.fry-header-app {
 
-  $component-bgcolor: $color-card-maroon;
-  $component-text-color: $color-card-white;
+  $component-bgcolor: $color-fry-primary;
+  $component-text-color: $color-fry-white;
   $component-spacing: $size-small;
 
   background-color: $component-bgcolor;
@@ -70,7 +70,7 @@
 
   &__profile-name {
 
-    @include card-ellipsis();
+    @include fry-ellipsis();
     display: inline-block;
     max-width: ($size-base * 32);
 
@@ -82,7 +82,7 @@
       max-width: ($size-base * 55);
     }
 
-    .card-header-app__profile-link:hover & {
+    .fry-header-app__profile-link:hover & {
       text-decoration: none;//underline;
     }
 
@@ -107,12 +107,12 @@
 
     text-decoration: none;
     display: inline-block;
-    color: $color-card-white;
+    color: $color-fry-white;
 
     &:visited,
     &:active,
     &:hover {
-      color: $color-card-white;
+      color: $color-fry-white;
     }
 
     &:hover {
@@ -139,7 +139,7 @@
 
     font-weight: $font-bold;
 
-    .card-header-app__home-link:hover & {
+    .fry-header-app__home-link:hover & {
       border-bottom: 1px solid $component-text-color;
       cursor: pointer;
     }
@@ -156,7 +156,7 @@
         font-weight: $font-light;
       }
 
-      .card-header-app__home-link:hover & {
+      .fry-header-app__home-link:hover & {
         border-bottom: 1px solid $component-bgcolor;
       }
 
@@ -173,7 +173,7 @@
       display: inline;
     }
 
-    .card-header-app__home-link:hover & {
+    .fry-header-app__home-link:hover & {
       border-bottom: 1px solid $component-text-color;
     }
 

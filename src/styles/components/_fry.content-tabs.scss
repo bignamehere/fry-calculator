@@ -1,15 +1,15 @@
-.card-content-tabs {
+.fry-content-tabs {
 
   $tab-padding: $size-small;
 
   @include overflow-gradient();
 
   &--light {
-    @include overflow-gradient( $bgAll: #ffffff, $bgShadow: $color-card-tertiary-100 );
+    @include overflow-gradient( $bgAll: #ffffff, $bgShadow: $color-fry-tertiary-100 );
   }
 
   &--contrast {
-    @include overflow-gradient( $bgAll: $color-card-tertiary-100 );
+    @include overflow-gradient( $bgAll: $color-fry-tertiary-100 );
   }
 
   display: flex;
@@ -42,13 +42,13 @@
     }
 
     // scss-lint:disable SelectorFormat
-    .card-content-tabs--justified & {
+    .fry-content-tabs--justified & {
       @include breakpoint(L) {
         width: 100%;
       }
     }
 
-    .card-content-tabs--justified-equal & {
+    .fry-content-tabs--justified-equal & {
       @include breakpoint(L) {
         width: 100%;
         table-layout: fixed;
@@ -62,11 +62,11 @@
 
     display: block;
     flex: 1;
-    border-bottom: 1px solid $color-card-tertiary-200;
+    border-bottom: 1px solid $color-fry-tertiary-200;
 
     // scss-lint:disable SelectorFormat
-    .card-content-tabs--justified &,
-    .card-content-tabs--justified-equal & {
+    .fry-content-tabs--justified &,
+    .fry-content-tabs--justified-equal & {
       @include breakpoint(L) {
         display: none;
       }
@@ -79,7 +79,7 @@
     display: flex;
     display: table-cell;
     vertical-align: bottom;
-    border-bottom: 1px solid $color-card-tertiary-200;
+    border-bottom: 1px solid $color-fry-tertiary-200;
 
   }
 
@@ -91,7 +91,7 @@
     width: 100%;
     text-decoration: none;
     text-align: center;
-    color: $color-card-tertiary;
+    color: $color-fry-tertiary;
     padding-right: $tab-padding;
     padding-left: $tab-padding;
     white-space: nowrap;
@@ -113,14 +113,14 @@
       padding-left: ($tab-padding * 2);
     }
 
-    .card-content-tabs__item:first-child & {
+    .fry-content-tabs__item:first-child & {
       padding-left: 0;
       @include breakpoint(L) {
         padding-left: 0;
       }
     }
 
-    .card-content-tabs__item:last-child & {
+    .fry-content-tabs__item:last-child & {
       @include breakpoint(L) {
         padding-right: 0;
       }
@@ -128,7 +128,7 @@
 
     &:link,
     &:visited {
-      color: $color-card-tertiary;
+      color: $color-fry-tertiary;
     }
 
     &:focus {
@@ -146,7 +146,7 @@
     }
 
     // scss-lint:disable SelectorFormat
-    .card-content-tabs--justified & {
+    .fry-content-tabs--justified & {
       @include breakpoint(L) {
         padding-left: ($tab-padding / 2);
         padding-right: ($tab-padding / 2);
@@ -164,22 +164,22 @@
 
     &:hover,
     &:focus {
-      box-shadow: 0 (-$size-base / 2) 0 0 $color-card-tertiary-300 inset;
+      box-shadow: 0 (-$size-base / 2) 0 0 $color-fry-tertiary-300 inset;
     }
 
     // scss-lint:disable SelectorFormat
-    .card-content-tabs__label--active & {
-      box-shadow: 0 (-$size-base) 0 0 $color-card-secondary inset;
+    .fry-content-tabs__label--active & {
+      box-shadow: 0 (-$size-base) 0 0 $color-fry-secondary inset;
     }
 
-    .card-content-tabs__label--small & {
+    .fry-content-tabs__label--small & {
       padding-top: ($tab-padding - $size-base);
       padding-bottom: $tab-padding;
     }
 
-    .card-content-tabs__label--unsaved &:after {
+    .fry-content-tabs__label--unsaved &:after {
       content: '\2022';
-      color: $color-card-red;
+      color: $color-fry-red;
       font-size: 24px;
       line-height: 1;
       position: absolute;
@@ -191,8 +191,8 @@
 
 }
 
-.card-content-tabs__label:hover .card-content-tabs__label-text,
-.card-content-tabs__label:focus .card-content-tabs__label-text {
+.fry-content-tabs__label:hover .fry-content-tabs__label-text,
+.fry-content-tabs__label:focus .fry-content-tabs__label-text {
   outline: none;
-  box-shadow: 0 (-$size-base / 2) 0 0 $color-card-tertiary-300 inset;
+  box-shadow: 0 (-$size-base / 2) 0 0 $color-fry-tertiary-300 inset;
 }

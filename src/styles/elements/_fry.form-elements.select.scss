@@ -1,9 +1,9 @@
 ////////////////////////////////////////////////////////////////////////
 // Select
 
-.card-select {
+.fry-select {
 
-  @include card-shared-form-properties();
+  @include fry-shared-form-properties();
 
   background-image: url('#{$image-path}/arrow-down.png');
   background-image: url('#{$image-path}/arrow-down.svg');
@@ -70,7 +70,7 @@
       padding: ($form-padding / 2) $form-padding;
       &:hover {
         cursor: pointer;
-        background-color: $color-card-tertiary-100;
+        background-color: $color-fry-tertiary-100;
       }
     }
 

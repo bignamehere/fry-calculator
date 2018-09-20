@@ -7,7 +7,7 @@ p {
 a {
 
   &:visited {
-    color: $color-card-link;
+    color: $color-fry-link;
   }
 
   // &:hover,
@@ -15,7 +15,7 @@ a {
 
   &:hover {
 
-    $text-color: $color-card-link-hover;
+    $text-color: $color-fry-link-hover;
 
     color: $text-color;
 
@@ -63,7 +63,7 @@ h1,
   margin-top: 0;
   margin-bottom: 0;
 
-  .card-section__bd > & {
+  .fry-section__bd > & {
     margin-top: $size-large;
   }
 
@@ -97,8 +97,8 @@ h6,
 }
 
 // scss-lint:disable SelectorFormat
-.card-text--lead,
-.card-font-lead,
+.fry-text--lead,
+.fry-font-lead,
 .usa-font-lead {
   font-weight: $font-light;
   font-size: $lead-font-size;

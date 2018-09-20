@@ -5,55 +5,55 @@ $button-height            : 3.9rem; // 39px
 $button-height--sm        : 3rem; // 30px
 $button-height--lg        : 4.8rem;
 $button-padding           : $size-default;
-$button-text              : $color-card-white;
+$button-text              : $color-fry-white;
 $button-line-height       : 1;
 $button-border-radius     : .4rem;
 $button-font-family       : $font-sans;
 $button-font-weight       : $font-normal;
 $button-font-size         : $font-size-3;
 
-$button-default           : $color-card-secondary;
+$button-default           : $color-fry-secondary;
 $button-default-text      : $button-text;
 $button-default-hover     : shade($button-default, 25%);
 $button-default-active    : shade($button-default, 55%);
 
-$button-primary           : $color-card-secondary;
+$button-primary           : $color-fry-secondary;
 $button-primary-text      : $button-text;
 $button-primary-hover     : shade($button-primary, 25%);
 $button-primary-active    : shade($button-primary, 45%);
 
-$button-secondary        : $color-card-tertiary;
+$button-secondary        : $color-fry-tertiary;
 $button-secondary-text   : $button-text;
 $button-secondary-hover  : shade($button-secondary, 25%);
 $button-secondary-active : shade($button-secondary, 45%);
 
-$button-tertiary        : $color-card-red;
+$button-tertiary        : $color-fry-red;
 $button-tertiary-text   : $button-text;
 $button-tertiary-hover  : shade($button-secondary, 25%);
 $button-tertiary-active : shade($button-secondary, 45%);
 
-$button-alt              : $color-card-white;
-$button-alt-text         : $color-card-secondary;
+$button-alt              : $color-fry-white;
+$button-alt-text         : $color-fry-secondary;
 $button-alt-hover        : shade($button-alt, 5%);
-$button-alt-active       : $color-card-secondary;
-$button-alt-border       : $color-card-secondary;
+$button-alt-active       : $color-fry-secondary;
+$button-alt-border       : $color-fry-secondary;
 $button-alt-border-width : 1px;
 
 $button-flat-padding     : 0;
 $button-flat             : transparent;
-$button-flat-text        : $color-card-link;
+$button-flat-text        : $color-fry-link;
 $button-flat-hover       : transparent;
 $button-flat-active      : transparent;
 $button-flat-border      : transparent;
 $button-flat-border-width: 1px;
 
-@mixin card-button($variation: default) {
+@mixin fry-button($variation: default) {
 
   white-space: nowrap;
 
   @if $variation == 'default' {
 
-    @include card-space-between();
+    @include fry-space-between();
 
     // -------------------------------------------------------------------------
     // reset
@@ -282,8 +282,8 @@ $button-flat-border-width: 1px;
     // scss-lint:disable ImportantRule
     text-decoration: underline !important;
 
-    &:not(.card-btn-small),
-    &:not(.card-btn-large) {
+    &:not(.fry-btn-small),
+    &:not(.fry-btn-large) {
       padding-right: $button-flat-padding;
       padding-left: $button-flat-padding;
     }
@@ -297,7 +297,7 @@ $button-flat-border-width: 1px;
     }
 
     &:hover:not([disabled]) {
-      color: $color-card-link-hover;
+      color: $color-fry-link-hover;
       background-color: $button-flat-hover;
     }
 
@@ -320,19 +320,19 @@ $button-flat-border-width: 1px;
 
 }
 
-.card-btn {
+.fry-btn {
 
-  @include card-button(default);
+  @include fry-button(default);
 
   // scss-lint:disable all
 
-  &--primary   { @include card-button(primary);   }
-  &--secondary { @include card-button(secondary); }
-  &--tertiary  { @include card-button(tertiary);  }
-  &--alt       { @include card-button(alt);       }
-  &--block     { @include card-button(block);     }
-  &--small     { @include card-button(small);     }
-  &--large     { @include card-button(large);     }
-  &--flat      { @include card-button(flat);      }
+  &--primary   { @include fry-button(primary);   }
+  &--secondary { @include fry-button(secondary); }
+  &--tertiary  { @include fry-button(tertiary);  }
+  &--alt       { @include fry-button(alt);       }
+  &--block     { @include fry-button(block);     }
+  &--small     { @include fry-button(small);     }
+  &--large     { @include fry-button(large);     }
+  &--flat      { @include fry-button(flat);      }
 
 }

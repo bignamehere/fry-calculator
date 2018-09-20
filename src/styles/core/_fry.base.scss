@@ -1,6 +1,6 @@
 /* FRY-specific overrides/additions */
 
-.card-browser-upgrade {
+.fry-browser-upgrade {
   background-color: $color-gold-lighter;
   margin: 0;
   padding: $size-small $size-default;
@@ -9,9 +9,9 @@
 }
 
 body {
-  background-color: $color-card-site-bg;
+  background-color: $color-fry-site-bg;
   line-height: $base-line-height;
-  color: $color-card-base;
+  color: $color-fry-base;
 }
 
 main:focus {
@@ -26,12 +26,12 @@ var,
 tt {
 
   font-size: 90%;
-  color: $color-card-red-900;
+  color: $color-fry-red-900;
   font-family: $font-mono;
   border-radius: 2px;
-  background-color: $color-card-site-bg;
+  background-color: $color-fry-site-bg;
   padding: ($size-base / 2);
-  // border: 1px solid $color-card-tertiary-200;
+  // border: 1px solid $color-fry-tertiary-200;
 
   code {
     border: 0;
@@ -80,7 +80,7 @@ blockquote {
   margin: 0;
   font-family: $font-serif;
   padding-left: $size-default;
-  border-left: $size-base solid $color-card-tertiary-200;
+  border-left: $size-base solid $color-fry-tertiary-200;
   max-width: $text-max-width;
 
   @include breakpoint(L) {
@@ -96,7 +96,7 @@ hr {
   margin-bottom: 2em;
   border: 0;
   height: 1px;
-  background: $color-card-tertiary-200;
+  background: $color-fry-tertiary-200;
 }
 
 form,

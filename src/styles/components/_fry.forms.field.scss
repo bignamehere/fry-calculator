@@ -1,10 +1,10 @@
-.card-field {
+.fry-field {
 
   position: relative;
   margin-bottom: 1em;
 
   @include breakpoint(M) {
-    max-width: $card-form-width;
+    max-width: $fry-form-width;
   }
 
   // Pseudos ------------------------------------------------------------------
@@ -32,13 +32,13 @@
     font-style: italic;
     font-weight: $font-normal;
     float: right;
-    color: $color-card-tertiary-300;
+    color: $color-fry-tertiary-300;
   }
 
   &__help {
     margin-top: $size-base;
     display: block;
-    color: $color-card-tertiary-300;
+    color: $color-fry-tertiary-300;
     font-size: $form-text-size--sm;
   }
 
@@ -59,7 +59,7 @@
     }
 
     // scss-lint:disable SelectorFormat
-    .card-field--error & {
+    .fry-field--error & {
       max-height: 120px;
       opacity: 1;
     }
@@ -85,7 +85,7 @@
 
     &--medium {
       @include breakpoint(M) {
-        max-width: ($card-form-width / 2);
+        max-width: ($fry-form-width / 2);
       }
     }
 
@@ -105,7 +105,7 @@
       @include breakpoint(M) {
         top: -4px;
         bottom: -6px;
-        background-color: $color-card-red;
+        background-color: $color-fry-red;
       }
 
     }

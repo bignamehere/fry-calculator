@@ -1,10 +1,10 @@
 ////////////////////////////////////////////////////////////////////////
 // Text Fields
 
-.card-input,
-.card-textarea {
+.fry-input,
+.fry-textarea {
 
-  @include card-shared-form-properties();
+  @include fry-shared-form-properties();
 
   // scss-lint:disable TrailingSemicolon SpaceAfterPropertyColon
   padding:
@@ -74,7 +74,7 @@
 
 }
 
-.card-textarea {
+.fry-textarea {
 
   min-height: 15rem;
   display: block;

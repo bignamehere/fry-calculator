@@ -1,6 +1,6 @@
 // scss-lint:disable EmptyRule
 
-.card-btn-group {
+.fry-btn-group {
 
   display: inline-block;
   white-space: nowrap;
@@ -19,32 +19,32 @@
 
   &__item {
 
-    @include card-button;
-    @include card-button(alt);
+    @include fry-button;
+    @include fry-button(alt);
 
     & + & {
 
       margin-left: -5px;
 
       // scss-lint:disable SelectorFormat
-      .card-btn-group--block & {
+      .fry-btn-group--block & {
         margin-left: -1px;
       }
 
     }
 
     // scss-lint:disable SelectorFormat
-    .card-btn-group--block & {
+    .fry-btn-group--block & {
       flex: auto;
     }
 
     // scss-lint:disable SelectorFormat
-    .card-btn-group--small & { @include card-button(small); }
-    .card-btn-group--large & { @include card-button(large); }
+    .fry-btn-group--small & { @include fry-button(small); }
+    .fry-btn-group--large & { @include fry-button(large); }
 
     &:focus:not([disabled]),
     &:active:not([disabled]) {
-      background-color: $color-card-tertiary;
+      background-color: $color-fry-tertiary;
     }
 
     &:active:not([disabled]),
@@ -69,7 +69,7 @@
 
     &--active {
 
-      @include card-button(primary);
+      @include fry-button(primary);
 
       &:hover:not([disabled]) {
         color: $button-primary-text;
