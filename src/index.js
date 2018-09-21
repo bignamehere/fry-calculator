@@ -6,7 +6,6 @@ import registerServiceWorker from './registerServiceWorker';
 import './styles/card-style.scss';
 import './index.scss';
 
-
 ReactDOM.render(
     <App />,
   document.getElementById('root'));
