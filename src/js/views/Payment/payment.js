@@ -334,7 +334,7 @@ class Payment extends Component {
               mp = Math.ceil(amountOwed / m);
             }
             if( (dpLocked) && (m > MonthsMaxDPZero) ){
-              m = MonthsMaxDPZero;
+              if(dp != DPMinTwoFourMonths) m = MonthsMaxDPZero;
             }
             if( mpLocked ){
               dp = Math.round( investment - (mp * m) );
