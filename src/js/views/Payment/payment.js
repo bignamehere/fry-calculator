@@ -19,7 +19,8 @@ class Payment extends Component {
       dpKnobLocked: false,
       mpKnobLocked: false,
       mKnobLocked: false,
-      showDiscount: true
+      showDiscount: true,
+      showAutopay: true
     };
 
     this.onDownPaymentChange = this.onDownPaymentChange.bind(this);
@@ -222,7 +223,11 @@ class Payment extends Component {
                 m = minMonths;
                 dp = dpState;
               }
-            } 
+            }
+            
+            if(dp <= 0){
+              this.showAutopayPopup();
+            }
             
           } else if(!zSkip) {
             // set other dials to minimums and show popup
@@ -486,12 +491,27 @@ class Payment extends Component {
     }
   }
 
-  onOpenModal = () => {
-    this.setState({ modalOpen: true });
+  showAutopayPopup(){
+    if(this.state.showAutopay){
+      this.onOpenAutopayModal();
+      this.setState({showAutopay:false});
+    }
+  }
+
+  onOpenDiscountModal = () => {
+    this.setState({ discountModalOpen: true });
   };
 
-  onCloseModal = () => {
-    this.setState({ modalOpen: false });
+  onCloseDiscountModal = () => {
+    this.setState({ discountModelOpen: false });
+  };
+
+  onOpenAutopayModal = () => {
+    this.setState({ autopayModalOpen: true });
+  };
+
+  onCloseAutopayModal = () => {
+    this.setState({ autopayModalOpen: false });
   };
 
 	render() {
@@ -500,7 +520,7 @@ class Payment extends Component {
       <div>
           
           <Modal
-            open={this.state.modalOpen}
+            open={this.state.discountModelOpen}
             onClose={this.onCloseModal}
             little
             classNames={{
@@ -515,6 +535,30 @@ class Payment extends Component {
             <div className="fry-grid">
               <div className="fry-grid__1/1 fry-grid__auto@m">
                 <h1 className="modal-custom__content-centered">{this.state.discountPriceLabel} ${this.state.investment - Math.round(this.state.investment*.1)}</h1>
+              </div>
+              <div className="fry-grid__1/1 fry-grid__1/4@m modal-custom__logo">
+                <img src={logo} className="logo" alt="Fry Orthodontics Logo" />
+              </div>
+            </div>
+          
+          </Modal>
+
+          <Modal
+            open={this.state.autopayModalOpen}
+            onClose={this.onCloseModal}
+            little
+            classNames={{
+              modal: 'modal-custom',
+              closeIcon: 'modal-custom-close'
+            }}>
+
+            <h2 className="modal-custom__header">{this.state.autopayPopupHeaderLabel}</h2>
+            <p className="modal-custom__content">
+              {this.state.autopayPopupContent}
+            </p>
+            <div className="fry-grid">
+              <div className="fry-grid__1/1 fry-grid__auto@m">
+                <h1 className="modal-custom__content-centered">{this.state.autopayMessageLabel}</h1>
               </div>
               <div className="fry-grid__1/1 fry-grid__1/4@m modal-custom__logo">
                 <img src={logo} className="logo" alt="Fry Orthodontics Logo" />
