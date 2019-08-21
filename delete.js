@@ -1,0 +1,4 @@
+autoprefixer babel-core babel-eslint babel-jest babel-loader babel-preset-react-app babel-runtime case-sensitive-paths-webpack-plugin chalk css-loader dotenv dotenv-expand eslint eslint-config-react-app eslint-loader eslint-plugin-flowtype eslint-plugin-import eslint-plugin-jsx-a11y eslint-plugin-react file-loader fs-extra html-webpack-plugin jest node-sass object-assign postcss-flexbugs-fixes postcss-loader promise raf react react-dev-utils react-dom sass-loader style-loader sw-precache-webpack-plugin url-loader webpack webpack-dev-server webpack-manifest-plugin whatwg-fetch
+
+
+extract-text-webpack-plugin gh-pages history rc-tabs react-redux react-responsive-modal react-router-dom react-router-redux react-toggle redux redux-logger redux-thunk svg-knob
