@@ -20,6 +20,7 @@ class App extends Component {
     };
     this.setApplicationText = this.setApplicationText.bind(this);
     this.setApplicationLanguage = this.setApplicationLanguage.bind(this);
+    this.setApplicationPercentage = this.setApplicationPercentage.bind(this);
   }
 
   componentWillMount(){
@@ -41,7 +42,8 @@ class App extends Component {
     this.setState({
       appConfig: data.AppConfig,
       allAppText: data.AppText,
-      language: data.InitialLanguage
+      language: data.InitialLanguage,
+      perc: data.AppConfig.PayInFullPercentage
     });
     this.setApplicationConfig();
     this.setApplicationText(data.InitialLanguage);
@@ -71,6 +73,12 @@ class App extends Component {
     this.setApplicationText(lang);
   }
 
+  setApplicationPercentage(){
+    let percentage = this.state.perc === 10 ? this.state.perc : 10; 
+    this.setState({
+      perc: percentage
+    });
+  }
 
   render() {
     return (
