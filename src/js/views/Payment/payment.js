@@ -43,12 +43,23 @@ class Payment extends Component {
   }
 
   setText(data){
+
+    let str1 = data.discountPopupHeaderLabel.split("|payFullPerc|")[0];
+    let str2 = data.discountPopupHeaderLabel.split("|payFullPerc|")[1];
+    
+    let newPopupHeaderLabel = str1 + this.state.perc + str2;
+
+    let str3 = data.discountPopupContent.split("|payFullPerc|")[0];
+    let str4 = data.discountPopupContent.split("|payFullPerc|")[1];
+
+    let newPopupContent = str3 + this.state.perc + str4;
+
     this.setState({
       downPaymentLockLabel: data.downPaymentLockLabel,
       monthlyPaymentsLockLabel: data.monthlyPaymentsLockLabel,
       monthsLockLabel: data.monthsLockLabel,
-      discountPopupHeaderLabel: data.discountPopupHeaderLabel,
-      discountPopupContent: data.discountPopupContent,
+      discountPopupHeaderLabel: newPopupHeaderLabel,
+      discountPopupContent: newPopupContent,
       discountPriceLabel: data.discountPriceLabel,
       instructionsText: data.instructionsText
     });
@@ -61,6 +72,7 @@ class Payment extends Component {
     // manipulate the value if using value from Consultation Screen
 
     this.setState({
+      perc: data.PayInFullPercentage,
       investment: data.DownPaymentKnobSettings.value_max,
       downpayment: data.DownPaymentKnobSettings.initial_value,
       payments: data.MonthlyPaymentsKnobSettings.initial_value,
@@ -514,7 +526,7 @@ class Payment extends Component {
             </p>
             <div className="card-grid">
               <div className="card-grid__1/1 card-grid__auto@m">
-                <h1 className="modal-custom__content-centered">{this.state.discountPriceLabel} ${this.state.investment - Math.round(this.state.investment*.1)}</h1>
+                <h1 className="modal-custom__content-centered">{this.state.discountPriceLabel} ${this.state.investment - Math.round(this.state.investment*(this.state.perc/100))}</h1>
               </div>
               <div className="card-grid__1/1 card-grid__1/4@m modal-custom__logo">
                 <img src={logo} className="logo" alt="Fry Orthodontics Logo" />
