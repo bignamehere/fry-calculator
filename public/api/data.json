@@ -1,5 +1,6 @@
 {
   "AppConfig" : {
+    "PayInFullPercentage": 5,
     "DownPaymentKnobSettings": {
       "value_min": 0,
       "value_max": 5800,
@@ -76,8 +77,8 @@
       "downPaymentDisplayLabel": "Down Payment",
       "monthsDisplayLabel": "Months",
       "monthlyPaymentsDisplayLabel": "Monthly Payment",
-      "discountPopupHeaderLabel": "Pay In Full Discount - 10% Off!",
-      "discountPopupContent": "At Fry Orthodontics, when you pay the full amount for your braces, you will receive a 10% discount on your investment.",
+      "discountPopupHeaderLabel": "Pay In Full Discount - |payFullPerc|% Off!",
+      "discountPopupContent": "At Fry Orthodontics, when you pay the full amount for your braces, you will receive a |payFullPerc|% discount on your investment.",
       "discountPriceLabel": "Price"
     },
     "es" : {
@@ -101,8 +102,8 @@
       "downPaymentDisplayLabel": "Pago inicial",
       "monthsDisplayLabel": "Meses",
       "monthlyPaymentsDisplayLabel": "Pago Mensual",
-      "discountPopupHeaderLabel": "Pagar con descuento completo - 10% de descuento!",
-      "discountPopupContent": "En Fry Orthodontics, cuando pague el monto total por sus llaves, recibirá un 10% de descuento en su inversión.",
+      "discountPopupHeaderLabel": "Pagar con descuento completo - |payFullPerc|% de descuento!",
+      "discountPopupContent": "En Fry Orthodontics, cuando pague el monto total por sus llaves, recibirá un |payFullPerc|% de descuento en su inversión.",
       "discountPriceLabel": "Precio"
     }
   }
