@@ -1,7 +1,7 @@
 {
   "AppConfig" : {
     "DownPaymentKnobSettings": {
-      "value_min": 0,
+      "value_min": 300,
       "value_max": 5800,
       "initial_value": 1500,
       "track_bg_radius": 40,
@@ -37,8 +37,8 @@
     },
     "MonthsKnobSettings" : {
       "value_min": 12,
-      "value_max": 32,
-      "initial_value": 24,
+      "value_max": 24,
+      "initial_value": 18,
       "track_bg_radius": 40,
       "track_bg_width": 12,
       "track_radius": 40,
