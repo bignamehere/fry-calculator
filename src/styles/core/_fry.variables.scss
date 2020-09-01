@@ -18,10 +18,10 @@ $site-max-width: 1200px;
 
 // ---------------------------------------------------------------------------
 // Colors
-$color-fry-green: #4d868e;
+$color-fry-green: #5e6377;// fry green #69b19f;
 $color-fry-light-green: #bdd8db;
 // Core Colors
-$color-fry-primary: #4e4084;
+$color-fry-primary: #5e6377; //purple #4e4084;
 $color-fry-primary-300: tint($color-fry-primary, 25%);
 $color-fry-primary-200: tint($color-fry-primary, 65%);
 $color-fry-primary-100: tint($color-fry-primary, 85%);
@@ -126,7 +126,7 @@ $form-checkbox-radio-fill      : $color-fry-secondary;
 $form-checkbox-fill            : $color-fry-secondary;
 $form-radiocheckbox-size       : 1.8rem;
 $form-padding                  : $size-small;
-$form-select-bgc               : orangered;
+$form-select-bgc               : #b2d236; //orangered;
 $form-between-space            : $size-base + ($size-base / 2);
 
 // ---------------------------------------------------------------------------

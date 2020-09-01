@@ -1,7 +1,7 @@
 //
 //
 import React, { Component } from 'react';
-import logo from '../../../img/fry-logo-w.png';
+import logo from '../../../img/freytag-logo-w.png';
 import './header.scss';
 
 class Header extends Component {

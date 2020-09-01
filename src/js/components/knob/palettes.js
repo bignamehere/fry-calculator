@@ -42,5 +42,16 @@ export default {
     cursor_color: '#003865',
     markers_color: '#003865',
     font_color: '#003865',
-  }
+  },
+  freytag: {
+    bg_color: '#FFFFFF',
+    bg_border_color: '#FFFFFF',
+    track_bg_color: LightenDarkenColor('#69b19f', 50),
+    track_color_init: LightenDarkenColor('#69b19f', -10),
+    track_color: LightenDarkenColor('#69b19f', -10),
+    cursor_color_init: LightenDarkenColor('#69b19f', -14),
+    cursor_color: LightenDarkenColor('#69b19f', -14),
+    markers_color: '#69b19f',
+    font_color: LightenDarkenColor('#333333', -20),
+  },
 }

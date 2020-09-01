@@ -14,7 +14,7 @@
       "cursor_width": 20,
       "font_family": "sans-serif",
       "font_size": 18,
-      "palette": "fry",
+      "palette": "freytag",
       "roundNumber": 100,
       "prefix": "$",
       "zeroMonthsDownPaymentMin": 300
@@ -32,7 +32,7 @@
       "cursor_width": 20,
       "font_family": "sans-serif",
       "font_size": 18,
-      "palette": "fry",
+      "palette": "freytag",
       "roundNumber": 5,
       "prefix": "$"
     },
@@ -49,7 +49,7 @@
       "cursor_width": 20,
       "font_family": "sans-serif",
       "font_size": 18,
-      "palette": "fry",
+      "palette": "freytag",
       "roundNumber": 0,
       "zeroDownPaymentMonthsMax": 24
     }
@@ -72,13 +72,13 @@
       "monthsLockLabel": "Months",
       "langButtonLabel": "Español",
       "instructionsText": "A minimum Down Payment of $|dpZeroMin| is required to extend financing to |mZeroMax| months.",
-      "disclaimerText": "* All prices and amounts are for demonstration purposes only. |copyright| Fry Orthodontics, Inc. All rights reserved.",
+      "disclaimerText": "* All prices and amounts are for demonstration purposes only. |copyright| Freytag Orthodontics, Inc. All rights reserved.",
       "investmentDisplayLabel": "Investment",
       "downPaymentDisplayLabel": "Down Payment",
       "monthsDisplayLabel": "Months",
       "monthlyPaymentsDisplayLabel": "Monthly Payment",
       "discountPopupHeaderLabel": "Pay In Full Discount - |payFullPerc|% Off!",
-      "discountPopupContent": "At Fry Orthodontics, when you pay the full amount for your braces, you will receive a |payFullPerc|% discount on your investment.",
+      "discountPopupContent": "At Freytag Orthodontics, when you pay the full amount for your braces, you will receive a |payFullPerc|% discount on your investment.",
       "discountPriceLabel": "Price"
     },
     "es" : {
@@ -97,13 +97,13 @@
       "monthsLockLabel": "Meses",
       "langButtonLabel": "English",
       "instructionsText": "Se requiere un pago inicial mínimo de $|dpZeroMin| para extender el financiamiento a |mZeroMax| meses.",
-      "disclaimerText": "* Todos los precios y cantidades son solo para demostración. |copyright| Fry Orthodontics, Inc. Todos los derechos reservados.",
+      "disclaimerText": "* Todos los precios y cantidades son solo para demostración. |copyright| Freytag Orthodontics, Inc. Todos los derechos reservados.",
       "investmentDisplayLabel": "Inversión",
       "downPaymentDisplayLabel": "Pago inicial",
       "monthsDisplayLabel": "Meses",
       "monthlyPaymentsDisplayLabel": "Pago Mensual",
       "discountPopupHeaderLabel": "Pagar con descuento completo - |payFullPerc|% de descuento!",
-      "discountPopupContent": "En Fry Orthodontics, cuando pague el monto total por sus llaves, recibirá un |payFullPerc|% de descuento en su inversión.",
+      "discountPopupContent": "En Freytag Orthodontics, cuando pague el monto total por sus llaves, recibirá un |payFullPerc|% de descuento en su inversión.",
       "discountPriceLabel": "Precio"
     }
   }
