@@ -346,7 +346,7 @@ class Payment extends Component {
               mp = Math.ceil(amountOwed / m);
             }
             if( (dpLocked) && (m > MonthsMaxDPZero) ){
-              if(dp != DPMinTwoFourMonths) m = MonthsMaxDPZero;
+              if(dp !== DPMinTwoFourMonths) m = MonthsMaxDPZero;
             }
             if( mpLocked ){
               dp = Math.round( investment - (mp * m) );
@@ -413,7 +413,7 @@ class Payment extends Component {
   ///
 
   setValues( data ){
-    console.log("setValues ZZZZZZ  " + data.investment);
+    //console.log("setValues ZZZZZZ  " + data.investment);
     // Set values of individual Knobs
     this.refs.dpKnob.setKnobValue( data.downpayment );
     this.refs.mpKnob.setKnobValue( data.payments );
